@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour 
 {
@@ -9,7 +10,11 @@ public class GameController : MonoBehaviour
 	public int money; //starts at 100
 	public double suspicion; //0-100
 	public GameTime gameTime; //time in the game: DAY 1 00:00
-	public int timmy;
+
+	private Text _moneyCounterText;
+	private Text _timeCounterText;
+	private Text _dayCounterText;
+	private Slider _barSlider;
 
 	public class GameTime
 	{
@@ -67,12 +72,35 @@ public class GameController : MonoBehaviour
 		suspicion = 0;
 		//initialize gametime
 		gameTime = new GameTime();
+		//initialize gameobjects
+		GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
+		_moneyCounterText = _moneyCounter.GetComponent<Text>();
+		GameObject _timeCounter = GameObject.Find("/UI/TopPanel/TimeCounter");
+		_timeCounterText = _timeCounter.GetComponent<Text>();
+		GameObject _dayCounter = GameObject.Find("/UI/TopPanel/DayCounter");
+		_dayCounterText = _dayCounter.GetComponent<Text>();
+		GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
+		_barSlider = _bar.GetComponent<Slider>();
+
+		StartGameTime();
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		timmy = gameTime.minute;
+		_moneyCounterText.text = money.ToString();
+
+		_dayCounterText.text = "Day " + gameTime.day.ToString();
+		
+		string timetext = "";
+		if(gameTime.hour < 10) {timetext += "0";}
+		timetext += gameTime.hour.ToString();
+		timetext += ":";
+		if(gameTime.minute < 10) {timetext += "0";}
+		timetext += gameTime.minute.ToString();
+		_timeCounterText.text = timetext;
+
+		_barSlider.value = (float)suspicion;
 	}
 
 	void StartGameTime()
