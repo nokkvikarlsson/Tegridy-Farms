@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plants : MonoBehaviour {
+public class ShopItems : MonoBehaviour {
 
 	public class Plant {
 		public Plant(string _type, int _price, double _growthrate, int _sellvalue, double _suspicion){
@@ -18,6 +18,21 @@ public class Plants : MonoBehaviour {
 		public int sellvalue;
 		public double suspicion;
 	}
+
+	/*public class Building {
+		public Building(string _type, int _price, double _growthrate, int _sellvalue, double _suspicion){
+			this.type = _type;
+			this.price = _price;
+			this.growthrate = _growthrate; //progress made from 0 to 1, per game hour
+			this.sellvalue = _sellvalue;
+			this.suspicion = _suspicion; //suspicion added for every unlaundered dollar earned. suspicion is from 0 to 1.
+		}
+		public string type;
+		public int price;
+		public double growthrate;
+		public int sellvalue;
+		public double suspicion;
+	}*/
 
 	public List<Plant> AllPlants;
 
