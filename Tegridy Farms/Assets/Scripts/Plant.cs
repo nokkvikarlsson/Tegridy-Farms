@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Create Plant")]
+[CreateAssetMenu(menuName = "Plant Item")]
 public class Plant : ScriptableObject
 {
 	public Plant() {}

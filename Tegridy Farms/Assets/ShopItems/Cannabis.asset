@@ -16,6 +16,7 @@ MonoBehaviour:
   growthrate: 0.25
   sellvalue: 50
   suspicion: 0.025
+  unlockedAt: 2
   levels:
   - {fileID: 21300000, guid: 5c8ebe687985a4d7180e8dc438409942, type: 3}
   - {fileID: 21300000, guid: ad8b6f16791a54127947fc7612323d24, type: 3}

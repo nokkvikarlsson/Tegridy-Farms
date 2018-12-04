@@ -16,5 +16,6 @@ MonoBehaviour:
   growthrate: 0
   sellvalue: 0
   suspicion: 0
+  unlockedAt: 2
   levels:
   - {fileID: 21300000, guid: 8cb20a879e1fd42d1b6abfcd642e9dd9, type: 3}
