@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShopItems : MonoBehaviour {
 
+	GameController _gameController;
+
 	public class Plant {
 		public Plant(string _type, int _price, double _growthrate, int _sellvalue, double _suspicion){
 			this.type = _type;
@@ -43,6 +45,10 @@ public class ShopItems : MonoBehaviour {
 		AllPlants.Add(new Plant("Hash", 50, 0.18, 80, 0.05));
 	}
 	
+	void Awake() {
+		_gameController = FindObjectOfType<GameController>();
+	}
+
 	// Update is called once per frame
 	void Update() {
 		
