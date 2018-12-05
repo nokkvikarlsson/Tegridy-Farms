@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 	public int money; //starts at 100
 	public double suspicion; //0-100
 	public GameTime gameTime; //time in the game: DAY 1 00:00
+	public string currentItem; //string of current item. usually empty if nothing has happened
 
 	//PRIVATE:
 	private GameObject _shopButton;
@@ -19,6 +20,7 @@ public class GameController : MonoBehaviour
 	private Text _timeCounterText;
 	private Text _dayCounterText;
 	private Slider _barSlider;
+	private bool _gameOver;
 
 	public class GameTime
 	{
@@ -72,12 +74,12 @@ public class GameController : MonoBehaviour
 				plot.transform.position = new Vector3(x, y);
 			}
 		}
-		//initialize money at 100
+		//initialize variables
 		money = 100;
-		//initialize suspicion at 0
 		suspicion = 0;
-		//initialize gametime
 		gameTime = new GameTime();
+		currentItem = "Empty";
+		_gameOver = false;
 		//initialize gameobjects
 		GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
 		_moneyCounterText = _moneyCounter.GetComponent<Text>();
@@ -113,6 +115,13 @@ public class GameController : MonoBehaviour
 		_timeCounterText.text = timetext;
 		//Update UI BarSlider to match
 		_barSlider.value = (float)suspicion;
+		/*=================
+		Check for Game Over
+		=================*/
+		if(money < 0 || suspicion >= 100)
+		{
+			_gameOver = true;
+		}
 	}
 
 	void StartGameTime()
@@ -122,7 +131,7 @@ public class GameController : MonoBehaviour
 
 	IEnumerator TimeOneTwelfthSecond()
 	{
-		while(true)
+		while(!_gameOver)
 		{
 			gameTime.AddOneMinute();
 			yield return new WaitForSeconds(1f/12);

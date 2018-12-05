@@ -18,9 +18,9 @@ MonoBehaviour:
   suspicion: 0.025
   unlockedAt: 3
   levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: f4156cbadc4a0cb46a330e4b2f7a1f7a, type: 3}
+  - {fileID: 21300000, guid: 28a1b87372803694a83fb126886fa130, type: 3}
+  - {fileID: 21300000, guid: d0d8d74251d4ae84fb22c43041235c97, type: 3}
+  - {fileID: 21300000, guid: 3c0a4cd3005aa9c4490531ebc25a7cce, type: 3}
+  - {fileID: 21300000, guid: 235836aff20a52e42831fcc162e77529, type: 3}
+  - {fileID: 21300000, guid: 349842100c58bed4eaaf635603a7cd73, type: 3}
