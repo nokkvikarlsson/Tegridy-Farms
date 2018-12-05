@@ -8,11 +8,16 @@ public class ShopButton : MonoBehaviour
 
 	void Awake()
 	{
-		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
-		_shopMenu.SetActive(false);
+	
 	}
 
-	public void OpenShop()
+    private void Start()
+    {
+        _shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+        _shopMenu.SetActive(false);
+    }
+
+    public void OpenShop()
 	{
 		_shopMenu.SetActive(true);
 	}

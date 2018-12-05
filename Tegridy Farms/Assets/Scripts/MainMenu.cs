@@ -7,10 +7,13 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayGame ()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-	}
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-	public void GoToCredits ()
+        SceneManager.LoadScene("NokkviMain");
+
+    }
+
+    public void GoToCredits ()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
 	}
