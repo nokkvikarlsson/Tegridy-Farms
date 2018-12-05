@@ -11,10 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2e738dbf24d6844943e73c4d0df480, type: 3}
   m_Name: Hash
   m_EditorClassIdentifier: 
-  type: 
-  price: 0
-  growthrate: 0
-  sellvalue: 0
-  suspicion: 0
-  unlockedAt: 0
-  levels: []
+  type: Hash
+  price: 60
+  growthrate: 0.125
+  sellvalue: 110
+  suspicion: 0.025
+  unlockedAt: 3
+  levels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

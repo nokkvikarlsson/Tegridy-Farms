@@ -11,10 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2e738dbf24d6844943e73c4d0df480, type: 3}
   m_Name: Tobacco
   m_EditorClassIdentifier: 
-  type: 
-  price: 0
-  growthrate: 0
-  sellvalue: 0
-  suspicion: 0
-  unlockedAt: 0
-  levels: []
+  type: Tobacco
+  price: 20
+  growthrate: 0.5
+  sellvalue: 30
+  suspicion: -0.1
+  unlockedAt: 2
+  levels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
