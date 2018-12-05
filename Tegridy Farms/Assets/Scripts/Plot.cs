@@ -7,13 +7,13 @@ public class Plot : MonoBehaviour
 {
 	public Plant plant;
 	public double growth; //growth from 0 to 1. 0 is newly planted. 1 is harvestable
-	//private GameController _gameController;
+	private GameController _gameController;
 	private SpriteRenderer _spriteR;
 	private ShopItems _shopItems;
 
 	void Awake() 
 	{
-		//_gameController = FindObjectOfType<GameController>();
+		_gameController = FindObjectOfType<GameController>();
 		_spriteR = gameObject.GetComponent<SpriteRenderer>();
 		_shopItems = FindObjectOfType<ShopItems>();
 		plant = _shopItems.allPlants[0];
@@ -29,11 +29,18 @@ public class Plot : MonoBehaviour
 	{
 		if(plant.name == "Empty")
 		{
-			//OPEN SHOP AND PLANT
+			if(_gameController.currentItem == "Empty")
+			{
+				//no current item. open shop
+			}
+			else
+			{
+				//plant current item
+			}
 		}
 		else if(growth < 1)
 		{
-			//OPEN DELETE OPTION
+			//OPEN DELETE OPTION or DO NOTHING
 		}
 		else
 		{
