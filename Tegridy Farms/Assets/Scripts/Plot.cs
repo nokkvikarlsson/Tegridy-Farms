@@ -27,7 +27,17 @@ public class Plot : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		plant = _shopItems.allPlants[1];
-		_spriteR.sprite = plant.levels[0];
+		if(plant.name == "Empty")
+		{
+			//OPEN SHOP AND PLANT
+		}
+		else if(growth < 1)
+		{
+			//OPEN DELETE OPTION
+		}
+		else
+		{
+			//HARVEST
+		}
 	}
 }
