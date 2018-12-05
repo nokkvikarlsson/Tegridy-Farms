@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour 
 {
+	//PUBLIC:
 	public int plotsize; //starts at 2x2
 	public GameObject plotPrefab;
 	public int money; //starts at 100
 	public double suspicion; //0-100
 	public GameTime gameTime; //time in the game: DAY 1 00:00
 
+	//PRIVATE:
+	private GameObject _shopButton;
+	private GameObject _shopMenu;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
@@ -36,11 +40,13 @@ public class GameController : MonoBehaviour
 		public void AddOneMinute()
 		{
 			this.minute += 1;
-			if(this.minute >= 60){
+			if(this.minute >= 60)
+			{
 				this.hour += 1;
 				this.minute = 0;
 			}
-			if(this.hour >= 24){
+			if(this.hour >= 24)
+			{
 				this.day +=1 ;
 				this.hour = 0;
 			}
@@ -81,17 +87,23 @@ public class GameController : MonoBehaviour
 		_dayCounterText = _dayCounter.GetComponent<Text>();
 		GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
 		_barSlider = _bar.GetComponent<Slider>();
-
+		_shopButton = GameObject.Find("/UI/TopPanel/Button");
+		_shopMenu = GameObject.Find("/Shop");
+		//Start Game Time
 		StartGameTime();
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		_moneyCounterText.text = money.ToString();
-
+		/*=================
+		Update Values of UI
+		=================*/
+		//Update UI MoneyCounter to match
+		_moneyCounterText.text = "Money: " + money.ToString() + "$";
+		//Update UI DayCounter to match
 		_dayCounterText.text = "Day " + gameTime.day.ToString();
-		
+		//Update UI TimeCounter to match
 		string timetext = "";
 		if(gameTime.hour < 10) {timetext += "0";}
 		timetext += gameTime.hour.ToString();
@@ -99,7 +111,7 @@ public class GameController : MonoBehaviour
 		if(gameTime.minute < 10) {timetext += "0";}
 		timetext += gameTime.minute.ToString();
 		_timeCounterText.text = timetext;
-
+		//Update UI BarSlider to match
 		_barSlider.value = (float)suspicion;
 	}
 
