@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopButton : MonoBehaviour {
-
+public class ShopButton : MonoBehaviour 
+{
 	private GameObject _shopMenu;
 
-	void Awake () {
+	void Awake()
+	{
 		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
 		_shopMenu.SetActive(false);
 	}
