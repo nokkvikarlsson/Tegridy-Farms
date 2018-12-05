@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 222554373040441540}
   - component: {fileID: 114957466731261290}
   m_Layer: 8
-  m_Name: SellPirce
+  m_Name: SellPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 222903575212374882}
   - component: {fileID: 114312048000580146}
   m_Layer: 8
-  m_Name: BuyPirce
+  m_Name: BuyPrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
