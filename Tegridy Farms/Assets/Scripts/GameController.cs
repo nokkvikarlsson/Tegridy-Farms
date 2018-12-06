@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
 	private GameObject _shopButton;
 	private GameObject _shopMenu;
 	private SpriteRenderer _currentItemImageSpriteRenderer;
+	private RectTransform _plantTab;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
@@ -66,6 +67,9 @@ public class GameController : MonoBehaviour
 		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
 		GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
 		_currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
+		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(0).gameObject;
+		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
+		_plantTab.SetAsLastSibling();
 		//Start Game Time
 		StartGameTime();
 	}
@@ -127,6 +131,7 @@ public class GameController : MonoBehaviour
 	public void OpenShop()
 	{
 		isShopOpen = true;
+		_plantTab.SetAsLastSibling();
 		_shopMenu.SetActive(true);
 	}
 

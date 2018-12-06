@@ -6,10 +6,13 @@ public class ShopButton : MonoBehaviour
 {
 	private GameController _gameController;
 	private GameObject _shopMenu;
+	private RectTransform _plantTab;
 
 	void Awake()
 	{
 		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(3).gameObject;
+		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
 	}
 
     private void Start()
@@ -20,6 +23,7 @@ public class ShopButton : MonoBehaviour
     public void OpenShop()
 	{
 		_shopMenu.SetActive(true);
+		_plantTab.SetAsLastSibling();
 	}
 
 	public void CloseShop()
