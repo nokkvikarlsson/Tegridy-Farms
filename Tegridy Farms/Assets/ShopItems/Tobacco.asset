@@ -17,6 +17,7 @@ MonoBehaviour:
   sellvalue: 30
   suspicion: -0.1
   unlockedAt: 2
+  shopIndex: 2
   levels:
   - {fileID: 21300000, guid: b8af362b3d0215c4386ac471f01cbe5e, type: 3}
   - {fileID: 21300000, guid: 9cda90a92ab88194c98ab13a85d945ab, type: 3}
