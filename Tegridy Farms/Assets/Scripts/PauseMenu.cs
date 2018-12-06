@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour {
 
 	public GameObject pauseMenuUI;
 
-    public GameObject plot;
+    public GameObject[] plots;
 
     GameObject UI;
     GameObject Shop;
@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour {
 
     void Start()
     {
-       
+        plots = GameObject.FindGameObjectsWithTag("plot");
     }
 
     // Update is called once per frame
@@ -49,6 +49,11 @@ public class PauseMenu : MonoBehaviour {
 		Time.timeScale = 1f;
 		GameIsPaused = false;
 
+        for (int i = 0; i < plots.Length; i++)
+        {
+            plots[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+
         //Shows the UI when resumed
         UI.SetActive(true);
 
@@ -56,7 +61,13 @@ public class PauseMenu : MonoBehaviour {
 
 	private void Pause()
 	{
-		pauseMenuUI.SetActive(true);
+
+        for(int i = 0; i < plots.Length; i++)
+        {
+            plots[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        pauseMenuUI.SetActive(true);
 		Time.timeScale = 0f;
 		GameIsPaused = true;
         

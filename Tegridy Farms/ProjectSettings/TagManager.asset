@@ -9,6 +9,7 @@ TagManager:
   - shopbutton
   - shop
   - UI
+  - plot
   layers:
   - Default
   - TransparentFX
