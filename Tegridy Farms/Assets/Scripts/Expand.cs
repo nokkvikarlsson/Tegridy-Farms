@@ -8,13 +8,16 @@ public class Expand : MonoBehaviour {
     //NokkviKilla Made these
     private bool _plotSize2x2;
     private bool _plotSize3x3;
+    private GameController _gameController;
     private GameObject[] _plots;
     private GameObject _field2x2;
     private GameObject _field3x3;
     private GameObject _field4x4;
+    private int EXPANSIONPRICE = 150;
 
     void Awake()
     {
+        _gameController = FindObjectOfType<GameController>();
         _plotSize2x2 = true;
         _plotSize3x3 = false;
         _field2x2 = GameObject.Find("Tilemap_field_2x2");
@@ -40,9 +43,14 @@ public class Expand : MonoBehaviour {
     //Expands the farm by activating plots
     public void ExpandFarm()
     {
+        if(_gameController.money < EXPANSIONPRICE)
+        {
+            Debug.Log("Not enough cash!");
+            return;
+        }
+        _gameController.removeMoney(EXPANSIONPRICE);
         if(_plotSize2x2)
         {
-
             _field2x2.GetComponent<Renderer>().enabled = false;
             _field3x3.GetComponent<Renderer>().enabled = true;
 

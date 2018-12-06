@@ -171,10 +171,10 @@ public class GameController : MonoBehaviour
 
 	public void addSuspicion(int sellvalue, double plantSuspicion)
 	{
-		Debug.Log(sellvalue);
-		Debug.Log(plantSuspicion);
 		//add launder stuff in future
-		suspicion += ((double)sellvalue * sellvalue);
+		double newsuspicion = ((double)sellvalue * plantSuspicion);
+		Debug.Log(newsuspicion);
+		suspicion += newsuspicion;
 		if(suspicion < 0)
 		{
 			suspicion = 0;
