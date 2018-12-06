@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShopButton : MonoBehaviour 
 {
+	private GameController _gameController;
 	private GameObject _shopMenu;
 
 	void Awake()

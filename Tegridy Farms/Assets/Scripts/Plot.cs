@@ -29,13 +29,18 @@ public class Plot : MonoBehaviour
 	{
 		if(plant.name == "Empty")
 		{
-			if(_gameController.currentItem == "Empty")
+			_gameController.SetCurrentPlot(gameObject);
+			if(_gameController.currentItemIndex == 0)
 			{
-				//no current item. open shop
+				_gameController.OpenShop();
+				while(false)
+				{
+
+				}
 			}
 			else
 			{
-				//plant current item
+				SetPlot(_gameController.currentItemIndex);
 			}
 		}
 		else if(growth < 1)
@@ -46,5 +51,10 @@ public class Plot : MonoBehaviour
 		{
 			//HARVEST
 		}
+	}
+
+	void SetPlot(int _index)
+	{
+		//plant = 
 	}
 }
