@@ -141,13 +141,23 @@ public class GameController : MonoBehaviour
 		isShopOpen = true;
 		_plantTab.SetAsLastSibling();
 		_shopMenu.SetActive(true);
-	}
+
+        for (int i = 0; i < _plots.Length; i++)
+        {
+            _plots[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
 
 	public void CloseShop()
 	{
 		isShopOpen = false;
 		_shopMenu.SetActive(false);
-	}
+
+        for (int i = 0; i < _plots.Length; i++)
+        {
+            _plots[i].GetComponent<BoxCollider2D>().enabled = true;
+        }
+    }
 
 	public void removeMoney(int price)
 	{
