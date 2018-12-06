@@ -10,20 +10,55 @@ public class Plot : MonoBehaviour
 	private GameController _gameController;
 	private SpriteRenderer _spriteR;
 	private ShopItems _shopItems;
-	private GameTime _timePlanted;
+	public GameTime _timePlanted;
 
 	void Awake() 
 	{
 		_gameController = FindObjectOfType<GameController>();
 		_spriteR = gameObject.GetComponent<SpriteRenderer>();
 		_shopItems = FindObjectOfType<ShopItems>();
-		plant = _shopItems.allPlants[0];
+	}
+
+	void Start()
+	{
+		_timePlanted = new GameTime(0,0,0);
+		growth = 0;
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		
+		if(plant.type != "Empty")
+		{
+			GameTime currentTime = new GameTime(_gameController.gameTime);
+			GameTime hoursPassedgt = currentTime - _timePlanted;
+			double hoursPassed = 24 * hoursPassedgt.day + hoursPassedgt.hour + hoursPassedgt.minute / 60;
+			growth = plant.growthrate * hoursPassed;
+			if(growth < 0.2)
+			{
+				_spriteR.sprite = _shopItems.allPlants[plant.shopIndex].levels[0];
+			}
+			else if(growth < 0.4)
+			{
+				_spriteR.sprite = plant.levels[1];
+			}
+			else if(growth < 0.6)
+			{
+				_spriteR.sprite = plant.levels[2];
+			}
+			else if(growth < 0.8)
+			{
+				_spriteR.sprite = plant.levels[3];
+			}
+			else if(growth < 1)
+			{
+				_spriteR.sprite = plant.levels[4];
+			}
+			else if(growth >= 1)
+			{
+				_spriteR.sprite = plant.levels[5];
+			}
+		}
 	}
 
 	void OnMouseDown()
@@ -55,6 +90,9 @@ public class Plot : MonoBehaviour
 		plant = _shopItems.allPlants[_index];
 		_spriteR.sprite = plant.levels[0];
 		_gameController.currentPlot = null;
-		_timePlanted = _gameController.gameTime;
+		GameTime currentTime = new GameTime(_gameController.gameTime);
+		_timePlanted.day = currentTime.day;
+		_timePlanted.hour = currentTime.hour;
+		_timePlanted.minute = currentTime.minute;
 	}
 }
