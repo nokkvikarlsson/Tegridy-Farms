@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCard: {fileID: 0}
-  itemName: 
+  shopItemIndex: 0
 --- !u!1 &104968191 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1680005230053460, guid: 42d8171ab4f7eff4aae3c6ff75fa945b,
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCard: {fileID: 0}
-  itemName: 
+  shopItemIndex: 0
 --- !u!1001 &114645690
 Prefab:
   m_ObjectHideFlags: 0
@@ -4221,7 +4221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCard: {fileID: 0}
-  itemName: 
+  shopItemIndex: 0
 --- !u!1001 &765292328
 Prefab:
   m_ObjectHideFlags: 0
@@ -5434,7 +5434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemCard: {fileID: 0}
-  itemName: 
+  shopItemIndex: 0
 --- !u!1001 &1619640778
 Prefab:
   m_ObjectHideFlags: 0
