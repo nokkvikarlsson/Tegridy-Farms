@@ -84,10 +84,7 @@ public class Plot : MonoBehaviour
 		{
 			//HARVEST
 			_gameController.addMoney(plant.sellvalue);
-			//add suspicion
-
-            //Uncomment for suspicion
-			//_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
+			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
 			plant = _shopItems.allPlants[0];
 			growth = 0;
 			_spriteR.sprite = plant.levels[0];
