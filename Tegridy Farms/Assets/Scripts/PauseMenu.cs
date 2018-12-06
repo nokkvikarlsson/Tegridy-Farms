@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour {
     private void Awake()
     {
         UI = GameObject.FindGameObjectWithTag("UI");
-        Shop = GameObject.FindGameObjectWithTag("shop");
+        Shop = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
         Shop.SetActive(false);
     }
 
