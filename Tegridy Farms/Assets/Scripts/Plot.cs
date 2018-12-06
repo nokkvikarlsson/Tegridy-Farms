@@ -33,7 +33,10 @@ public class Plot : MonoBehaviour
 			if(_gameController.currentItemIndex == 0)
 			{
 				_gameController.OpenShop();
-				while()
+				while(false)
+				{
+
+				}
 			}
 			else
 			{

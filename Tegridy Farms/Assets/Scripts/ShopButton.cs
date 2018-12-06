@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class ShopButton : MonoBehaviour 
 {
-	private GameController _gameController
+	private GameController _gameController;
 	private GameObject _shopMenu;
 
 	void Awake()
 	{
-		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
-		_shopMenu.SetActive(false);
+	
 	}
 
-	public void OpenShop()
+    private void Start()
+    {
+        _shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+        _shopMenu.SetActive(false);
+    }
+
+    public void OpenShop()
 	{
 		_shopMenu.SetActive(true);
 	}
