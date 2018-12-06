@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 	//PRIVATE:
 	private GameObject _shopButton;
 	private GameObject _shopMenu;
+	private ShopItems _shopItems;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
@@ -52,6 +53,7 @@ public class GameController : MonoBehaviour
 		isShopOpen = false;
 		_gameOver = false;
 		//initialize gameobjects
+		_shopItems = FindObjectOfType<ShopItems>();
 		GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
 		_moneyCounterText = _moneyCounter.GetComponent<Text>();
 		GameObject _timeCounter = GameObject.Find("/UI/TopPanel/TimeCounter");
