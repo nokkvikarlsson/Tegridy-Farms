@@ -27,6 +27,9 @@ public class GameController : MonoBehaviour
 	private Slider _barSlider;
 	private bool _gameOver;
 
+    //NokkviKilla's variables
+    private GameObject[] _plots;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -38,14 +41,19 @@ public class GameController : MonoBehaviour
 		//initalize plotsize at 2x2
 		plotsize = 2;
 		//Create starting plots at (0,0) (1,0) (0,-1), (1,-1)
-		for(int x = 0; x < 2; x++)
+		for(int x = 0; x < 4; x++)
 		{
-			for(int y = 0; y > -2; y--)
+			for(int y = 0; y > -4; y--)
 			{
 				GameObject plot = (GameObject)Instantiate(plotPrefab);
 				plot.transform.position = new Vector3(x, y);
 			}
 		}
+
+        _plots = GameObject.FindGameObjectsWithTag("plot");
+
+        HidePlots();
+
 		//initialize variables
 		money = 100;
 		suspicion = 0;
@@ -87,16 +95,17 @@ public class GameController : MonoBehaviour
 		string timetext = "";
 		if(gameTime.hour < 10) {timetext += "0";}
 		timetext += gameTime.hour.ToString();
-		timetext += ":";
+	    timetext += ":";
 		if(gameTime.minute < 10) {timetext += "0";}
-		timetext += gameTime.minute.ToString();
+        timetext += gameTime.minute.ToString();
 		_timeCounterText.text = timetext;
 		//Update UI BarSlider to match
 		_barSlider.value = (float)suspicion;
 		/*=================
 		Check for Game Over
 		=================*/
-		if(money < 0 || suspicion >= 100)
+        //Uncomment to put suspicion back in.
+		if(money < 0 /*|| suspicion >= 100*/)
 		{
 			_gameOver = true;
 		}
@@ -161,4 +170,57 @@ public class GameController : MonoBehaviour
 			suspicion = 0;
 		}
 	}
+
+    //NokkviKilla's helper functions
+    private void HidePlots()
+    {
+        //3x3 plots
+        _plots[2].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[2].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[6].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[6].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[8].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[8].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[9].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[9].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[10].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[10].GetComponent<BoxCollider2D>().enabled = false;
+        /* _plots[6].SetActive(false);
+         _plots[8].SetActive(false);
+         _plots[9].SetActive(false);
+         _plots[10].SetActive(false);*/
+
+        //4x4 plots
+        _plots[3].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[3].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[7].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[7].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[11].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[11].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[12].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[12].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[13].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[13].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[14].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[14].GetComponent<BoxCollider2D>().enabled = false;
+
+        _plots[15].GetComponent<SpriteRenderer>().enabled = false;
+        _plots[15].GetComponent<BoxCollider2D>().enabled = false;
+        /* _plots[3].SetActive(false);
+         _plots[7].SetActive(false);
+         _plots[11].SetActive(false);
+         _plots[12].SetActive(false);
+         _plots[13].SetActive(false);
+         _plots[14].SetActive(false);
+         _plots[15].SetActive(false);*/
+    }
 }
