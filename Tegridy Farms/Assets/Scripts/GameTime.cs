@@ -20,12 +20,16 @@ public class GameTime
 		this.minute = _minute;
 	}
 
+	public GameTime(GameTime copy)
+	{
+		this.day = copy.day;
+		this.hour = copy.hour;
+		this.minute = copy.minute;
+	}
+
 	public static GameTime operator- (GameTime left, GameTime right)
 	{
-		GameTime output = new GameTime(0,0,0);
-		output.day = left.day - right.day;
-		output.hour = left.hour - right.hour;
-		output.minute = left.minute - right.minute;
+		GameTime output = new GameTime(left.day-right.day, left.hour-right.hour, left.minute-right.minute);
 		if(output.minute < 0)
 		{
 			output.minute += 60;
