@@ -19,6 +19,26 @@ public class GameTime
 		this.hour = _hour;
 		this.minute = _minute;
 	}
+
+	public static GameTime operator- (GameTime left, GameTime right)
+	{
+		GameTime output = new GameTime(0,0,0);
+		output.day = left.day - right.day;
+		output.hour = left.hour - right.hour;
+		output.minute = left.minute - right.minute;
+		if(output.minute < 0)
+		{
+			output.minute += 60;
+			output.hour -= 1;
+		}
+		if(output.hour < 0)
+		{
+			output.hour += 24;
+			output.day -= 1;
+		}
+		return output;
+	}
+
 	public void AddOneMinute()
 	{
 		this.minute += 1;
