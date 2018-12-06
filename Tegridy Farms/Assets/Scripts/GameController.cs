@@ -11,7 +11,9 @@ public class GameController : MonoBehaviour
 	public int money; //starts at 100
 	public double suspicion; //0-100
 	public GameTime gameTime; //time in the game: DAY 1 00:00
-	public string currentItem; //string of current item. usually empty if nothing has happened
+	public int currentItemIndex; //int of index in shopitem array
+	public GameObject currentPlot; //selected plot on which to plant
+	public bool isShopOpen; //is the shop menu active?
 
 	//PRIVATE:
 	private GameObject _shopButton;
@@ -78,7 +80,9 @@ public class GameController : MonoBehaviour
 		money = 100;
 		suspicion = 0;
 		gameTime = new GameTime();
-		currentItem = "Empty";
+		currentItemIndex = 0;
+		currentPlot = null;
+		isShopOpen = false;
 		_gameOver = false;
 		//initialize gameobjects
 		GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
@@ -136,5 +140,27 @@ public class GameController : MonoBehaviour
 			gameTime.AddOneMinute();
 			yield return new WaitForSeconds(1f/12);
 		}
+	}
+
+	public void SetCurrentItem(int _index)
+	{
+		currentItemIndex = _index;
+	}
+
+	public void SetCurrentPlot(GameObject _plot)
+	{
+		currentPlot = _plot;
+	}
+
+	public void OpenShop()
+	{
+		isShopOpen = true;
+		_shopMenu.SetActive(true);
+	}
+
+	public void CloseShop()
+	{
+		isShopOpen = false;
+		_shopMenu.SetActive(false);
 	}
 }
