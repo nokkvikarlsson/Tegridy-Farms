@@ -14,48 +14,18 @@ public class GameController : MonoBehaviour
 	public int currentItemIndex; //int of index in shopitem array
 	public GameObject currentPlot; //selected plot on which to plant
 	public bool isShopOpen; //is the shop menu active?
+	public Sprite[] itemSprites;
 
 	//PRIVATE:
 	private GameObject _shopButton;
 	private GameObject _shopMenu;
+	private SpriteRenderer _currentItemImageSpriteRenderer;
+	private RectTransform _plantTab;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
 	private Slider _barSlider;
 	private bool _gameOver;
-
-	public class GameTime
-	{
-		public int day;
-		public int hour;
-		public int minute;
-		public GameTime() 
-		{
-			this.day = 1;
-			this.hour = 0;
-			this.minute = 0;
-		}
-		public GameTime(int _day, int _hour, int _minute) 
-		{
-			this.day = _day;
-			this.hour = _hour;
-			this.minute = _minute;
-		}
-		public void AddOneMinute()
-		{
-			this.minute += 1;
-			if(this.minute >= 60)
-			{
-				this.hour += 1;
-				this.minute = 0;
-			}
-			if(this.hour >= 24)
-			{
-				this.day +=1 ;
-				this.hour = 0;
-			}
-		}
-	}
 
 	// Use this for initialization
 	void Start()
@@ -94,7 +64,12 @@ public class GameController : MonoBehaviour
 		GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
 		_barSlider = _bar.GetComponent<Slider>();
 		_shopButton = GameObject.Find("/UI/TopPanel/Button");
-		_shopMenu = GameObject.Find("/Shop");
+		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+		GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
+		_currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
+		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(0).gameObject;
+		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
+		_plantTab.SetAsLastSibling();
 		//Start Game Time
 		StartGameTime();
 	}
@@ -145,6 +120,7 @@ public class GameController : MonoBehaviour
 	public void SetCurrentItem(int _index)
 	{
 		currentItemIndex = _index;
+		_currentItemImageSpriteRenderer.sprite = itemSprites[_index];
 	}
 
 	public void SetCurrentPlot(GameObject _plot)
@@ -155,6 +131,7 @@ public class GameController : MonoBehaviour
 	public void OpenShop()
 	{
 		isShopOpen = true;
+		_plantTab.SetAsLastSibling();
 		_shopMenu.SetActive(true);
 	}
 

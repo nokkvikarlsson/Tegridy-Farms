@@ -6,24 +6,29 @@ public class ItemCard : MonoBehaviour
 {
 	public GameObject itemCard;
 	public int shopItemIndex;
-	private GameController _gameController;
+	public GameController _gameController;
 
 	// Use this for initialization
 	void Awake()
 	{
-		itemCard = gameObject;
-
 		_gameController = FindObjectOfType<GameController>();
+		itemCard = gameObject;
 	}
 	
+	void Start()
+	{
+		
+	}
+
 	// Update is called once per frame
 	void Update()
 	{
 		
 	}
 
-	void OnMouseClick()
+	public void OnMouseClick()
 	{
 		_gameController.SetCurrentItem(shopItemIndex);
+		_gameController.CloseShop();
 	}
 }

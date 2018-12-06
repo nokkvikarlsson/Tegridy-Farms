@@ -10,6 +10,7 @@ public class Plot : MonoBehaviour
 	private GameController _gameController;
 	private SpriteRenderer _spriteR;
 	private ShopItems _shopItems;
+	private GameTime _timePlanted;
 
 	void Awake() 
 	{
@@ -33,10 +34,6 @@ public class Plot : MonoBehaviour
 			if(_gameController.currentItemIndex == 0)
 			{
 				_gameController.OpenShop();
-				while(false)
-				{
-
-				}
 			}
 			else
 			{
@@ -55,6 +52,9 @@ public class Plot : MonoBehaviour
 
 	void SetPlot(int _index)
 	{
-		//plant = 
+		plant = _shopItems.allPlants[_index];
+		_spriteR.sprite = plant.levels[0];
+		_gameController.currentPlot = null;
+		_timePlanted = _gameController.gameTime;
 	}
 }
