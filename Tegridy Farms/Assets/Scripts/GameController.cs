@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour
 		Update Values of UI
 		=================*/
 		//Update UI MoneyCounter to match
-		_moneyCounterText.text = "Money: " + money.ToString() + "$";
+		_moneyCounterText.text = money.ToString() + "$";
 		//Update UI DayCounter to match
 		_dayCounterText.text = "Day " + gameTime.day.ToString();
 		//Update UI TimeCounter to match

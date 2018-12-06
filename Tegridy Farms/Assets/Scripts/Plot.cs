@@ -32,7 +32,7 @@ public class Plot : MonoBehaviour
 		{
 			GameTime currentTime = new GameTime(_gameController.gameTime);
 			GameTime hoursPassedgt = currentTime - _timePlanted;
-			double hoursPassed = 24 * hoursPassedgt.day + hoursPassedgt.hour + hoursPassedgt.minute / 60;
+			double hoursPassed = (24*hoursPassedgt.day) + hoursPassedgt.hour + ((double)hoursPassedgt.minute/60);
 			growth = plant.growthrate * hoursPassed;
 			if(growth < 0.2)
 			{

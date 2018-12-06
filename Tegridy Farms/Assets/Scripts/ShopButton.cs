@@ -15,11 +15,6 @@ public class ShopButton : MonoBehaviour
 		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
 	}
 
-    private void Start()
-    {
-        _shopMenu.SetActive(false);
-    }
-
     public void OpenShop()
 	{
 		_shopMenu.SetActive(true);
