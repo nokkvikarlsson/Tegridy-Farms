@@ -10,15 +10,11 @@ public class PauseMenu : MonoBehaviour {
 	public GameObject pauseMenuUI;
 
     GameObject UI;
-
-    //Does not to hide the shop. Will look at later
     GameObject Shop;
 
     private void Awake()
     {
         UI = GameObject.FindGameObjectWithTag("UI");
-
-        //Does not work to hide the shop. Will look at later
         Shop = GameObject.FindGameObjectWithTag("shop");
         Shop.SetActive(false);
     }
