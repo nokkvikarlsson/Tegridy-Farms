@@ -8,7 +8,10 @@ public class Expand : MonoBehaviour {
     //NokkviKilla Made these
     private bool _plotSize2x2;
     private bool _plotSize3x3;
-    GameObject[] _plots;
+    private GameObject[] _plots;
+    private GameObject _field2x2;
+    private GameObject _field3x3;
+    private GameObject _field4x4;
 
     void Awake()
     {
@@ -21,6 +24,9 @@ public class Expand : MonoBehaviour {
     void Start () 
     {
         _plots = GameObject.FindGameObjectsWithTag("plot");
+        _field2x2 = GameObject.Find("Tilemap_field_2x2");
+        _field3x3 = GameObject.Find("Tilemap_field_3x3");
+        _field4x4 = GameObject.Find("Tilemap_field_4x4");
     }
 	
 	// Update is called once per frame
@@ -35,6 +41,9 @@ public class Expand : MonoBehaviour {
     {
         if(_plotSize2x2)
         {
+
+            _field2x2.SetActive(false);
+            _field3x3.SetActive(true);
 
             //3x3 plots
             _plots[2].GetComponent<SpriteRenderer>().enabled = true;
@@ -57,6 +66,9 @@ public class Expand : MonoBehaviour {
         }
         else if(_plotSize3x3)
         {
+
+            _field3x3.SetActive(false);
+            _field4x4.SetActive(true);
 
             _plots[3].GetComponent<SpriteRenderer>().enabled = true;
             _plots[3].GetComponent<BoxCollider2D>().enabled = true;

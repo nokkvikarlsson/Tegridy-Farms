@@ -104,8 +104,8 @@ public class GameController : MonoBehaviour
 		/*=================
 		Check for Game Over
 		=================*/
-        //Uncomment to put suspicion back in.
-		if(money < 0 /*|| suspicion >= 100*/)
+
+		if(money < 0 || suspicion >= 100)
 		{
 			_gameOver = true;
 		}
