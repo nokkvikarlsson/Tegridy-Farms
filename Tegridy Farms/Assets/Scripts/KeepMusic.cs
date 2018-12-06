@@ -27,7 +27,7 @@ public class KeepMusic : MonoBehaviour {
         //If it is then destroy the gameobject.
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
-        if (buildIndex == 1 || buildIndex == 3)
+        if (buildIndex == 1)
         {
             backgroundMusic.Stop();
         }
