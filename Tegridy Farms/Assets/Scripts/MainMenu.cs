@@ -9,13 +9,13 @@ public class MainMenu : MonoBehaviour {
 	{
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
-        SceneManager.LoadScene("NokkviMain");
+        SceneManager.LoadScene("Main");
 
     }
 
     public void GoToCredits ()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+		SceneManager.LoadScene("Credits");
 	}
 
 	public void QuitGame ()

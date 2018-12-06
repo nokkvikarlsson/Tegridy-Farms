@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour {
 
 	public GameObject pauseMenuUI;
 
+    public GameObject plot;
+
     GameObject UI;
     GameObject Shop;
 
@@ -16,6 +18,7 @@ public class PauseMenu : MonoBehaviour {
     {
         UI = GameObject.FindGameObjectWithTag("UI");
         Shop = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+
         Shop.SetActive(false);
     }
 
