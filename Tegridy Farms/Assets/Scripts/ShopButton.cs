@@ -11,7 +11,7 @@ public class ShopButton : MonoBehaviour
 	void Awake()
 	{
 		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
-		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(3).gameObject;
+		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(0).gameObject;
 		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
 	}
 

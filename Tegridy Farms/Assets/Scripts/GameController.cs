@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-
+		_plantTab.SetAsLastSibling();
 	}
 
 	void Awake()
@@ -69,7 +69,6 @@ public class GameController : MonoBehaviour
 		_currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
 		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(0).gameObject;
 		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
-		_plantTab.SetAsLastSibling();
 		//Start Game Time
 		StartGameTime();
 	}
@@ -139,5 +138,27 @@ public class GameController : MonoBehaviour
 	{
 		isShopOpen = false;
 		_shopMenu.SetActive(false);
+	}
+
+	public void removeMoney(int price)
+	{
+		money -= price;
+	}
+
+	public void addMoney(int sellvalue)
+	{
+		money += sellvalue;
+	}
+
+	public void addSuspicion(int sellvalue, double plantSuspicion)
+	{
+		Debug.Log(sellvalue);
+		Debug.Log(plantSuspicion);
+		//add launder stuff in future
+		suspicion += ((double)sellvalue * sellvalue);
+		if(suspicion < 0)
+		{
+			suspicion = 0;
+		}
 	}
 }

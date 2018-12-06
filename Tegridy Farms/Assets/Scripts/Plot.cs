@@ -56,6 +56,7 @@ public class Plot : MonoBehaviour
 			}
 			else if(growth >= 1)
 			{
+				//add flashing white circle sprite
 				_spriteR.sprite = plant.levels[5];
 			}
 		}
@@ -82,12 +83,26 @@ public class Plot : MonoBehaviour
 		else
 		{
 			//HARVEST
+			_gameController.addMoney(plant.sellvalue);
+			//add suspicion
+			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
+			plant = _shopItems.allPlants[0];
+			growth = 0;
+			_spriteR.sprite = plant.levels[0];
+			_timePlanted = new GameTime(0,0,0);
 		}
 	}
 
 	void SetPlot(int _index)
 	{
 		plant = _shopItems.allPlants[_index];
+		if(_gameController.money < plant.price)
+		{
+			Debug.Log("Not enough money");
+			plant = _shopItems.allPlants[0];
+			return;
+		}
+		_gameController.removeMoney(plant.price);
 		_spriteR.sprite = plant.levels[0];
 		_gameController.currentPlot = null;
 		GameTime currentTime = new GameTime(_gameController.gameTime);
