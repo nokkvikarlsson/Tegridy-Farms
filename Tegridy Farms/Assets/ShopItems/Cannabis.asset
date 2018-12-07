@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Cannabis
   price: 30
-  growthrate: 0.25
+  growthrate: 0.5
   sellvalue: 50
   suspicion: 0.025
   unlockedAt: 2

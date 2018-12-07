@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Hash
   price: 60
-  growthrate: 0.125
+  growthrate: 0.35
   sellvalue: 110
   suspicion: 0.025
   unlockedAt: 3
