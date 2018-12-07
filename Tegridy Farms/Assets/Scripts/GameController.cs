@@ -108,6 +108,7 @@ public class GameController : MonoBehaviour
 		if(money < 0 || suspicion >= 100)
 		{
 			_gameOver = true;
+            gameOverSequence();
 		}
 	}
 
@@ -232,5 +233,15 @@ public class GameController : MonoBehaviour
          _plots[13].SetActive(false);
          _plots[14].SetActive(false);
          _plots[15].SetActive(false);*/
+    }
+
+    private void gameOverSequence()
+    {
+        if(_gameOver == true)
+        {
+            for (int i = 0; i < 16; i++){
+                _plots[i].GetComponent<BoxCollider2D>().enabled = false;
+            }
+        }
     }
 }
