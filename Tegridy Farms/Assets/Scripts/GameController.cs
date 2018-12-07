@@ -243,5 +243,6 @@ public class GameController : MonoBehaviour
                 _plots[i].GetComponent<BoxCollider2D>().enabled = false;
             }
         }
+        _shopMenu.SetActive(false);
     }
 }

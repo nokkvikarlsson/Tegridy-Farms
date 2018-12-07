@@ -43,6 +43,7 @@ public class Expand : MonoBehaviour {
     //Expands the farm by activating plots
     public void ExpandFarm()
     {
+        _gameController.CloseShop();
         if(_gameController.money < EXPANSIONPRICE)
         {
             Debug.Log("Not enough cash!");
