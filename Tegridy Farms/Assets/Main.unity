@@ -1547,6 +1547,51 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
+      propertyPath: m_Name
+      value: TobaccoItemCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975409140675614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: Tobacco
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778444533281936, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b7f69de2625c102469c76e67f1395056,
+        type: 3}
+    - target: {fileID: 114586206376298924, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: -20$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: shopItemIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: itemCard
+      value: 
+      objectReference: {fileID: 557633728}
+    - target: {fileID: 114025763609526814, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: +30$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114094392058507614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 6s
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067260369064420, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
   m_IsPrefabAsset: 0
@@ -1664,11 +1709,57 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
       propertyPath: m_Name
-      value: ItemCard
+      value: PsilocybinItemCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: itemCard
+      value: 
+      objectReference: {fileID: 1906014659}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: shopItemIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975409140675614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: Psilocybin
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778444533281936, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ee1aea5553bacf5499c9ca81a2c0dcb4,
+        type: 3}
+    - target: {fileID: 114586206376298924, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: -100$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025763609526814, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: +200$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114094392058507614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 30s
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067260369064420, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &557633728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 463638569}
 --- !u!1 &600077875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,7 +2051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &898547256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4825,6 +4916,51 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
+      propertyPath: m_Name
+      value: CannabisItemCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975409140675614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: Cannabis
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778444533281936, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bf703f5eb44302a44a0065d53c2976fb,
+        type: 3}
+    - target: {fileID: 114586206376298924, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: -30$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025763609526814, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: +50$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114094392058507614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 10s
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067260369064420, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: itemCard
+      value: 
+      objectReference: {fileID: 1651221983}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: shopItemIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
   m_IsPrefabAsset: 0
@@ -5002,6 +5138,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1167374817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1356011920}
 --- !u!1 &1178937040
 GameObject:
   m_ObjectHideFlags: 0
@@ -8134,7 +8275,48 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
       propertyPath: m_Name
-      value: ItemCard
+      value: HashItemCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: itemCard
+      value: 
+      objectReference: {fileID: 1167374817}
+    - target: {fileID: 114302544750321136, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: shopItemIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114975409140675614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: Hash
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778444533281936, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6ba3b31bcda7711489a158a57bf26823,
+        type: 3}
+    - target: {fileID: 114586206376298924, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: -60$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114025763609526814, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: +110$
+      objectReference: {fileID: 0}
+    - target: {fileID: 114094392058507614, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 17s
+      objectReference: {fileID: 0}
+    - target: {fileID: 114067260369064420, guid: e91035e94f73b7b47bce223146ada3e6,
+        type: 2}
+      propertyPath: m_Text
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91035e94f73b7b47bce223146ada3e6, type: 2}
@@ -8510,22 +8692,22 @@ Prefab:
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
@@ -8535,7 +8717,7 @@ Prefab:
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
@@ -8545,7 +8727,7 @@ Prefab:
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224297983781197216, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
@@ -9140,6 +9322,11 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!1 &1651221983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126144077}
 --- !u!1 &1665453096
 GameObject:
   m_ObjectHideFlags: 0
@@ -11931,6 +12118,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a654e9127dd85a458782d282d19e881, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1906014659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1559655697252198, guid: e91035e94f73b7b47bce223146ada3e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 464423952}
 --- !u!1001 &1933392351
 Prefab:
   m_ObjectHideFlags: 0
