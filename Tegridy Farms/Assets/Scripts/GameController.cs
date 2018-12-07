@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
 
     //NokkviKilla's variables
     private GameObject[] _plots;
+    private GameObject _LossText;
 
 	// Use this for initialization
 	void Start()
@@ -79,6 +80,9 @@ public class GameController : MonoBehaviour
 		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
 		//Start Game Time
 		StartGameTime();
+        //LossText and set active to false
+        _LossText = GameObject.Find("LossText");
+        _LossText.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -244,5 +248,6 @@ public class GameController : MonoBehaviour
             }
         }
         _shopMenu.SetActive(false);
+        _LossText.SetActive(true);
     }
 }
