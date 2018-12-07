@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
 
     //NokkviKilla's variables
     private GameObject[] _plots;
+    private GameObject _LossText;
 
 	// Use this for initialization
 	void Start()
@@ -79,6 +80,9 @@ public class GameController : MonoBehaviour
 		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
 		//Start Game Time
 		StartGameTime();
+        //LossText and set active to false
+        _LossText = GameObject.Find("LossText");
+        _LossText.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -122,6 +126,11 @@ public class GameController : MonoBehaviour
 		while(!_gameOver)
 		{
 			gameTime.AddOneMinute();
+			if(gameTime.day != 1 && gameTime.hour == 0 && gameTime.minute == 0)
+			{
+				Debug.Log("Rent Collection!");
+				RentCollection();
+			}
 			yield return new WaitForSeconds(1f/12);
 		}
 	}
@@ -243,6 +252,13 @@ public class GameController : MonoBehaviour
                 _plots[i].GetComponent<BoxCollider2D>().enabled = false;
             }
         }
+
         CloseShop();
+        _LossText.SetActive(true);
     }
+
+	public void RentCollection()
+	{
+		money -= 200;
+	}
 }
