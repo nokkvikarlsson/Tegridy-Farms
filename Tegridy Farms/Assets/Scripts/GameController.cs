@@ -126,6 +126,11 @@ public class GameController : MonoBehaviour
 		while(!_gameOver)
 		{
 			gameTime.AddOneMinute();
+			if(gameTime.day != 1 && gameTime.hour == 0 && gameTime.minute == 0)
+			{
+				Debug.Log("Rent Collection!");
+				RentCollection();
+			}
 			yield return new WaitForSeconds(1f/12);
 		}
 	}
@@ -250,4 +255,9 @@ public class GameController : MonoBehaviour
         _shopMenu.SetActive(false);
         _LossText.SetActive(true);
     }
+
+	public void RentCollection()
+	{
+		money -= 200;
+	}
 }
