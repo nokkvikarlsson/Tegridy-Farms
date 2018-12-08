@@ -14,11 +14,10 @@ public class GameController : MonoBehaviour
 	public int currentItemIndex; //int of index in shopitem array
 	public GameObject currentPlot; //selected plot on which to plant
 	public bool isShopOpen; //is the shop menu active?
-	public Sprite[] itemSprites;
+	public Sprite[] itemSprites; //
+	public GameObject shopMenu;
 
 	//PRIVATE:
-	private GameObject _shopButton;
-	private GameObject _shopMenu;
 	private SpriteRenderer _currentItemImageSpriteRenderer;
 	private RectTransform _plantTab;
 	private Text _moneyCounterText;
@@ -26,10 +25,8 @@ public class GameController : MonoBehaviour
 	private Text _dayCounterText;
 	private Slider _barSlider;
 	private bool _gameOver;
-
-    //NokkviKilla's variables
-    private GameObject[] _plots;
-    private GameObject _LossText;
+    private GameObject _lossText;
+	public GameObject[] _plots;
 
 	// Use this for initialization
 	void Start()
@@ -42,18 +39,15 @@ public class GameController : MonoBehaviour
 		//initalize plotsize at 2x2
 		plotsize = 2;
 		//Create starting plots at (0,0) (1,0) (0,-1), (1,-1)
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < plotsize; x++)
 		{
-			for(int y = 0; y > -4; y--)
+			for(int y = 0; y > -1*(plotsize); y--)
 			{
 				GameObject plot = (GameObject)Instantiate(plotPrefab);
 				plot.transform.position = new Vector3(x, y);
 			}
 		}
-
-        _plots = GameObject.FindGameObjectsWithTag("plot");
-
-        HidePlots();
+		_plots = GameObject.FindGameObjectsWithTag("plot");
 
 		//initialize variables
 		money = 100;
@@ -72,17 +66,16 @@ public class GameController : MonoBehaviour
 		_dayCounterText = _dayCounter.GetComponent<Text>();
 		GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
 		_barSlider = _bar.GetComponent<Slider>();
-		_shopButton = GameObject.Find("/UI/TopPanel/Button");
-		_shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+		shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
 		GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
 		_currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
-		GameObject _plantsTabPane = _shopMenu.transform.GetChild(0).GetChild(0).gameObject;
+		GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
 		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
 		//Start Game Time
 		StartGameTime();
         //LossText and set active to false
-        _LossText = GameObject.Find("LossText");
-        _LossText.SetActive(false);
+        _lossText = GameObject.Find("LossText");
+        _lossText.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -108,7 +101,6 @@ public class GameController : MonoBehaviour
 		/*=================
 		Check for Game Over
 		=================*/
-
 		if(money < 0 || suspicion >= 100)
 		{
 			_gameOver = true;
@@ -150,7 +142,7 @@ public class GameController : MonoBehaviour
 	{
 		isShopOpen = true;
 		_plantTab.SetAsLastSibling();
-		_shopMenu.SetActive(true);
+		shopMenu.SetActive(true);
 
         for (int i = 0; i < _plots.Length; i++)
         {
@@ -161,7 +153,7 @@ public class GameController : MonoBehaviour
 	public void CloseShop()
 	{
 		isShopOpen = false;
-		_shopMenu.SetActive(false);
+		shopMenu.SetActive(false);
 
         for (int i = 0; i < _plots.Length; i++)
         {
@@ -182,83 +174,39 @@ public class GameController : MonoBehaviour
 	public void addSuspicion(int sellvalue, double plantSuspicion)
 	{
 		//add launder stuff in future
-		double newsuspicion = ((double)sellvalue * plantSuspicion);
-		Debug.Log(newsuspicion);
-		suspicion += newsuspicion;
+		suspicion = ((double)sellvalue * plantSuspicion);
 		if(suspicion < 0)
 		{
 			suspicion = 0;
 		}
 	}
 
-    //NokkviKilla's helper functions
-    private void HidePlots()
-    {
-        //3x3 plots
-        _plots[2].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[2].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[6].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[6].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[8].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[8].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[9].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[9].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[10].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[10].GetComponent<BoxCollider2D>().enabled = false;
-        /* _plots[6].SetActive(false);
-         _plots[8].SetActive(false);
-         _plots[9].SetActive(false);
-         _plots[10].SetActive(false);*/
-
-        //4x4 plots
-        _plots[3].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[3].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[7].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[7].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[11].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[11].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[12].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[12].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[13].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[13].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[14].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[14].GetComponent<BoxCollider2D>().enabled = false;
-
-        _plots[15].GetComponent<SpriteRenderer>().enabled = false;
-        _plots[15].GetComponent<BoxCollider2D>().enabled = false;
-        /* _plots[3].SetActive(false);
-         _plots[7].SetActive(false);
-         _plots[11].SetActive(false);
-         _plots[12].SetActive(false);
-         _plots[13].SetActive(false);
-         _plots[14].SetActive(false);
-         _plots[15].SetActive(false);*/
-    }
-
     private void gameOverSequence()
     {
-        if(_gameOver == true)
-        {
-            for (int i = 0; i < 16; i++){
-                _plots[i].GetComponent<BoxCollider2D>().enabled = false;
-            }
-        }
-
-        CloseShop();
-        _LossText.SetActive(true);
+		CloseShop();
+        _lossText.SetActive(true);
     }
 
 	public void RentCollection()
 	{
 		money -= 200;
+	}
+
+	public void ExpandFarm()
+	{
+		for(int i = 0; i < plotsize; i++)
+		{
+			GameObject plot = (GameObject)Instantiate(plotPrefab);
+			plot.transform.position = new Vector3(plotsize, -i);
+		}
+		for(int i = 0; i < plotsize; i++)
+		{
+			GameObject plot = (GameObject)Instantiate(plotPrefab);
+			plot.transform.position = new Vector3(i, -plotsize);
+		}
+		GameObject cornerplot = (GameObject)Instantiate(plotPrefab);
+		cornerplot.transform.position = new Vector3(plotsize, -plotsize);
+		plotsize++;
+		_plots = GameObject.FindGameObjectsWithTag("plot");
 	}
 }

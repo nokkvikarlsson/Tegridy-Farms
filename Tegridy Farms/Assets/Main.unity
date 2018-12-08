@@ -8764,12 +8764,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1016994024188086, guid: 41ccd5757560aea46a50dbe7985b9ea0, type: 2}
       propertyPath: m_Name
-      value: ItemCard
+      value: ExpansionItemCard
       objectReference: {fileID: 0}
     - target: {fileID: 114424156410026070, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_Text
       value: Plot Expansion
+      objectReference: {fileID: 0}
+    - target: {fileID: 114089432111214644, guid: 41ccd5757560aea46a50dbe7985b9ea0,
+        type: 2}
+      propertyPath: m_Text
+      value: -200$
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41ccd5757560aea46a50dbe7985b9ea0, type: 2}
