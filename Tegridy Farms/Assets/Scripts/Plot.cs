@@ -17,6 +17,7 @@ public class Plot : MonoBehaviour
 		_gameController = FindObjectOfType<GameController>();
 		_spriteR = gameObject.GetComponent<SpriteRenderer>();
 		_shopItems = FindObjectOfType<ShopItems>();
+		plant = _shopItems.allPlants[0];
 	}
 
 	void Start()

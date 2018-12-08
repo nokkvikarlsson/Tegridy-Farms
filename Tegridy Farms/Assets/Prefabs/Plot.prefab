@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ca5f52f57761e4897026230c543fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 11400000, guid: 0158efb258d5b95448ebfc7537bda9cb, type: 2}
+  plant: {fileID: 0}
   growth: 0
 --- !u!212 &212395996043387424
 SpriteRenderer:
