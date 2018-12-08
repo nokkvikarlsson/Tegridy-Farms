@@ -25,7 +25,9 @@ public class GameController : MonoBehaviour
 	private Text _dayCounterText;
 	private Slider _barSlider;
 	private bool _gameOver;
-    private GameObject _lossText;
+    private GameObject _lossSuspicionText;
+    private GameObject _lossRentText;
+    private GameObject _lossCanvas;
 	public GameObject[] _plots;
 
 	// Use this for initialization
@@ -74,8 +76,12 @@ public class GameController : MonoBehaviour
 		//Start Game Time
 		StartGameTime();
         //LossText and set active to false
-        _lossText = GameObject.Find("LossText");
-        _lossText.SetActive(false);
+        _lossSuspicionText = GameObject.Find("LossSuspicionText");
+        _lossSuspicionText.SetActive(false);
+        _lossRentText = GameObject.Find("LossRentText");
+        _lossRentText.SetActive(false);
+        _lossCanvas = GameObject.Find("LossCanvas");
+        _lossCanvas.GetComponent<Animator>().enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -98,15 +104,21 @@ public class GameController : MonoBehaviour
 		_timeCounterText.text = timetext;
 		//Update UI BarSlider to match
 		_barSlider.value = (float)suspicion;
-		/*=================
+        /*=================
 		Check for Game Over
 		=================*/
-		if(money < 0 || suspicion >= 100)
+        if (suspicion >= 100)
+        {
+            _gameOver = true;
+            gameOverSequence(true);
+        }
+        if (money < 0)
 		{
 			_gameOver = true;
-            gameOverSequence();
+            gameOverSequence(false);
 		}
-	}
+
+    }
 
 	void StartGameTime()
 	{
@@ -181,10 +193,23 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-    private void gameOverSequence()
+    private void gameOverSequence(bool isSuspicion)
     {
-		CloseShop();
-        _lossText.SetActive(true);
+        //If the player lost due to suspicion play the lossCanvas animation and display the loss text
+        if(isSuspicion)
+        {
+            CloseShop();
+            _lossCanvas.GetComponent<Animator>().enabled = true;
+            _lossSuspicionText.SetActive(true);
+        }
+        //If the player lost due to rent play the lossCanvas animation and display the loss text
+        else
+        {
+            CloseShop();
+            _lossCanvas.GetComponent<Animator>().enabled = true;
+            _lossRentText.SetActive(true);
+        }
+
     }
 
 	public void RentCollection()
