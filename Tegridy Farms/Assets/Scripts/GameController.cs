@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameController : MonoBehaviour 
 {
@@ -42,9 +43,7 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
 	public GameObject[] _plots;
-
-
-	
+    private UpdateTotalMoney _updateTotalMoney;
 
     void Awake()
     {
@@ -91,8 +90,7 @@ public class GameController : MonoBehaviour
         _lossSuspicionText = GameObject.Find("LossSuspicionText");
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
-
-
+        _updateTotalMoney = FindObjectOfType<UpdateTotalMoney>();
     }
 
     // Use this for initialization
@@ -220,6 +218,7 @@ public class GameController : MonoBehaviour
         if(isSuspicion)
         {
             CloseShop();
+           DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
         }
@@ -227,10 +226,16 @@ public class GameController : MonoBehaviour
         else
         {
             CloseShop();
+            DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
         }
 
+    }
+
+    private void DisplayTotalMoney()
+    {
+        _updateTotalMoney.Display();
     }
 
     public void RentCollection()
@@ -291,4 +296,8 @@ public class GameController : MonoBehaviour
 		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
 	}
 
+    public int getDayCounter()
+    {
+        return gameTime.day;
+    }
 }
