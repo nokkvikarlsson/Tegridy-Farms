@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 	public bool isShopOpen; //is the shop menu active?
 	public Sprite[] itemSprites; //
 	public GameObject shopMenu;
+	public int totalMoneyEarned;
 
 	//Surrounding Plot Prefabs
 	public GameObject surroundingPlot;
@@ -194,6 +195,7 @@ public class GameController : MonoBehaviour
 	public void addMoney(int sellvalue)
 	{
 		money += sellvalue;
+		totalMoneyEarned += sellvalue;
 	}
 
 	public void addSuspicion(int sellvalue, double plantSuspicion)
