@@ -6,13 +6,15 @@ public class ItemCard : MonoBehaviour
 {
 	public GameObject itemCard;
 	public int shopItemIndex;
-	public GameController _gameController;
+	private GameController _gameController;
+	private ShopItems _shopItems;
 
 	// Use this for initialization
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
 		itemCard = gameObject;
+		_shopItems = FindObjectOfType<ShopItems>();
 	}
 	
 	void Start()
@@ -28,7 +30,14 @@ public class ItemCard : MonoBehaviour
 
 	public void OnMouseClick()
 	{
-		_gameController.SetCurrentItem(shopItemIndex);
-		_gameController.CloseShop();
+		if(_shopItems.allPlants[shopItemIndex].unlockedAt <= _gameController.plotsize)
+		{
+			_gameController.SetCurrentItem(shopItemIndex);
+			_gameController.CloseShop();
+		}
+		else
+		{
+			Debug.Log("Not Unlocked yet");
+		}
 	}
 }

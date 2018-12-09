@@ -199,7 +199,7 @@ public class GameController : MonoBehaviour
 	public void addSuspicion(int sellvalue, double plantSuspicion)
 	{
 		//add launder stuff in future
-		suspicion = ((double)sellvalue * plantSuspicion);
+		suspicion += ((double)sellvalue * plantSuspicion);
 		if(suspicion < 0)
 		{
 			suspicion = 0;

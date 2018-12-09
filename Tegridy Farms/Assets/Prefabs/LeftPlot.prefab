@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212878917118953210}
   m_Layer: 0
   m_Name: LeftPlot
-  m_TagString: Untagged
+  m_TagString: LeftPlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
