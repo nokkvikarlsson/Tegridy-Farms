@@ -93,4 +93,10 @@ public class PauseMenu : MonoBehaviour {
         Application.Quit();
 	}
 
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("NokkviMain");
+    }
+
 }

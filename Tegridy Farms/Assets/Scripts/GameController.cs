@@ -29,8 +29,9 @@ public class GameController : MonoBehaviour
 	public GameObject leftPlotPrefab;
 	public GameObject rightPlotPrefab;
 
-	//PRIVATE:
-	private SpriteRenderer _currentItemImageSpriteRenderer;
+
+    //PRIVATE:
+    private SpriteRenderer _currentItemImageSpriteRenderer;
 	private RectTransform _cropsTab;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
@@ -42,64 +43,69 @@ public class GameController : MonoBehaviour
     private GameObject _lossCanvas;
 	public GameObject[] _plots;
 
-	// Use this for initialization
-	void Start()
-	{
-		_cropsTab.SetAsLastSibling();
-	}
 
-	void Awake()
-	{
-		//initalize plotsize at 2x2
-		plotsize = 2;
-		//Create starting plots at (0,0) (1,0) (0,-1), (1,-1)
-		for(int x = 0; x < plotsize; x++)
-		{
-			for(int y = 0; y > -1*(plotsize); y--)
-			{
-				GameObject plot = (GameObject)Instantiate(plotPrefab);
-				plot.transform.position = new Vector3(x, y);
-			}
-		}
-		//Create surrounding plots
+	
 
-		//initialize plots
-		_plots = GameObject.FindGameObjectsWithTag("plot");
-		//initialize variables
-		money = 100;
-		suspicion = 0;
-		gameTime = new GameTime();
-		currentItemIndex = 0;
-		currentPlot = null;
-		isShopOpen = false;
-		_gameOver = false;
-		//initialize gameobjects
-		GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
-		_moneyCounterText = _moneyCounter.GetComponent<Text>();
-		GameObject _timeCounter = GameObject.Find("/UI/TopPanel/TimeCounter");
-		_timeCounterText = _timeCounter.GetComponent<Text>();
-		GameObject _dayCounter = GameObject.Find("/UI/TopPanel/DayCounter");
-		_dayCounterText = _dayCounter.GetComponent<Text>();
-		GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
-		_barSlider = _bar.GetComponent<Slider>();
-		shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
-		GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
-		_currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
-		GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
-		_cropsTab = _plantsTabPane.GetComponent<RectTransform>();
-		//Start Game Time
-		StartGameTime();
+    void Awake()
+    {
+        //initalize plotsize at 2x2
+        plotsize = 2;
+        //Create starting plots at (0,0) (1,0) (0,-1), (1,-1)
+        for (int x = 0; x < plotsize; x++)
+        {
+            for (int y = 0; y > -1 * (plotsize); y--)
+            {
+                GameObject plot = (GameObject)Instantiate(plotPrefab);
+                plot.transform.position = new Vector3(x, y);
+            }
+        }
+        //Create surrounding plots
+
+        //initialize plots
+        _plots = GameObject.FindGameObjectsWithTag("plot");
+        //initialize variables
+        money = 100;
+        suspicion = 0;
+        gameTime = new GameTime();
+        currentItemIndex = 0;
+        currentPlot = null;
+        isShopOpen = false;
+        _gameOver = false;
+        //initialize gameobjects
+        GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
+        _moneyCounterText = _moneyCounter.GetComponent<Text>();
+        GameObject _timeCounter = GameObject.Find("/UI/TopPanel/TimeCounter");
+        _timeCounterText = _timeCounter.GetComponent<Text>();
+        GameObject _dayCounter = GameObject.Find("/UI/TopPanel/DayCounter");
+        _dayCounterText = _dayCounter.GetComponent<Text>();
+        GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
+        _barSlider = _bar.GetComponent<Slider>();
+        shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+        GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
+        _currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
+        GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
+        _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
+        //Start Game Time
+        StartGameTime();
         //LossText and set active to false
         _lossSuspicionText = GameObject.Find("LossSuspicionText");
-        _lossSuspicionText.SetActive(false);
         _lossRentText = GameObject.Find("LossRentText");
-        _lossRentText.SetActive(false);
         _lossCanvas = GameObject.Find("LossCanvas");
+
+
+    }
+
+    // Use this for initialization
+    void Start()
+    {
+        _cropsTab.SetAsLastSibling();
+        _lossRentText.SetActive(false);
+        _lossSuspicionText.SetActive(false);
         _lossCanvas.GetComponent<Animator>().enabled = false;
-	}
-	
-	// Update is called once per frame
-	void Update()
+    }
+
+    // Update is called once per frame
+    void Update()
 	{
 		/*=================
 		Update Values of UI
@@ -227,7 +233,7 @@ public class GameController : MonoBehaviour
 
     }
 
-	public void RentCollection()
+    public void RentCollection()
 	{
 		money -= 200;
 	}
