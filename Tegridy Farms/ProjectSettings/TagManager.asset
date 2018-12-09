@@ -10,6 +10,11 @@ TagManager:
   - shop
   - UI
   - plot
+  - LowerPlot
+  - RightPlot
+  - LowerRightPlot
+  - LowerLeftPlot
+  - UpperRightPlot
   layers:
   - Default
   - TransparentFX

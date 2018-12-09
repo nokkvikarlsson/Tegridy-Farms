@@ -17,6 +17,17 @@ public class GameController : MonoBehaviour
 	public Sprite[] itemSprites; //
 	public GameObject shopMenu;
 
+	//Surrounding Plot Prefabs
+	public GameObject surroundingPlot;
+	public GameObject upperPlotPrefab;
+	public GameObject upperLeftPlotPrefab;
+	public GameObject upperRightPlotPrefab;
+	public GameObject lowerPlotPrefab;
+	public GameObject lowerRightPlotPrefab;
+	public GameObject lowerLeftPlotPrefab;
+	public GameObject leftPlotPrefab;
+	public GameObject rightPlotPrefab;
+
 	//PRIVATE:
 	private SpriteRenderer _currentItemImageSpriteRenderer;
 	private RectTransform _plantTab;
@@ -47,8 +58,10 @@ public class GameController : MonoBehaviour
 				plot.transform.position = new Vector3(x, y);
 			}
 		}
-		_plots = GameObject.FindGameObjectsWithTag("plot");
+		//Create surrounding plots
 
+		//initialize plots
+		_plots = GameObject.FindGameObjectsWithTag("plot");
 		//initialize variables
 		money = 100;
 		suspicion = 0;
@@ -208,5 +221,40 @@ public class GameController : MonoBehaviour
 		cornerplot.transform.position = new Vector3(plotsize, -plotsize);
 		plotsize++;
 		_plots = GameObject.FindGameObjectsWithTag("plot");
+		AddSurroundingPlot();
+	}
+
+	public void AddSurroundingPlot()
+	{
+		//move lowerleft down
+		GameObject lowerleft = GameObject.FindGameObjectsWithTag("LowerLeftPlot")[0];
+		lowerleft.transform.position += Vector3.down;
+		//move upperright right
+		GameObject upperright = GameObject.FindGameObjectsWithTag("UpperRightPlot")[0];
+		upperright.transform.position += Vector3.right;
+		//move lowerright down-right
+		GameObject lowerright = GameObject.FindGameObjectsWithTag("LowerRightPlot")[0];
+		lowerright.transform.position += (Vector3.right + Vector3.down);
+		//add new left and upper plot
+		GameObject left = (GameObject)Instantiate(leftPlotPrefab);
+		left.transform.position = new Vector3(-1, -1*(plotsize-1));
+		GameObject upper = (GameObject)Instantiate(upperPlotPrefab);
+		upper.transform.position = new Vector3(plotsize-1, 1);
+		//move lower plots down and add one
+		GameObject[] lower = GameObject.FindGameObjectsWithTag("LowerPlot");
+		for(int i = 0; i < lower.Length; i++)
+		{
+			lower[i].transform.position += Vector3.down;
+		}
+		GameObject newLower = (GameObject)Instantiate(lowerPlotPrefab);
+		newLower.transform.position = new Vector3(plotsize-1, -plotsize);
+		//move right plots right and add one
+		GameObject[] right = GameObject.FindGameObjectsWithTag("RightPlot");
+		for(int i = 0; i < lower.Length; i++)
+		{
+			right[i].transform.position += Vector3.right;
+		}
+		GameObject newRight = (GameObject)Instantiate(rightPlotPrefab);
+		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
 	}
 }
