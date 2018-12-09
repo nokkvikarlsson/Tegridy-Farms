@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
 
 	//PRIVATE:
 	private SpriteRenderer _currentItemImageSpriteRenderer;
-	private RectTransform _plantTab;
+	private RectTransform _cropsTab;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		_plantTab.SetAsLastSibling();
+		_cropsTab.SetAsLastSibling();
 	}
 
 	void Awake()
@@ -85,7 +85,7 @@ public class GameController : MonoBehaviour
 		GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
 		_currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
 		GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
-		_plantTab = _plantsTabPane.GetComponent<RectTransform>();
+		_cropsTab = _plantsTabPane.GetComponent<RectTransform>();
 		//Start Game Time
 		StartGameTime();
         //LossText and set active to false
@@ -166,7 +166,7 @@ public class GameController : MonoBehaviour
 	public void OpenShop()
 	{
 		isShopOpen = true;
-		_plantTab.SetAsLastSibling();
+		_cropsTab.SetAsLastSibling();
 		shopMenu.SetActive(true);
 
         for (int i = 0; i < _plots.Length; i++)
@@ -282,4 +282,5 @@ public class GameController : MonoBehaviour
 		GameObject newRight = (GameObject)Instantiate(rightPlotPrefab);
 		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
 	}
+
 }
