@@ -44,6 +44,5 @@ public class Expand : MonoBehaviour {
         _gameController.ExpandFarm();
         //update price of card in shop
         _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
-
     }
 }

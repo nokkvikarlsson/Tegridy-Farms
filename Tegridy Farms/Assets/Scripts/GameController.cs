@@ -43,6 +43,7 @@ public class GameController : MonoBehaviour
     private GameObject _lossCanvas;
 	public GameObject[] _plots;
     private UpdateTotalMoney _updateTotalMoney;
+	private GameObject _mainCamera;
 
     void Awake()
     {
@@ -83,6 +84,8 @@ public class GameController : MonoBehaviour
         _currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
+
+		_mainCamera = GameObject.Find("/Main Camera");
         //Start Game Time
         StartGameTime();
         //LossText and set active to false
@@ -259,9 +262,10 @@ public class GameController : MonoBehaviour
 		plotsize++;
 		_plots = GameObject.FindGameObjectsWithTag("plot");
 		AddSurroundingPlot();
+		AdjustCamera();
 	}
 
-	public void AddSurroundingPlot()
+	void AddSurroundingPlot()
 	{
 		//move lowerleft down
 		GameObject lowerleft = GameObject.FindGameObjectsWithTag("LowerLeftPlot")[0];
@@ -293,6 +297,13 @@ public class GameController : MonoBehaviour
 		}
 		GameObject newRight = (GameObject)Instantiate(rightPlotPrefab);
 		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
+	}
+
+	void AdjustCamera()
+	{
+		_mainCamera.transform.position += new Vector3(0.25f, -0.25f);
+		Camera mainCameraComp = _mainCamera.GetComponent<Camera>();
+		mainCameraComp.orthographicSize += 0.19f;
 	}
 
     public int getDayCounter()
