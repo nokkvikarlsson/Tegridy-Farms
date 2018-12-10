@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114302544750321136}
   - component: {fileID: 114801134013892026}
   m_Layer: 8
-  m_Name: ItemCard
+  m_Name: CropItemCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
