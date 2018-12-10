@@ -30,7 +30,6 @@ public class GameController : MonoBehaviour
 	public GameObject leftPlotPrefab;
 	public GameObject rightPlotPrefab;
 
-
     //PRIVATE:
     private SpriteRenderer _currentItemImageSpriteRenderer;
 	private RectTransform _cropsTab;
