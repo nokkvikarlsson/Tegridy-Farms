@@ -8,11 +8,12 @@ public class PauseMenu : MonoBehaviour {
 	public static bool GameIsPaused = false;
 
 	public GameObject pauseMenuUI;
+    public GameObject pauseOptionsUI;
 
     public GameObject[] plots;
 
-    GameObject UI;
-    GameObject Shop;
+    private GameObject UI;
+    private GameObject Shop;
 
     private void Awake()
     {
@@ -56,7 +57,7 @@ public class PauseMenu : MonoBehaviour {
 
         //Shows the UI when resumed
         UI.SetActive(true);
-
+        pauseOptionsUI.SetActive(false);
     }
 
 	private void Pause()
