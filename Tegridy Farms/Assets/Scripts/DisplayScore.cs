@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -39,12 +39,14 @@ public class DisplayScore : MonoBehaviour {
         if (totalScore >= PlayerPrefs.GetInt("HighestScore", 0))
         {
             Debug.Log("HALLO er í A");
-
+            /*
+            //If the highest score is not zero we have to move it down           
             if (PlayerPrefs.GetInt("HighestScore", 0) != 0)
             {
                 Debug.Log("hey er hérna");
                 PlayerPrefs.SetInt("2HighestScore", PlayerPrefs.GetInt("HighestScore"));
             }
+            */
 
             PlayerPrefs.SetInt("HighestScore", totalScore);
             _totalMoneyText.text = "Total money earned:" + totalMoney + "$\n" + "Total days lasted: " + day.ToString() + "\nNew highscore: " + totalScore;
@@ -62,6 +64,8 @@ public class DisplayScore : MonoBehaviour {
                                     + day.ToString() + "\nTotal Score:" + totalScore + "\nCurrent highscore: " + currentHighscore;
 
 
+
+            /*
             //Cheks if the score is lower then the place above and if its higher then the current place in the scoreboard.
             if (totalScore >= PlayerPrefs.GetInt("2HighestScore", 0) && totalScore < PlayerPrefs.GetInt("HighestScore"))
             {
@@ -83,6 +87,7 @@ public class DisplayScore : MonoBehaviour {
             {
                 PlayerPrefs.SetInt("5HighestScore", totalScore);
             }
+            */
         }
 
     }
