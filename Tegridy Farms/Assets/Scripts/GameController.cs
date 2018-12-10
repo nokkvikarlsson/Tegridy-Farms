@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
 	public GameObject[] _plots;
-    private UpdateTotalMoney _updateTotalMoney;
+    private DisplayScore _DisplayScore;
 
     void Awake()
     {
@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour
         _lossSuspicionText = GameObject.Find("LossSuspicionText");
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
-        _updateTotalMoney = FindObjectOfType<UpdateTotalMoney>();
+        _DisplayScore = FindObjectOfType<DisplayScore>();
     }
 
     // Use this for initialization
@@ -235,7 +235,7 @@ public class GameController : MonoBehaviour
 
     private void DisplayTotalMoney()
     {
-        _updateTotalMoney.Display();
+        _DisplayScore.Display();
     }
 
     public void RentCollection()

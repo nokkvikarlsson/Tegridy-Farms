@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UpdateTotalMoney : MonoBehaviour {
+public class DisplayScore : MonoBehaviour {
 
     private TextMeshProUGUI _totalMoneyText;
     private GameController _gameController;
