@@ -5,9 +5,22 @@ using UnityEngine.UI;
 
 public class Expand : MonoBehaviour {
 
+    public GameObject plotPrefab;
+    //Surrounding Plot Prefabs
+	public GameObject surroundingPlot;
+	public GameObject upperPlotPrefab;
+	public GameObject upperLeftPlotPrefab;
+	public GameObject upperRightPlotPrefab;
+	public GameObject lowerPlotPrefab;
+	public GameObject lowerRightPlotPrefab;
+	public GameObject lowerLeftPlotPrefab;
+	public GameObject leftPlotPrefab;
+	public GameObject rightPlotPrefab;
+
     private GameController _gameController;
     private GameObject _expansionItemCardBuyPrice;
     private int EXPANSIONPRICE = 50;
+    private GameObject _mainCamera;
 
     void Awake()
     {
@@ -20,6 +33,8 @@ public class Expand : MonoBehaviour {
         _gameController.OpenShop();
         _expansionItemCardBuyPrice = GameObject.Find("/Shop/ShopWindow/UpgradesTabPane/Pane/ExpansionItemCard/BuyPrice");
         _gameController.CloseShop();
+
+        _mainCamera = GameObject.Find("/Main Camera");
     }
 	
 	// Update is called once per frame
@@ -41,8 +56,71 @@ public class Expand : MonoBehaviour {
         }
         _gameController.removeMoney(priceOfExpansion);
         _gameController.CloseShop();
-        _gameController.ExpandFarm();
+        ExpandFarmPlots();
+        AddSurroundingPlot();
+		AdjustCamera();
         //update price of card in shop
         _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
     }
+
+    public void ExpandFarmPlots()
+	{
+        int plotsize = _gameController.plotsize;
+		for(int i = 0; i < plotsize; i++)
+		{
+			GameObject plot = (GameObject)Instantiate(plotPrefab);
+			plot.transform.position = new Vector3(plotsize, -i);
+		}
+		for(int i = 0; i < plotsize; i++)
+		{
+			GameObject plot = (GameObject)Instantiate(plotPrefab);
+			plot.transform.position = new Vector3(i, -plotsize);
+		}
+		GameObject cornerplot = (GameObject)Instantiate(plotPrefab);
+		cornerplot.transform.position = new Vector3(plotsize, -plotsize);
+		_gameController.plotsize++;
+		_gameController.plots = GameObject.FindGameObjectsWithTag("plot");
+	}
+
+	void AddSurroundingPlot()
+	{
+        int plotsize = _gameController.plotsize;
+		//move lowerleft down
+		GameObject lowerleft = GameObject.FindGameObjectsWithTag("LowerLeftPlot")[0];
+		lowerleft.transform.position += Vector3.down;
+		//move upperright right
+		GameObject upperright = GameObject.FindGameObjectsWithTag("UpperRightPlot")[0];
+		upperright.transform.position += Vector3.right;
+		//move lowerright down-right
+		GameObject lowerright = GameObject.FindGameObjectsWithTag("LowerRightPlot")[0];
+		lowerright.transform.position += (Vector3.right + Vector3.down);
+		//add new left and upper plot
+		GameObject left = (GameObject)Instantiate(leftPlotPrefab);
+		left.transform.position = new Vector3(-1, -1*(plotsize-1));
+		GameObject upper = (GameObject)Instantiate(upperPlotPrefab);
+		upper.transform.position = new Vector3(plotsize-1, 1);
+		//move lower plots down and add one
+		GameObject[] lower = GameObject.FindGameObjectsWithTag("LowerPlot");
+		for(int i = 0; i < lower.Length; i++)
+		{
+			lower[i].transform.position += Vector3.down;
+		}
+		GameObject newLower = (GameObject)Instantiate(lowerPlotPrefab);
+		newLower.transform.position = new Vector3(plotsize-1, -plotsize);
+		//move right plots right and add one
+		GameObject[] right = GameObject.FindGameObjectsWithTag("RightPlot");
+		for(int i = 0; i < lower.Length; i++)
+		{
+			right[i].transform.position += Vector3.right;
+		}
+		GameObject newRight = (GameObject)Instantiate(rightPlotPrefab);
+		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
+	}
+
+	void AdjustCamera()
+	{
+		_mainCamera.transform.position += new Vector3(0.25f, -0.25f);
+		Camera mainCameraComp = _mainCamera.GetComponent<Camera>();
+		mainCameraComp.orthographicSize += 0.19f;
+	}
 }
