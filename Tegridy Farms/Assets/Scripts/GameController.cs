@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
 	private GameObject[] _plots;
-    private UpdateTotalMoney _updateTotalMoney;
+    private DisplayScore _displayScore;
 	private GameObject _mainCamera;
     private DisplayScore _DisplayScore;
 
