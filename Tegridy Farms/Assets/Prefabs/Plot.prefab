@@ -80,6 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plant: {fileID: 0}
   growth: 0
+  sparklePrefab: {fileID: 1417967867615586, guid: c7c5f066dc0d13a409076a78d39802dd,
+    type: 2}
 --- !u!212 &212395996043387424
 SpriteRenderer:
   m_ObjectHideFlags: 1
