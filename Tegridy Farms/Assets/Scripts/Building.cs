@@ -2,15 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour {
+[CreateAssetMenu(menuName = "Building Item")]
+public class Building : ScriptableObject
+{
+	public Building() {}
+	public Building(Building copy)
+	{
+		type = copy.type;
+		price = copy.price;
+		growthrate = copy.growthrate;
+		sellvalue = copy.sellvalue;
+		suspicion = copy.suspicion;
+		unlockedAt = copy.unlockedAt;
+		shopIndex = copy.shopIndex;
+		levels = copy.levels;
+	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public string type; //string of the type of plant
+	public int price; //money to create a plot
+	public double growthrate; //growth per game hour(5sek). from 0 to 1.
+	public int sellvalue; //money earned when harvested
+	public double suspicion; //suspicion that goes up per unlaundered dollar earned
+	public int unlockedAt; //plotsize that plant is unlocked at
+	public int shopIndex; //index in shop items
+	public Sprite[] levels; //different sprites of growth from 0 to 1.
 }
