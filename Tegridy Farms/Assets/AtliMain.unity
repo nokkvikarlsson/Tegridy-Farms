@@ -621,6 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1539375298}
+  pauseOptionsUI: {fileID: 0}
   plots: []
 --- !u!114 &139966475
 MonoBehaviour:
@@ -109707,6 +109708,12 @@ Prefab:
       propertyPath: plant
       value: 
       objectReference: {fileID: 11400000, guid: 0158efb258d5b95448ebfc7537bda9cb,
+        type: 2}
+    - target: {fileID: 114974135774501540, guid: 4a654e9127dd85a458782d282d19e881,
+        type: 2}
+      propertyPath: sparklePrefab
+      value: 
+      objectReference: {fileID: 1417967867615586, guid: c7c5f066dc0d13a409076a78d39802dd,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a654e9127dd85a458782d282d19e881, type: 2}

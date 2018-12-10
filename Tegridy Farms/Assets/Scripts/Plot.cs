@@ -7,10 +7,12 @@ public class Plot : MonoBehaviour
 {
 	public Plant plant;
 	public double growth; //growth from 0 to 1. 0 is newly planted. 1 is harvestable
+	public GameObject sparklePrefab;
 	private GameController _gameController;
 	private SpriteRenderer _spriteR;
 	private ShopItems _shopItems;
-	public GameTime _timePlanted;
+	private GameTime _timePlanted;
+	private GameObject sparkle;
 
 	void Awake() 
 	{
@@ -18,6 +20,7 @@ public class Plot : MonoBehaviour
 		_spriteR = gameObject.GetComponent<SpriteRenderer>();
 		_shopItems = FindObjectOfType<ShopItems>();
 		plant = _shopItems.allPlants[0];
+		sparkle = null;
 	}
 
 	void Start()
@@ -59,6 +62,11 @@ public class Plot : MonoBehaviour
 			{
 				//add flashing white circle sprite
 				_spriteR.sprite = plant.levels[5];
+				if(sparkle == null)
+				{
+					sparkle = (GameObject)Instantiate(sparklePrefab);
+					sparkle.transform.position = gameObject.transform.position;
+				}
 			}
 		}
 	}
@@ -90,6 +98,9 @@ public class Plot : MonoBehaviour
 			growth = 0;
 			_spriteR.sprite = plant.levels[0];
 			_timePlanted = new GameTime(0,0,0);
+			//REMOVE SPARKLE
+			Destroy(sparkle);
+			sparkle = null;
 		}
 	}
 
