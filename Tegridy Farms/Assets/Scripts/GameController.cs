@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
 	public GameObject shopMenu;
 	public int totalMoneyEarned;
 	public GameObject[] plots;
+    public int displayChecker; //NokkviKilla needs this variable
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -81,6 +82,8 @@ public class GameController : MonoBehaviour
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
         _DisplayScore = FindObjectOfType<DisplayScore>();
+
+        displayChecker = 0; //NokkviKilla needs this
     }
 
     // Use this for initialization
@@ -205,21 +208,36 @@ public class GameController : MonoBehaviour
 
     private void gameOverSequence(bool isSuspicion)
     {
+
+        
+
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
             CloseShop();
-           DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
+
+            if(displayChecker == 0)
+            {
+                DisplayTotalMoney();
+            }
+
+            displayChecker = 1;
         }
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
         {
             CloseShop();
-            DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
+
+            if (displayChecker == 0)
+            {
+                DisplayTotalMoney();
+            }
+
+            displayChecker = 1;
         }
 
     }
