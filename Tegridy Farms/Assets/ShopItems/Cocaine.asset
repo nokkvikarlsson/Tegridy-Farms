@@ -13,15 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Cocaine
   price: 250
-  growthrate: 0
-  sellvalue: 0
-  suspicion: 0
-  unlockedAt: 0
-  shopIndex: 0
+  growthrate: 0.35
+  sellvalue: 500
+  suspicion: 0.03
+  unlockedAt: 5
+  shopIndex: 5
   levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 0d001f0ca30affa4388dc662bf4b8faa, type: 3}
+  - {fileID: 21300000, guid: b5e98be8d7f01e24fb871381cac6c828, type: 3}
+  - {fileID: 21300000, guid: a4be53c3361194446ad6ffe2bad67033, type: 3}
+  - {fileID: 21300000, guid: 0e3293396883d6d4989fe5331676f597, type: 3}
+  - {fileID: 21300000, guid: 837578c0c7c027d4a9782e2c5e92b982, type: 3}
+  - {fileID: 21300000, guid: fa057f68ab2dbf74da2a5cc179a91b54, type: 3}
