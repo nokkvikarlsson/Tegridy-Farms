@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemCard : MonoBehaviour
+public class CropItemCard : MonoBehaviour
 {
 	public int shopItemIndex;
 	private Text _itemCardTitleText;
