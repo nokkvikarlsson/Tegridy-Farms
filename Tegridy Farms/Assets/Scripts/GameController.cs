@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
 	public GameObject rightPlotPrefab;
 
     //PRIVATE:
-    private SpriteRenderer _currentItemImageSpriteRenderer;
+    private Image _currentItemImageSprite;
 	private RectTransform _cropsTab;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
@@ -81,8 +81,8 @@ public class GameController : MonoBehaviour
         GameObject _bar = GameObject.Find("/UI/TopPanel/Suspicion bar/Bar");
         _barSlider = _bar.GetComponent<Slider>();
         shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
-        GameObject _currentItemImage = GameObject.Find("/CurrentItem/CurrentItemImage");
-        _currentItemImageSpriteRenderer = _currentItemImage.GetComponent<SpriteRenderer>();
+        GameObject _currentItemImage = GameObject.Find("/UI/CurrentItemButton/CurrentItemImage");
+        _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
 
@@ -163,7 +163,7 @@ public class GameController : MonoBehaviour
 	public void SetCurrentItem(int _index)
 	{
 		currentItemIndex = _index;
-		_currentItemImageSpriteRenderer.sprite = itemSprites[_index];
+		_currentItemImageSprite.sprite = itemSprites[_index];
 	}
 
 	public void SetCurrentPlot(GameObject _plot)
@@ -174,6 +174,7 @@ public class GameController : MonoBehaviour
 	public void OpenShop()
 	{
 		isShopOpen = true;
+		
 		_cropsTab.SetAsLastSibling();
 		shopMenu.SetActive(true);
 
