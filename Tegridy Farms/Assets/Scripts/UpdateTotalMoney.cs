@@ -30,6 +30,11 @@ public class UpdateTotalMoney : MonoBehaviour {
         int money = _gameController.money;
         int totalScore = day * money;
 
+        if(totalScore < 0)
+        {
+            totalScore = 0;
+        }
+
         _totalMoneyText.text = "Total money earned:" + money + "$\n" + "Total days lasted: " + day.ToString() + "\nTotal Score:" + totalScore;
     }
 
