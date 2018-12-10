@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopItems : MonoBehaviour
 {
 	public Plant[] allPlants;
+	
 
 	//GameController _gameController;
 
