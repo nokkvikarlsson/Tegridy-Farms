@@ -145,8 +145,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 168.4469, y: -363.92963}
-  m_SizeDelta: {x: 283.1, y: 633.8}
+  m_AnchoredPosition: {x: 241, y: -363.91}
+  m_SizeDelta: {x: 428.2, y: 633.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &476795040
 MonoBehaviour:
@@ -182,7 +182,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Atli G\xEDslason\n\nSigur\xF0ur Kalman Oddsson\n\nN\xF6kkvi Karlsson\n\nEgill
     Aron \xDE\xF3risson\n\nN\xF6kkvi Karlsson\nSigur\xF0ur Kalman Oddson\n\nAtli G\xEDslason\nEgill
-    Aron \xDE\xF3risson\nSigur\xF0ur Kalman Oddsson\nN\xF6kkvi Karlsson\n"
+    Aron \xDE\xF3risson\nSigur\xF0ur Kalman Oddsson\nN\xF6kkvi Karlsson\n\nFarm Music
+    Pack\nTextMeshPro\n\nClayton McMichen - Grave in the pines\n\nhttps://tinyurl.com/KillaGamesFarm"
 --- !u!222 &476795041
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -854,8 +855,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -135.75311, y: -363.92963}
-  m_SizeDelta: {x: 269.4, y: 633.8}
+  m_AnchoredPosition: {x: -202.7, y: -363.9}
+  m_SizeDelta: {x: 403.2, y: 633.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1740910067
 MonoBehaviour:
@@ -906,6 +907,20 @@ MonoBehaviour:
 
 
     Programmers
+
+
+
+
+
+    Assets from unity Asset Store
+
+
+
+    Music from public domain
+
+
+    Picture from public domain
+
 
 '
 --- !u!222 &1740910068

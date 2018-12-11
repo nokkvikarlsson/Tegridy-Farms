@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
 	public GameObject shopMenu;
 	public int totalMoneyEarned;
 	public GameObject[] plots;
+    public int displayChecker; //NokkviKilla needs this variable
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -32,7 +33,6 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
-    private DisplayScore _DisplayScore;
 
     void Awake()
     {
@@ -80,7 +80,9 @@ public class GameController : MonoBehaviour
         _lossSuspicionText = GameObject.Find("LossSuspicionText");
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
-        _DisplayScore = FindObjectOfType<DisplayScore>();
+        _displayScore = FindObjectOfType<DisplayScore>();
+
+        displayChecker = 0; //NokkviKilla needs this
     }
 
     // Use this for initialization
@@ -205,28 +207,43 @@ public class GameController : MonoBehaviour
 
     private void gameOverSequence(bool isSuspicion)
     {
+
+        
+
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
             CloseShop();
-           DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
+
+            if(displayChecker == 0)
+            {
+                DisplayTotalMoney();
+            }
+
+            displayChecker = 1;
         }
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
         {
             CloseShop();
-            DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
+
+            if (displayChecker == 0)
+            {
+                DisplayTotalMoney();
+            }
+
+            displayChecker = 1;
         }
 
     }
 
     private void DisplayTotalMoney()
     {
-        _DisplayScore.Display();
+        _displayScore.Display();
     }
 
     public void RentCollection()
