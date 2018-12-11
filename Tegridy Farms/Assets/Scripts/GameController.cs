@@ -33,7 +33,6 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
-    private DisplayScore _DisplayScore;
 
     void Awake()
     {
@@ -81,7 +80,7 @@ public class GameController : MonoBehaviour
         _lossSuspicionText = GameObject.Find("LossSuspicionText");
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
-        _DisplayScore = FindObjectOfType<DisplayScore>();
+        _displayScore = FindObjectOfType<DisplayScore>();
 
         displayChecker = 0; //NokkviKilla needs this
     }
@@ -244,7 +243,7 @@ public class GameController : MonoBehaviour
 
     private void DisplayTotalMoney()
     {
-        _DisplayScore.Display();
+        _displayScore.Display();
     }
 
     public void RentCollection()

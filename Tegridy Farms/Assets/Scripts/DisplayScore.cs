@@ -1,4 +1,4 @@
-﻿+using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -7,11 +7,14 @@ public class DisplayScore : MonoBehaviour {
 
     private TextMeshProUGUI _totalMoneyText;
     private GameController _gameController;
-    private int money;
 
     void Awake() {
         _gameController = FindObjectOfType<GameController>();
         _totalMoneyText = GetComponent<TextMeshProUGUI>();
+
+        //Uncomment this to delete all preferences saved. (Highscores and options)
+        //Debug.Log("Deleting playerprefs");
+        //PlayerPrefs.DeleteAll();
     }
 
     // Use this for initialization
@@ -35,61 +38,89 @@ public class DisplayScore : MonoBehaviour {
             totalScore = 0;
         }
 
-        //If the totalScore is higher than the current highscore then save that as the highscore.
+        //If the totalScore is higher than the current highscore then save that as the highscore
+        //and move every score down by one place.
         if (totalScore >= PlayerPrefs.GetInt("HighestScore", 0))
         {
-            Debug.Log("HALLO er í A");
-            /*
-            //If the highest score is not zero we have to move it down           
-            if (PlayerPrefs.GetInt("HighestScore", 0) != 0)
-            {
-                Debug.Log("hey er hérna");
-                PlayerPrefs.SetInt("2HighestScore", PlayerPrefs.GetInt("HighestScore"));
-            }
-            */
+
+            FifthToFourth(1);
 
             PlayerPrefs.SetInt("HighestScore", totalScore);
             _totalMoneyText.text = "Total money earned:" + totalMoney + "$\n" + "Total days lasted: " + day.ToString() + "\nNew highscore: " + totalScore;
-
-            
 
         }
         //If the total score is lower than the highscore then display the score and the current highscore.
         else
         {
-            Debug.Log("HALLO er i B");
 
             int currentHighscore = PlayerPrefs.GetInt("HighestScore", 0);
             _totalMoneyText.text = "Total money earned:" + totalMoney + "$\n" + "Total days lasted: " 
                                     + day.ToString() + "\nTotal Score:" + totalScore + "\nCurrent highscore: " + currentHighscore;
 
 
-
-            /*
-            //Cheks if the score is lower then the place above and if its higher then the current place in the scoreboard.
+            //Cheks if the score is lower then the score in this place above and if its higher then the current place in the scoreboard.
+            //If it is the move the values in the places below it down by one place
             if (totalScore >= PlayerPrefs.GetInt("2HighestScore", 0) && totalScore < PlayerPrefs.GetInt("HighestScore"))
             {
-                //Give third place the value of second place
-                PlayerPrefs.SetInt("3HighestScore", PlayerPrefs.GetInt("2HighestScore"));
+                FifthToFourth(2);
                 PlayerPrefs.SetInt("2HighestScore", totalScore);
             }
-            if (totalScore >= PlayerPrefs.GetInt("3HighestScore", 0) && totalScore < PlayerPrefs.GetInt("2HighestScore"))
+            else if (totalScore >= PlayerPrefs.GetInt("3HighestScore", 0) && totalScore < PlayerPrefs.GetInt("2HighestScore"))
             {
-                PlayerPrefs.SetInt("4HighestScore", PlayerPrefs.GetInt("3HighestScore"));
+                FifthToFourth(3);
                 PlayerPrefs.SetInt("3HighestScore", totalScore);
             }
-            if (totalScore >= PlayerPrefs.GetInt("4HighestScore", 0) && totalScore < PlayerPrefs.GetInt("3HighestScore"))
+            else if (totalScore >= PlayerPrefs.GetInt("4HighestScore", 0) && totalScore < PlayerPrefs.GetInt("3HighestScore"))
             {
-                PlayerPrefs.SetInt("5HighestScore", PlayerPrefs.GetInt("4HighestScore"));
+                FifthToFourth(4);
                 PlayerPrefs.SetInt("4HighestScore", totalScore);
             }
-            if (totalScore >= PlayerPrefs.GetInt("5HighestScore", 0) && totalScore < PlayerPrefs.GetInt("4HighestScore"))
+            else if (totalScore >= PlayerPrefs.GetInt("5HighestScore", 0) && totalScore < PlayerPrefs.GetInt("4HighestScore"))
             {
                 PlayerPrefs.SetInt("5HighestScore", totalScore);
             }
-            */
+
         }
 
     }
 
+
+    //Helper functions that move the score to the place below it
+    private void SecondToFirst()
+    {
+        PlayerPrefs.SetInt("2HighestScore", PlayerPrefs.GetInt("HighestScore"));
+
+    }
+
+    private void ThirdToSecond(int stop)
+    {
+        PlayerPrefs.SetInt("3HighestScore", PlayerPrefs.GetInt("2HighestScore"));
+
+        if(stop != 2)
+        { 
+            SecondToFirst();
+        }
+
+    }
+
+    private void FourthToThird(int stop)
+    {
+        PlayerPrefs.SetInt("4HighestScore", PlayerPrefs.GetInt("3HighestScore"));
+
+        if(stop != 3)
+        { 
+            ThirdToSecond(stop);
+        }
+
+    }
+
+    private void FifthToFourth(int stop)
+    {
+        PlayerPrefs.SetInt("5HighestScore", PlayerPrefs.GetInt("4HighestScore"));
+
+        if (stop != 4)
+        {
+            FourthToThird(stop);
+        }
+    }
 }
