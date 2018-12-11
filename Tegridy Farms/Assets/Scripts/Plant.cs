@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Plant Item")]
+[CreateAssetMenu(menuName = "Shop Item")]
 public class Plant : ScriptableObject
 {
 	public Plant() {}
@@ -26,4 +26,6 @@ public class Plant : ScriptableObject
 	public int unlockedAt; //plotsize that plant is unlocked at
 	public int shopIndex; //index in shop items
 	public Sprite[] levels; //different sprites of growth from 0 to 1.
+	public bool isBuilding; //0 if plant, 1 if building
+	public bool buildingOn; //0 if off, 1 
 }

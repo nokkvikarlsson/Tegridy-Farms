@@ -37,71 +37,87 @@ public class Plot : MonoBehaviour
 			GameTime currentTime = new GameTime(_gameController.gameTime);
 			GameTime hoursPassedgt = currentTime - _timePlanted;
 			double hoursPassed = (24*hoursPassedgt.day) + hoursPassedgt.hour + ((double)hoursPassedgt.minute/60);
-			growth = plant.growthrate * hoursPassed;
-			if(growth < 0.2)
+			if(!plant.isBuilding)
 			{
-				_spriteR.sprite = _shopItems.allPlants[plant.shopIndex].levels[0];
-			}
-			else if(growth < 0.4)
-			{
-				_spriteR.sprite = plant.levels[1];
-			}
-			else if(growth < 0.6)
-			{
-				_spriteR.sprite = plant.levels[2];
-			}
-			else if(growth < 0.8)
-			{
-				_spriteR.sprite = plant.levels[3];
-			}
-			else if(growth < 1)
-			{
-				_spriteR.sprite = plant.levels[4];
-			}
-			else if(growth >= 1)
-			{
-				//add flashing white circle sprite
-				_spriteR.sprite = plant.levels[5];
-				if(sparkle == null)
+				growth = plant.growthrate * hoursPassed;
+				if(growth < 0.2)
 				{
-					sparkle = (GameObject)Instantiate(sparklePrefab);
-					sparkle.transform.position = gameObject.transform.position;
+					_spriteR.sprite = _shopItems.allPlants[plant.shopIndex].levels[0];
 				}
+				else if(growth < 0.4)
+				{
+					_spriteR.sprite = plant.levels[1];
+				}
+				else if(growth < 0.6)
+				{
+					_spriteR.sprite = plant.levels[2];
+				}
+				else if(growth < 0.8)
+				{
+					_spriteR.sprite = plant.levels[3];
+				}
+				else if(growth < 1)
+				{
+					_spriteR.sprite = plant.levels[4];
+				}
+				else if(growth >= 1)
+				{
+					//add flashing white circle sprite
+					_spriteR.sprite = plant.levels[5];
+					if(sparkle == null)
+					{
+						sparkle = (GameObject)Instantiate(sparklePrefab);
+						sparkle.transform.position = gameObject.transform.position;
+					}
+				}
+			}
+			else
+			{
+				//Building worky animation;
 			}
 		}
 	}
 
 	void OnMouseDown()
 	{
-		if(plant.name == "Empty")
+		//IF PLANT
+		if(!plant.isBuilding)
 		{
-			_gameController.SetCurrentPlot(gameObject);
-			if(_gameController.currentItemIndex == 0)
+			if(plant.name == "Empty")
 			{
-				_gameController.OpenShop();
+				_gameController.SetCurrentPlot(gameObject);
+				if(_gameController.currentItemIndex == 0)
+				{
+					_gameController.OpenShop();
+				}
+				else
+				{
+					SetPlot(_gameController.currentItemIndex);
+				}
+			}
+			else if(growth < 1)
+			{
+				//OPEN DELETE OPTION or DO NOTHING
 			}
 			else
 			{
-				SetPlot(_gameController.currentItemIndex);
+				//HARVEST
+				_gameController.addMoney(plant.sellvalue);
+				_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
+				//RESET PLANT
+				plant = _shopItems.allPlants[0];
+				growth = 0;
+				_spriteR.sprite = plant.levels[0];
+				_timePlanted = new GameTime(0,0,0);
+				//REMOVE SPARKLE
+				Destroy(sparkle);
+				sparkle = null;
 			}
 		}
-		else if(growth < 1)
-		{
-			//OPEN DELETE OPTION or DO NOTHING
-		}
+		//IF BUILDING
 		else
 		{
-			//HARVEST
-			_gameController.addMoney(plant.sellvalue);
-			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
-			//RESET PLANT
-			plant = _shopItems.allPlants[0];
-			growth = 0;
-			_spriteR.sprite = plant.levels[0];
-			_timePlanted = new GameTime(0,0,0);
-			//REMOVE SPARKLE
-			Destroy(sparkle);
-			sparkle = null;
+
 		}
 	}
 
