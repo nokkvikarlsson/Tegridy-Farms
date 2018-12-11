@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
 	public GameObject shopMenu;
 	public int totalMoneyEarned;
 	public GameObject[] plots;
+    public int displayChecker; //NokkviKilla needs this variable
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -32,7 +33,6 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
-    private DisplayScore _DisplayScore;
 
     void Awake()
     {
@@ -80,7 +80,9 @@ public class GameController : MonoBehaviour
         _lossSuspicionText = GameObject.Find("LossSuspicionText");
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
-        _DisplayScore = FindObjectOfType<DisplayScore>();
+        _displayScore = FindObjectOfType<DisplayScore>();
+
+        displayChecker = 0; //NokkviKilla needs this
     }
 
     // Use this for initialization
@@ -104,11 +106,36 @@ public class GameController : MonoBehaviour
 		_dayCounterText.text = "Day " + gameTime.day.ToString();
 		//Update UI TimeCounter to match
 		string timetext = "";
-		if(gameTime.hour < 10) {timetext += "0";}
-		timetext += gameTime.hour.ToString();
-	    timetext += ":";
-		if(gameTime.minute < 10) {timetext += "0";}
-        timetext += gameTime.minute.ToString();
+        if(gameTime.hour == 0)
+        {
+            timetext += "12";
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " AM";
+        }
+        else if(gameTime.hour == 12)
+        {
+            timetext += "12";
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " PM";
+        }
+        else if(gameTime.hour < 12) 
+        {
+            if(gameTime.hour < 10) {timetext += " ";}
+            timetext += gameTime.hour.ToString();
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " AM";
+        }
+        else 
+        {
+            if(gameTime.hour -12 < 10) {timetext += " ";}
+            timetext += (gameTime.hour - 12).ToString();
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " PM";
+        }
 		_timeCounterText.text = timetext;
 		//Update UI BarSlider to match
 		_barSlider.value = (float)suspicion;
@@ -205,28 +232,43 @@ public class GameController : MonoBehaviour
 
     private void gameOverSequence(bool isSuspicion)
     {
+
+        
+
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
             CloseShop();
-           DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
+
+            if(displayChecker == 0)
+            {
+                DisplayTotalMoney();
+            }
+
+            displayChecker = 1;
         }
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
         {
             CloseShop();
-            DisplayTotalMoney();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
+
+            if (displayChecker == 0)
+            {
+                DisplayTotalMoney();
+            }
+
+            displayChecker = 1;
         }
 
     }
 
     private void DisplayTotalMoney()
     {
-        _DisplayScore.Display();
+        _displayScore.Display();
     }
 
     public void RentCollection()
