@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 
-    public GameObject _optionsMenu;
+    private GameObject _optionsMenu;
+
+    private void Awake()
+    {
+        _optionsMenu = GameObject.Find("OptionsMenu");
+    }
 
     //We do this so the volume slider in options has a chance to lower the volume according
     //to the playerprefs before we set the options menu as not active.
