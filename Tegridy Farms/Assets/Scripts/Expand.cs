@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Expand : MonoBehaviour {
 
@@ -17,6 +18,9 @@ public class Expand : MonoBehaviour {
 	public GameObject leftPlotPrefab;
 	public GameObject rightPlotPrefab;
 
+    //For the sound
+    private SoundController _soundController;
+
     private GameController _gameController;
     private GameObject _expansionItemCardBuyPrice;
     private int EXPANSIONPRICE = 50;
@@ -25,6 +29,7 @@ public class Expand : MonoBehaviour {
     void Awake()
     {
         _gameController = FindObjectOfType<GameController>();
+        _soundController = FindObjectOfType<SoundController>();
     }
 
     // Use this for initialization
@@ -54,6 +59,7 @@ public class Expand : MonoBehaviour {
             Debug.Log("Not enough cash!");
             return;
         }
+        _soundController.Play("Expand");
         _gameController.removeMoney(priceOfExpansion);
         _gameController.CloseShop();
         ExpandFarmPlots();
@@ -123,4 +129,5 @@ public class Expand : MonoBehaviour {
 		Camera mainCameraComp = _mainCamera.GetComponent<Camera>();
 		mainCameraComp.orthographicSize += 0.19f;
 	}
+
 }

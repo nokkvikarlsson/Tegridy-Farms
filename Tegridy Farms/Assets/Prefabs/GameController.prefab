@@ -59,26 +59,17 @@ MonoBehaviour:
   currentPlot: {fileID: 0}
   isShopOpen: 0
   itemSprites:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 294cf075bf6594140b0150f40b1994f2, type: 3}
   - {fileID: 21300000, guid: bf703f5eb44302a44a0065d53c2976fb, type: 3}
   - {fileID: 21300000, guid: b7f69de2625c102469c76e67f1395056, type: 3}
   - {fileID: 21300000, guid: 6ba3b31bcda7711489a158a57bf26823, type: 3}
   - {fileID: 21300000, guid: ee1aea5553bacf5499c9ca81a2c0dcb4, type: 3}
+  - {fileID: 21300000, guid: 88d539b46d285ce469f58afcbd4b6530, type: 3}
+  - {fileID: 21300000, guid: b5a4f81e144342c47afec70cc7969348, type: 3}
+  - {fileID: 21300000, guid: e142472ec5e747847b88e39aff3b683c, type: 3}
+  - {fileID: 21300000, guid: 91d074c18b812a8439bd3831bb9f418e, type: 3}
+  - {fileID: 21300000, guid: f9f64a16193fa7d4984168399626e334, type: 3}
   shopMenu: {fileID: 0}
-  upperPlotPrefab: {fileID: 1143563359293904, guid: ad513379deb1f274f908f2b77c9994a2,
-    type: 2}
-  upperLeftPlotPrefab: {fileID: 1706649182965940, guid: ae35574ab1cd5ce46b62308604f7b8c1,
-    type: 2}
-  upperRightPlotPrefab: {fileID: 1698769091858634, guid: 68be861024be37d438a3833f1763ead2,
-    type: 2}
-  lowerPlotPrefab: {fileID: 1857002509972140, guid: 8c2188177650d7c45b4b6b6d8e458af5,
-    type: 2}
-  lowerRightPlotPrefab: {fileID: 1127868946897698, guid: dd542089f3fd2514bb0f803d129375d0,
-    type: 2}
-  lowerLeftPlotPrefab: {fileID: 1889581056577770, guid: 1623bb1d86edf4a4f8661416e9a782be,
-    type: 2}
-  leftPlotPrefab: {fileID: 1290376766683026, guid: f72d379b926aeff4fb5cb374175c7b7e,
-    type: 2}
-  rightPlotPrefab: {fileID: 1232340127839150, guid: 39248226488ff054abd9acf5dd9c375b,
-    type: 2}
-  _plots: []
+  totalMoneyEarned: 0
+  plots: []
+  displayChecker: 0

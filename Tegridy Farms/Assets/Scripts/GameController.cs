@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
         //initialize plots
         plots = GameObject.FindGameObjectsWithTag("plot");
         //initialize variables
-        money = 100000;
+        money = 100;
         suspicion = 0;
         gameTime = new GameTime();
         currentItemIndex = 0;
@@ -106,11 +106,36 @@ public class GameController : MonoBehaviour
 		_dayCounterText.text = "Day " + gameTime.day.ToString();
 		//Update UI TimeCounter to match
 		string timetext = "";
-		if(gameTime.hour < 10) {timetext += "0";}
-		timetext += gameTime.hour.ToString();
-	    timetext += ":";
-		if(gameTime.minute < 10) {timetext += "0";}
-        timetext += gameTime.minute.ToString();
+        if(gameTime.hour == 0)
+        {
+            timetext += "12";
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " AM";
+        }
+        else if(gameTime.hour == 12)
+        {
+            timetext += "12";
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " PM";
+        }
+        else if(gameTime.hour < 12) 
+        {
+            if(gameTime.hour < 10) {timetext += " ";}
+            timetext += gameTime.hour.ToString();
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " AM";
+        }
+        else 
+        {
+            if(gameTime.hour -12 < 10) {timetext += " ";}
+            timetext += (gameTime.hour - 12).ToString();
+            timetext += ":";
+		    if(gameTime.minute < 10) {timetext += "0";}
+            timetext += gameTime.minute.ToString() + " PM";
+        }
 		_timeCounterText.text = timetext;
 		//Update UI BarSlider to match
 		_barSlider.value = (float)suspicion;
