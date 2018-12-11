@@ -1065,7 +1065,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -1521,6 +1521,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859165559}
   - component: {fileID: 859165560}
+  - component: {fileID: 859165561}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -1534,7 +1535,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 859165558}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1547,7 +1548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.0001, y: 58}
+  m_AnchoredPosition: {x: 7.000122, y: 58}
   m_SizeDelta: {x: 434.7, y: 52.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &859165560
@@ -1596,7 +1597,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1476235265}
+      - m_Target: {fileID: 859165561}
         m_MethodName: SetVolume
         m_Mode: 0
         m_Arguments:
@@ -1609,6 +1610,21 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &859165561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 859165558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ee920df51414852858978808e12558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: 7dc447cc038ce479db151b56f1381780, type: 2}
+  musicVolumeSlider: {fileID: 859165560}
+  effectAudioMixer: {fileID: 0}
+  effectVolumeSlider: {fileID: 0}
 --- !u!1 &965576119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2857,7 +2873,6 @@ GameObject:
   - component: {fileID: 1476235264}
   - component: {fileID: 1476235263}
   - component: {fileID: 1476235262}
-  - component: {fileID: 1476235265}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -2944,19 +2959,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1476235265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1476235260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2ee920df51414852858978808e12558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: 7dc447cc038ce479db151b56f1381780, type: 2}
-  musicVolumeSlider: {fileID: 859165560}
 --- !u!1 &1496056826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3080,7 +3082,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Effects Volume (coming soon)
+  m_text: Effects Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -3157,11 +3159,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -4184,6 +4186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1919992415}
   - component: {fileID: 1919992416}
+  - component: {fileID: 1919992417}
   m_Layer: 5
   m_Name: EffectsVolumeSlider
   m_TagString: Untagged
@@ -4258,9 +4261,35 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1919992417}
+        m_MethodName: SetEffectVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1919992417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1919992414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ee920df51414852858978808e12558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  effectAudioMixer: {fileID: 24100000, guid: 7adea88331dec48c8a7be431707084ea, type: 2}
+  effectVolumeSlider: {fileID: 1919992416}
 --- !u!1 &2013527078
 GameObject:
   m_ObjectHideFlags: 0
