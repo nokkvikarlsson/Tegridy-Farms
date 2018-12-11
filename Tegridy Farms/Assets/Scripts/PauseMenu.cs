@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour {
 		Time.timeScale = 0f;
 		GameIsPaused = true;
         
-        //Hides the UI when resumed
+        //Hides the UI when paused
         UI.SetActive(false);
 
         if(Shop.activeSelf == true)
