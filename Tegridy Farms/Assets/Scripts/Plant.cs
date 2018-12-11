@@ -27,5 +27,4 @@ public class Plant : ScriptableObject
 	public int shopIndex; //index in shop items
 	public Sprite[] levels; //different sprites of growth from 0 to 1.
 	public bool isBuilding; //0 if plant, 1 if building
-	public bool buildingOn; //0 if off, 1 
 }
