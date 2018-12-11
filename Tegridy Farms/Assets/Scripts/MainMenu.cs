@@ -5,7 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	public void PlayGame ()
+
+    public GameObject _optionsMenu;
+
+    //We do this so the volume slider in options has a chance to lower the volume according
+    //to the playerprefs before we set the options menu as not active.
+    void Update()
+    {
+        _optionsMenu.SetActive(false);
+    }
+
+    public void PlayGame ()
 	{
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
