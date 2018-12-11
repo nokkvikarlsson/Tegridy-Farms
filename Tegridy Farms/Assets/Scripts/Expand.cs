@@ -59,7 +59,7 @@ public class Expand : MonoBehaviour {
             Debug.Log("Not enough cash!");
             return;
         }
-        //PlayExpandSound();
+        _soundController.Play("Expand");
         _gameController.removeMoney(priceOfExpansion);
         _gameController.CloseShop();
         ExpandFarmPlots();
@@ -130,10 +130,4 @@ public class Expand : MonoBehaviour {
 		mainCameraComp.orthographicSize += 0.19f;
 	}
 
-    /*
-    void PlayExpandSound()
-    {
-        _soundController.PlayExpandSound();
-    }
-    */
 }
