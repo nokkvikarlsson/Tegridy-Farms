@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
 	public int totalMoneyEarned;
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
+    public Plant[] allPlants;
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -36,6 +37,15 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        //Initialize allPlants from Shop Items
+        ShopItems shopItems = GameObject.Find("/ShopItems").GetComponent<ShopItems>();
+        allPlants = new Plant[shopItems.allPlants.Length];
+        for(int i = 0; i < shopItems.allPlants.Length; i++)
+        {
+            allPlants[i] = Instantiate(shopItems.allPlants[i]);
+            //allPlants[i].Clone(shopItems.allPlants[i]);
+            Debug.Log(allPlants[i].type);
+        }
         //initalize plotsize at 2x2
         plotsize = 2;
         //Create starting plots at (0,0) (1,0) (0,-1), (1,-1)
@@ -47,14 +57,12 @@ public class GameController : MonoBehaviour
                 plot.transform.position = new Vector3(x, y);
             }
         }
-        //Create surrounding plots
-
         //initialize plots
         plots = GameObject.FindGameObjectsWithTag("plot");
         //initialize variables
         money = 200;
         suspicion = 0;
-        gameTime = new GameTime(1,6,0);
+        gameTime = new GameTime();
         currentItemIndex = 0;
         currentPlot = null;
         isShopOpen = false;
@@ -73,7 +81,6 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
-
         //Start Game Time
         StartGameTime();
         //LossText and set active to false

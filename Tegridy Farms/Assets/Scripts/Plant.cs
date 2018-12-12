@@ -18,6 +18,18 @@ public class Plant : ScriptableObject
 		levels = copy.levels;
 	}
 
+	public void Clone(Plant copy)
+	{
+		type = copy.type;
+		price = copy.price;
+		growthrate = copy.growthrate;
+		sellvalue = copy.sellvalue;
+		suspicion = copy.suspicion;
+		unlockedAt = copy.unlockedAt;
+		shopIndex = copy.shopIndex;
+		levels = copy.levels;
+	}
+
 	public string type; //string of the type of plant
 	public int price; //money to create a plot
 	public double growthrate; //growth per game hour(5sek). from 0 to 1.

@@ -11,18 +11,16 @@ public class Plot : MonoBehaviour
 	public GameObject smokePrefab;
 	private GameController _gameController;
 	private SpriteRenderer _spriteR;
-	private ShopItems _shopItems;
 	private GameTime _timePlanted;
 	private GameObject sparkle;
 	private GameObject smoke;
-	private bool _buildingOn;
+	public bool _buildingOn;
 
 	void Awake() 
 	{
 		_gameController = FindObjectOfType<GameController>();
 		_spriteR = gameObject.GetComponent<SpriteRenderer>();
-		_shopItems = FindObjectOfType<ShopItems>();
-		plant = _shopItems.allPlants[0];
+		plant = _gameController.allPlants[0];
 		sparkle = null;
 		_timePlanted = new GameTime(0,0,0);
 		growth = 0;
@@ -55,7 +53,7 @@ public class Plot : MonoBehaviour
 		growth = plant.growthrate * hoursPassed;
 		if(growth < 0.2)
 		{
-			_spriteR.sprite = _shopItems.allPlants[plant.shopIndex].levels[0];
+			_spriteR.sprite = _gameController.allPlants[plant.shopIndex].levels[0];
 		}
 		else if(growth < 0.4)
 		{
@@ -120,8 +118,8 @@ public class Plot : MonoBehaviour
 					if(_buildingOn)
 					{
 						_buildingOn = false;
-						_shopItems.allPlants[6].sellvalue -= plant.sellvalue; 
-						_shopItems.allPlants[6].suspicion -= plant.suspicion;
+						_gameController.allPlants[6].sellvalue -= plant.sellvalue; 
+						_gameController.allPlants[6].suspicion -= plant.suspicion;
 
 						growth = 0;
 						_timePlanted = new GameTime(0,0,0);
@@ -133,7 +131,7 @@ public class Plot : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		if(plant.name == "Empty")
+		if(plant.type == "Empty")
 		{
 			_gameController.SetCurrentPlot(gameObject);
 			if(_gameController.currentItemIndex == 0)
@@ -169,7 +167,7 @@ public class Plot : MonoBehaviour
 			_gameController.addMoney(plant.sellvalue);
 			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
 			//RESET PLANT
-			plant = _shopItems.allPlants[0];
+			plant = _gameController.allPlants[0];
 			growth = 0;
 			_spriteR.sprite = plant.levels[0];
 			_timePlanted = new GameTime(0,0,0);
@@ -205,17 +203,21 @@ public class Plot : MonoBehaviour
 				sparkle = null;
 			}
 		}
-		if(plant.type == "Cocaine Refinery")
+		else if(plant.type == "Cocaine Refinery")
 		{
 			//TURN ON and Improve Cocaine
+			Debug.Log("IN ON CLICK");
 			if(!_buildingOn)
 			{
+				Debug.Log("STARTING THE REFINERY");
 				_buildingOn = true;
-				_shopItems.allPlants[6].sellvalue += plant.sellvalue; 
-				_shopItems.allPlants[6].suspicion += plant.suspicion;
-				//TODO ADD CLOUD
+				_timePlanted = new GameTime(_gameController.gameTime);
+				_gameController.allPlants[6].sellvalue += plant.sellvalue; 
+				_gameController.allPlants[6].suspicion += plant.suspicion;
+				//Adds cloud
 				if(smoke == null)
 				{
+					Debug.Log("Make Smoke");
 					smoke = (GameObject)Instantiate(smokePrefab);
 					smoke.transform.position = gameObject.transform.position;
 				}
@@ -225,11 +227,11 @@ public class Plot : MonoBehaviour
 
 	void SetPlot(int _index)
 	{
-		plant = _shopItems.allPlants[_index];
+		plant = _gameController.allPlants[_index];
 		if(_gameController.money < plant.price)
 		{
 			Debug.Log("Not enough money");
-			plant = _shopItems.allPlants[0];
+			plant = _gameController.allPlants[0];
 			return;
 		}
 		_gameController.removeMoney(plant.price);
