@@ -40,8 +40,9 @@ public class GameController : MonoBehaviour
     private EventController _eventController;
     private SoundController _soundController;
 
-    //PRIVATE VARIABLES FOR SOUNDCONTROLLER:
+    //VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
+    public AudioSource _music;
     private bool _lossSoundPlayed;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
@@ -304,6 +305,7 @@ public class GameController : MonoBehaviour
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
             hasLost = true;
+            _music.Stop();
 
             if(displayChecker == 0)
             {
@@ -325,6 +327,7 @@ public class GameController : MonoBehaviour
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
             hasLost = true;
+            _music.Stop();
 
             if (displayChecker == 0)
             {

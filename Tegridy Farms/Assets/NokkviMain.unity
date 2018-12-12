@@ -114530,11 +114530,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: itemSprites.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4927850602801332, guid: d1c8f0e23902d084e84b85d82ec69914, type: 2}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -114567,54 +114562,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1423497492649144, guid: d1c8f0e23902d084e84b85d82ec69914, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
         type: 2}
-      propertyPath: selectionBlockTexture
+      propertyPath: _music
       value: 
-      objectReference: {fileID: 2800000, guid: cbc77c6b12e0b814ba56dee56f39fc75, type: 3}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: itemSprites.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: bf703f5eb44302a44a0065d53c2976fb,
-        type: 3}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: itemSprites.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: b7f69de2625c102469c76e67f1395056,
-        type: 3}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: itemSprites.Array.data[4]
-      value: 
-      objectReference: {fileID: 21300000, guid: ee1aea5553bacf5499c9ca81a2c0dcb4,
-        type: 3}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: itemSprites.Array.data[3]
-      value: 
-      objectReference: {fileID: 21300000, guid: 6ba3b31bcda7711489a158a57bf26823,
-        type: 3}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: _totalMoneyText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: totalMoneyText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: suspicion
-      value: 100
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 500123570}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c8f0e23902d084e84b85d82ec69914, type: 2}
   m_IsPrefabAsset: 0
