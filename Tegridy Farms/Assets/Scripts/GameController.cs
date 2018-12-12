@@ -38,7 +38,6 @@ public class GameController : MonoBehaviour
     private DisplayScore _displayScore;
     private EventController _eventController;
     private SoundController _soundController;
-    private GameObject UI;
 
     //PRIVATE VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
@@ -94,7 +93,6 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
-        UI = GameObject.Find("UI");
 
         //Tells if the player has lost.
         hasLost = false;
@@ -304,7 +302,6 @@ public class GameController : MonoBehaviour
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
-            UI.SetActive(false);
             hasLost = true;
 
             if(displayChecker == 0)
@@ -326,7 +323,6 @@ public class GameController : MonoBehaviour
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
-            UI.SetActive(false);
             hasLost = true;
 
             if (displayChecker == 0)
