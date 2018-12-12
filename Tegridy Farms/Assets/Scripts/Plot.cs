@@ -8,11 +8,13 @@ public class Plot : MonoBehaviour
 	public Plant plant;
 	public double growth; //growth from 0 to 1. 0 is newly planted. 1 is harvestable
 	public GameObject sparklePrefab;
+	public GameObject smokePrefab;
 	private GameController _gameController;
 	private SpriteRenderer _spriteR;
 	private ShopItems _shopItems;
 	private GameTime _timePlanted;
 	private GameObject sparkle;
+	private GameObject smoke;
 	private bool _buildingOn;
 
 	void Awake() 
@@ -97,7 +99,12 @@ public class Plot : MonoBehaviour
 			}
 			else if(growth >= 1)
 			{
-				//TODO if cloud != null: REmove Cloud
+				//destroy smoke to show it is not working
+				if(smoke != null)
+				{
+					Destroy(smoke);
+					smoke = null;
+				}
 
 				if(plant.type == "LSD Distillery")
 				{
@@ -118,9 +125,6 @@ public class Plot : MonoBehaviour
 
 						growth = 0;
 						_timePlanted = new GameTime(0,0,0);
-
-						Destroy(sparkle);
-						sparkle = null;
 					}
 				}
 			}
@@ -183,7 +187,9 @@ public class Plot : MonoBehaviour
 			{
 				_buildingOn = true;
 				_timePlanted = new GameTime(_gameController.gameTime);
-				//TODO Add Cloud
+				//Create cloud
+				smoke = (GameObject)Instantiate(smokePrefab);
+				smoke.transform.position = gameObject.transform.position;
 			}
 			else if(growth >= 1)
 			{
@@ -208,11 +214,11 @@ public class Plot : MonoBehaviour
 				_shopItems.allPlants[6].sellvalue += plant.sellvalue; 
 				_shopItems.allPlants[6].suspicion += plant.suspicion;
 				//TODO ADD CLOUD
-				if(sparkle == null)
-					{
-						sparkle = (GameObject)Instantiate(sparklePrefab);
-						sparkle.transform.position = gameObject.transform.position;
-					}
+				if(smoke == null)
+				{
+					smoke = (GameObject)Instantiate(smokePrefab);
+					smoke.transform.position = gameObject.transform.position;
+				}
 			}
 		}
 	}

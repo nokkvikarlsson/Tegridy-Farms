@@ -15,7 +15,7 @@ MonoBehaviour:
   price: 250
   growthrate: 0.35
   sellvalue: 350
-  suspicion: 0.05
+  suspicion: 0.09000000000000001
   unlockedAt: 5
   shopIndex: 6
   levels:
