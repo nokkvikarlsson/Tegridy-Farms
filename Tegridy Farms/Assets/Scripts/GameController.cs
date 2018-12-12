@@ -33,6 +33,11 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
+    private EventController _eventController;
+
+    //PRIVATE VARIABLES FOR EVENTCONTROLLER:
+    //Tells if the message is aldready being displayed
+    private bool _suspicionWarning75;
 
     void Awake()
     {
@@ -83,7 +88,11 @@ public class GameController : MonoBehaviour
         _displayScore = FindObjectOfType<DisplayScore>();
 
         displayChecker = 0; //NokkviKilla needs this
-    }
+
+        //EventController
+        _eventController = FindObjectOfType<EventController>();
+        _suspicionWarning75 = false;
+}
 
     // Use this for initialization
     void Start()
@@ -157,7 +166,15 @@ public class GameController : MonoBehaviour
         /*=================
          Dialogue checker
        =================*/
-
+        if (suspicion >= 75 && !_suspicionWarning75)
+        {
+            _eventController.DisplayDialoguePolice("This Farm is very suspicious to me chief.");
+            _suspicionWarning75 = true;
+        }
+        if (suspicion < 75)
+        {
+            _suspicionWarning75 = false;
+        }
 
     }
 

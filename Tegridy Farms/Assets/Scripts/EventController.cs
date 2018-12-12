@@ -38,7 +38,7 @@ public class EventController : MonoBehaviour
     // Use this for initialization
     void Start() 
     {
-        DisplayDialogueLaunderer("Hey I'm Big L, I heard you cracker got a lot of dirty money. I can help with that ;). I can launder your money.");
+
 	}
 	
 	// Update is called once per frame
@@ -51,12 +51,14 @@ public class EventController : MonoBehaviour
     {
         _farmerText.text = text;
         _farmerDialogue.SetActive(true);
+        StartCoroutine(stopForTenSeconds(_farmerDialogue));
     }
 
     public void DisplayDialogueLandlord(string text)
     {
         _landlordText.text = text;
         _landlordDialogue.SetActive(true);
+        StartCoroutine(stopForTenSeconds(_landlordDialogue));
     }
 
     public void DisplayDialogueLaunderer(string text)
@@ -71,6 +73,7 @@ public class EventController : MonoBehaviour
     {
         _policeText.text = text;
         _policeDialogue.SetActive(true);
+        StartCoroutine(stopForTenSeconds(_policeDialogue));
     }
 
     IEnumerator stopForTenSeconds(GameObject dialogue)
