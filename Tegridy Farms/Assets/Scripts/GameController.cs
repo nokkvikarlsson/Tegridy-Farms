@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
     public Plant[] allPlants;
+    [HideInInspector]
     public bool hasLost;
 
 
