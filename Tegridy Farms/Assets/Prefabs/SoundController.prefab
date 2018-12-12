@@ -56,3 +56,6 @@ MonoBehaviour:
   - name: Expand
     clip: {fileID: 8300000, guid: 23ca337c7cc974539ad5cff40e8250fe, type: 3}
     source: {fileID: 0}
+  - name: LossSound
+    clip: {fileID: 8300000, guid: ea4114f458b954df1be671493a75d74a, type: 3}
+    source: {fileID: 0}

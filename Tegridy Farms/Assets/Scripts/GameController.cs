@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
     public Plant[] allPlants;
+    public bool hasLost;
+
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -35,6 +37,12 @@ public class GameController : MonoBehaviour
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
     private EventController _eventController;
+    private SoundController _soundController;
+    private GameObject UI;
+
+    //PRIVATE VARIABLES FOR SOUNDCONTROLLER:
+    //Tells if a sound has been played
+    private bool _lossSoundPlayed;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
     //Tells if the message is aldready being displayed
@@ -86,6 +94,11 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
+        UI = GameObject.Find("UI");
+
+        //Tells if the player has lost.
+        hasLost = false;
+
         //Start Game Time
         StartGameTime();
         //LossText and set active to false
@@ -95,6 +108,9 @@ public class GameController : MonoBehaviour
         _displayScore = FindObjectOfType<DisplayScore>();
 
         displayChecker = 0; //NokkviKilla needs this
+
+        //SoundController
+        _lossSoundPlayed = false;
 
         //EventController
         _eventController = FindObjectOfType<EventController>();
@@ -153,8 +169,12 @@ public class GameController : MonoBehaviour
             timetext += gameTime.minute.ToString() + " PM";
         }
 		_timeCounterText.text = timetext;
-		//Update UI BarSlider to match
-		_barSlider.value = (float)suspicion;
+
+        //Finding sound controller
+        _soundController = FindObjectOfType<SoundController>();
+
+        //Update UI BarSlider to match
+        _barSlider.value = (float)suspicion;
         /*=================
 		Check for Game Over
 		=================*/
@@ -195,6 +215,14 @@ public class GameController : MonoBehaviour
 		while(!_gameOver)
 		{
 			gameTime.AddOneMinute();
+            if(suspicion >= 0.007)
+            {
+                suspicion -= 0.007;
+            }
+            else
+            {
+                suspicion = 0;
+            }
 			if(gameTime.day != 1 && gameTime.hour == 0 && gameTime.minute == 0)
 			{
 				Debug.Log("Rent Collection!");
@@ -263,14 +291,21 @@ public class GameController : MonoBehaviour
     private void gameOverSequence(bool isSuspicion)
     {
 
-        
 
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
+            //Checks if the loss sound has already been played
+            if(!_lossSoundPlayed)
+            { 
+                _soundController.Play("LossSound");
+                _lossSoundPlayed = true;
+            }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
+            UI.SetActive(false);
+            hasLost = true;
 
             if(displayChecker == 0)
             {
@@ -282,9 +317,17 @@ public class GameController : MonoBehaviour
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
         {
+            //Checks if the loss sound has already been played
+            if(!_lossSoundPlayed)
+            {
+                _soundController.Play("LossSound");
+                _lossSoundPlayed = true;
+            }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
+            UI.SetActive(false);
+            hasLost = true;
 
             if (displayChecker == 0)
             {
@@ -348,6 +391,38 @@ public class GameController : MonoBehaviour
                 //if right
                 if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
                 && plots[i].transform.position.y == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if top left
+                if(plots[i].transform.position.x - 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y + 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if top right
+                if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y + 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if bottom left
+                if(plots[i].transform.position.x - 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y - 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if bottom right
+                if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y - 1 == plots[j].transform.position.y
                 && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
                 && plots[j].GetComponent<Plot>().buildingOn)
                 {
