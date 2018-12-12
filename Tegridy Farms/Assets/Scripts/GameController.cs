@@ -195,7 +195,14 @@ public class GameController : MonoBehaviour
 		while(!_gameOver)
 		{
 			gameTime.AddOneMinute();
-            suspicion -= 0.007;
+            if(suspicion >= 0.007)
+            {
+                suspicion -= 0.007;
+            }
+            else
+            {
+                suspicion = 0;
+            }
 			if(gameTime.day != 1 && gameTime.hour == 0 && gameTime.minute == 0)
 			{
 				Debug.Log("Rent Collection!");
