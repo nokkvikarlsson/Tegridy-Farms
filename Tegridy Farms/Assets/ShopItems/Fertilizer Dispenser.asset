@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Fertilizer Dispenser
   price: 750
-  growthrate: 0.5
+  growthrate: 2
   sellvalue: 30
   suspicion: 0
   unlockedAt: 6

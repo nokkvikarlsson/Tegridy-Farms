@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: DMT
   m_EditorClassIdentifier: 
   type: DMT
-  price: 400
-  growthrate: 0.02
-  sellvalue: 700
-  suspicion: 0.05
-  unlockedAt: 6
+  price: 250
+  growthrate: 0.3
+  sellvalue: 450
+  suspicion: 0.0325
+  unlockedAt: 5
   shopIndex: 8
   levels:
   - {fileID: 21300000, guid: 311409c14758cd944a955a58471e78d0, type: 3}

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: LSD Distillery
   price: 500
-  growthrate: 1
+  growthrate: 0.2
   sellvalue: 100
-  suspicion: 0.08
+  suspicion: 0.0325
   unlockedAt: 4
   shopIndex: 5
   levels:
