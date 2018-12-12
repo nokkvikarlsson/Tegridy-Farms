@@ -153,9 +153,15 @@ public class GameController : MonoBehaviour
             gameOverSequence(false);
 		}
 
+
+        /*=================
+         Dialogue checker
+       =================*/
+
+
     }
 
-	void StartGameTime()
+    void StartGameTime()
 	{
 		StartCoroutine(TimeOneTwelfthSecond());
 	}
