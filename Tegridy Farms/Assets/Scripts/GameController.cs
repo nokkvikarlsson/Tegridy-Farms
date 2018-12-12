@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
     public Plant[] allPlants;
+    public bool hasLost;
+
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -36,6 +38,7 @@ public class GameController : MonoBehaviour
     private DisplayScore _displayScore;
     private EventController _eventController;
     private SoundController _soundController;
+    private GameObject UI;
 
     //PRIVATE VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
@@ -91,6 +94,11 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
+        UI = GameObject.Find("UI");
+
+        //Tells if the player has lost.
+        hasLost = false;
+
         //Start Game Time
         StartGameTime();
         //LossText and set active to false
@@ -282,6 +290,8 @@ public class GameController : MonoBehaviour
 
     private void gameOverSequence(bool isSuspicion)
     {
+
+
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
@@ -294,6 +304,8 @@ public class GameController : MonoBehaviour
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
+            UI.SetActive(false);
+            hasLost = true;
 
             if(displayChecker == 0)
             {
@@ -314,6 +326,8 @@ public class GameController : MonoBehaviour
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
+            UI.SetActive(false);
+            hasLost = true;
 
             if (displayChecker == 0)
             {

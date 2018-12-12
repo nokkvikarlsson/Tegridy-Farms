@@ -12,15 +12,18 @@ public class PauseMenu : MonoBehaviour {
 
     public GameObject[] plots;
 
-    private GameObject UI;
-    private GameObject Shop;
+    private GameObject _UI;
+    private GameObject _shop;
+    private GameController _gameController;
 
     private void Awake()
     {
-        UI = GameObject.FindGameObjectWithTag("UI");
-        Shop = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
+        _UI = GameObject.FindGameObjectWithTag("UI");
+        _shop = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
 
-        Shop.SetActive(false);
+        _shop.SetActive(false);
+
+        _gameController = FindObjectOfType<GameController>();
     }
 
     void Start()
@@ -56,28 +59,31 @@ public class PauseMenu : MonoBehaviour {
         }
 
         //Shows the UI when resumed
-        UI.SetActive(true);
+        _UI.SetActive(true);
         pauseOptionsUI.SetActive(false);
     }
 
 	private void Pause()
 	{
-
-        for(int i = 0; i < plots.Length; i++)
+        //Cant pause the game if the player has lost.
+        if(!_gameController.hasLost)
         {
-            plots[i].GetComponent<BoxCollider2D>().enabled = false;
-        }
+            for (int i = 0; i < plots.Length; i++)
+            {
+                plots[i].GetComponent<BoxCollider2D>().enabled = false;
+            }
 
-        pauseMenuUI.SetActive(true);
-		Time.timeScale = 0f;
-		GameIsPaused = true;
-        
-        //Hides the UI when paused
-        UI.SetActive(false);
+            pauseMenuUI.SetActive(true);
+    		Time.timeScale = 0f;
+    		GameIsPaused = true;
+            
+            //Hides the UI when paused
+            _UI.SetActive(false);
 
-        if(Shop.activeSelf == true)
-        {
-            Shop.SetActive(false);
+            if(_shop.activeSelf == true)
+            {
+                _shop.SetActive(false);
+            }
         }
 
     }
