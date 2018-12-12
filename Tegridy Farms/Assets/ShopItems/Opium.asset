@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Opium
   price: 300
-  growthrate: 0.3
-  sellvalue: 800
-  suspicion: 0.3
+  growthrate: 0.275
+  sellvalue: 700
+  suspicion: 0.03
   unlockedAt: 6
   shopIndex: 10
   levels:

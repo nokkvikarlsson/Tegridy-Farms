@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
 	public int totalMoneyEarned;
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
+    public Plant[] allPlants;
 
     //PRIVATE:
     private Image _currentItemImageSprite;
@@ -41,6 +42,15 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        //Initialize allPlants from Shop Items
+        ShopItems shopItems = GameObject.Find("/ShopItems").GetComponent<ShopItems>();
+        allPlants = new Plant[shopItems.allPlants.Length];
+        for(int i = 0; i < shopItems.allPlants.Length; i++)
+        {
+            allPlants[i] = Instantiate(shopItems.allPlants[i]);
+            //allPlants[i].Clone(shopItems.allPlants[i]);
+            Debug.Log(allPlants[i].type);
+        }
         //initalize plotsize at 2x2
         plotsize = 2;
         //Create starting plots at (0,0) (1,0) (0,-1), (1,-1)
@@ -52,14 +62,12 @@ public class GameController : MonoBehaviour
                 plot.transform.position = new Vector3(x, y);
             }
         }
-        //Create surrounding plots
-
         //initialize plots
         plots = GameObject.FindGameObjectsWithTag("plot");
         //initialize variables
         money = 200;
         suspicion = 0;
-        gameTime = new GameTime(1,6,0);
+        gameTime = new GameTime();
         currentItemIndex = 0;
         currentPlot = null;
         isShopOpen = false;
@@ -78,7 +86,6 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
-
         //Start Game Time
         StartGameTime();
         //LossText and set active to false
@@ -302,5 +309,51 @@ public class GameController : MonoBehaviour
     public int getDayCounter()
     {
         return gameTime.day;
+    }
+
+    public void CheckFertilizer()
+    {
+        for(int i = 0; i < plots.Length; i++)//in this plot
+        {
+            plots[i].GetComponent<Plot>().growthBonus = 0;
+        }
+        for(int i = 0; i < plots.Length; i++)//in this plot
+        {
+            for(int j = 0; j < plots.Length; j++)//check surrounding
+            {
+                //check if fertilizer above
+                if(plots[i].transform.position.x == plots[j].transform.position.x
+                && plots[i].transform.position.y + 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if below
+                if(plots[i].transform.position.x == plots[j].transform.position.x
+                && plots[i].transform.position.y - 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if left
+                if(plots[i].transform.position.x - 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if right
+                if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+            }
+        }
     }
 }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Meth
   price: 1000
-  growthrate: 0.05
+  growthrate: 0.2
   sellvalue: 3000
-  suspicion: 0.1
+  suspicion: 0.015
   unlockedAt: 8
   shopIndex: 12
   levels:

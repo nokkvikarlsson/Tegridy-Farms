@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Hash
   price: 60
-  growthrate: 0.35
-  sellvalue: 110
-  suspicion: 0.025
+  growthrate: 0.5
+  sellvalue: 100
+  suspicion: 0.0275
   unlockedAt: 3
   shopIndex: 3
   levels:
@@ -25,3 +25,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3c0a4cd3005aa9c4490531ebc25a7cce, type: 3}
   - {fileID: 21300000, guid: 235836aff20a52e42831fcc162e77529, type: 3}
   - {fileID: 21300000, guid: 349842100c58bed4eaaf635603a7cd73, type: 3}
+  isBuilding: 0

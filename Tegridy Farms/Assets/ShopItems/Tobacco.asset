@@ -14,8 +14,8 @@ MonoBehaviour:
   type: Tobacco
   price: 20
   growthrate: 1
-  sellvalue: 30
-  suspicion: -0.1
+  sellvalue: 20
+  suspicion: -0.5
   unlockedAt: 2
   shopIndex: 2
   levels:
@@ -25,3 +25,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d63109fdcab08ef4fa03c2428f3da3de, type: 3}
   - {fileID: 21300000, guid: a9d3cb89b782e004d8744883e89f4e4c, type: 3}
   - {fileID: 21300000, guid: 9a495d1070b340049b797d44e836cc7c, type: 3}
+  isBuilding: 0

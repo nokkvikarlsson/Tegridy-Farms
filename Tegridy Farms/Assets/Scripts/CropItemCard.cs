@@ -8,22 +8,20 @@ public class CropItemCard : MonoBehaviour
 	public int shopItemIndex;
 	private Text _itemCardTitleText;
 	private GameController _gameController;
-	private ShopItems _shopItems;
 
 	// Use this for initialization
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
-		_shopItems = FindObjectOfType<ShopItems>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
 	}
 	
 	void Start()
 	{
-		if(_shopItems.allPlants[shopItemIndex].unlockedAt > _gameController.plotsize)
+		if(_gameController.allPlants[shopItemIndex].unlockedAt > _gameController.plotsize)
 		{
-			int unlockedAt = _shopItems.allPlants[shopItemIndex].unlockedAt;
+			int unlockedAt = _gameController.allPlants[shopItemIndex].unlockedAt;
 			_itemCardTitleText.text = "Need " + unlockedAt.ToString() + "x" + unlockedAt.ToString();
 
 			Image itemCardImage = gameObject.GetComponent<Image>();
@@ -35,9 +33,9 @@ public class CropItemCard : MonoBehaviour
 	void Update()
 	{
 		//if Unlocked change to white and name to actual name. Not "Need NxN"
-		if(_shopItems.allPlants[shopItemIndex].unlockedAt <= _gameController.plotsize)
+		if(_gameController.allPlants[shopItemIndex].unlockedAt <= _gameController.plotsize)
 		{
-			_itemCardTitleText.text = _shopItems.allPlants[shopItemIndex].type;
+			_itemCardTitleText.text = _gameController.allPlants[shopItemIndex].type;
 
 			Image itemCardImage = gameObject.GetComponent<Image>();
 			itemCardImage.color = Color.white;
@@ -46,7 +44,7 @@ public class CropItemCard : MonoBehaviour
 
 	public void OnMouseClick()
 	{
-		if(_shopItems.allPlants[shopItemIndex].unlockedAt <= _gameController.plotsize)
+		if(_gameController.allPlants[shopItemIndex].unlockedAt <= _gameController.plotsize)
 		{
 			_gameController.SetCurrentItem(shopItemIndex);
 			_gameController.CloseShop();

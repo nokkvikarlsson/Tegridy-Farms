@@ -63,6 +63,8 @@ public class Expand : MonoBehaviour {
         ExpandFarmPlots();
         AddSurroundingPlot();
 		AdjustCamera();
+		//Add fertilizer on new plots
+		_gameController.CheckFertilizer();
         //update price of card in shop
         _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
     }
