@@ -35,6 +35,11 @@ public class GameController : MonoBehaviour
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
     private EventController _eventController;
+    private SoundController _soundController;
+
+    //PRIVATE VARIABLES FOR SOUNDCONTROLLER:
+    //Tells if a sound has been played
+    private bool _lossSoundPlayed;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
     //Tells if the message is aldready being displayed
@@ -96,6 +101,9 @@ public class GameController : MonoBehaviour
 
         displayChecker = 0; //NokkviKilla needs this
 
+        //SoundController
+        _lossSoundPlayed = false;
+
         //EventController
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
@@ -153,8 +161,12 @@ public class GameController : MonoBehaviour
             timetext += gameTime.minute.ToString() + " PM";
         }
 		_timeCounterText.text = timetext;
-		//Update UI BarSlider to match
-		_barSlider.value = (float)suspicion;
+
+        //Finding sound controller
+        _soundController = FindObjectOfType<SoundController>();
+
+        //Update UI BarSlider to match
+        _barSlider.value = (float)suspicion;
         /*=================
 		Check for Game Over
 		=================*/
@@ -262,12 +274,15 @@ public class GameController : MonoBehaviour
 
     private void gameOverSequence(bool isSuspicion)
     {
-
-        
-
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
+            //Checks if the loss sound has already been played
+            if(!_lossSoundPlayed)
+            { 
+                _soundController.Play("LossSound");
+                _lossSoundPlayed = true;
+            }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
@@ -282,6 +297,12 @@ public class GameController : MonoBehaviour
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
         {
+            //Checks if the loss sound has already been played
+            if(!_lossSoundPlayed)
+            {
+                _soundController.Play("LossSound");
+                _lossSoundPlayed = true;
+            }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
