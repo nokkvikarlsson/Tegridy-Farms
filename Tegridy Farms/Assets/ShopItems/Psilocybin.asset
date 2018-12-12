@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Psilocybin
   price: 100
-  growthrate: 0.2
-  sellvalue: 200
-  suspicion: 0.05
+  growthrate: 0.4
+  sellvalue: 170
+  suspicion: 0.03
   unlockedAt: 4
   shopIndex: 4
   levels:

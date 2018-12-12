@@ -14,9 +14,9 @@ MonoBehaviour:
   type: Cocaine Refinery
   price: 1000
   growthrate: 0.25
-  sellvalue: 250
-  suspicion: 0.02
-  unlockedAt: 5
+  sellvalue: 100
+  suspicion: 0.0125
+  unlockedAt: 6
   shopIndex: 7
   levels:
   - {fileID: 21300000, guid: 499f2650e08d84420898f33fbb35cf6b, type: 3}

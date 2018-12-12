@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: Cocaine
   m_EditorClassIdentifier: 
   type: Cocaine
-  price: 250
+  price: 200
   growthrate: 0.35
   sellvalue: 350
-  suspicion: 0.09000000000000001
+  suspicion: 0.0275
   unlockedAt: 5
   shopIndex: 6
   levels:

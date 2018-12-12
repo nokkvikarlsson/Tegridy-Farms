@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Xanax
   price: 500
-  growthrate: 0.5
-  sellvalue: 1200
-  suspicion: 0.07
+  growthrate: 0.25
+  sellvalue: 1250
+  suspicion: 0.025
   unlockedAt: 7
   shopIndex: 11
   levels:
