@@ -195,6 +195,7 @@ public class GameController : MonoBehaviour
 		while(!_gameOver)
 		{
 			gameTime.AddOneMinute();
+            suspicion -= 0.007;
 			if(gameTime.day != 1 && gameTime.hour == 0 && gameTime.minute == 0)
 			{
 				Debug.Log("Rent Collection!");
@@ -348,6 +349,38 @@ public class GameController : MonoBehaviour
                 //if right
                 if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
                 && plots[i].transform.position.y == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if top left
+                if(plots[i].transform.position.x - 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y + 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if top right
+                if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y + 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if bottom left
+                if(plots[i].transform.position.x - 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y - 1 == plots[j].transform.position.y
+                && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
+                && plots[j].GetComponent<Plot>().buildingOn)
+                {
+                    plots[i].GetComponent<Plot>().growthBonus += ((double)plots[j].GetComponent<Plot>().plant.sellvalue / 100);
+                }
+                //if bottom right
+                if(plots[i].transform.position.x + 1 == plots[j].transform.position.x
+                && plots[i].transform.position.y - 1 == plots[j].transform.position.y
                 && plots[j].GetComponent<Plot>().plant.type == "Fertilizer Dispenser"
                 && plots[j].GetComponent<Plot>().buildingOn)
                 {
