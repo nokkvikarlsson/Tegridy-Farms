@@ -8,11 +8,13 @@ public class Plot : MonoBehaviour
 	public Plant plant;
 	public double growth; //growth from 0 to 1. 0 is newly planted. 1 is harvestable
 	public GameObject sparklePrefab;
+	public GameObject smokePrefab;
 	private GameController _gameController;
 	private SpriteRenderer _spriteR;
 	private ShopItems _shopItems;
 	private GameTime _timePlanted;
 	private GameObject sparkle;
+	private GameObject smoke;
 	private bool _buildingOn;
 
 	void Awake() 
@@ -85,7 +87,7 @@ public class Plot : MonoBehaviour
 
 	void BuildingUpdate()
 	{
-		if(_buildingOn && plant.type == "LSD Distillery")
+		if(_buildingOn && (plant.type == "LSD Distillery" || plant.type == "Cocaine Refinery"))
 		{
 			GameTime currentTime = new GameTime(_gameController.gameTime);
 			GameTime hoursPassedgt = currentTime - _timePlanted;
@@ -97,13 +99,33 @@ public class Plot : MonoBehaviour
 			}
 			else if(growth >= 1)
 			{
-				//TODO Remove cloud
-
-				//add flashing white circle sprite
-				if(sparkle == null)
+				//destroy smoke to show it is not working
+				if(smoke != null)
 				{
-					sparkle = (GameObject)Instantiate(sparklePrefab);
-					sparkle.transform.position = gameObject.transform.position;
+					Destroy(smoke);
+					smoke = null;
+				}
+
+				if(plant.type == "LSD Distillery")
+				{
+					//add flashing white circle sprite
+					if(sparkle == null)
+					{
+						sparkle = (GameObject)Instantiate(sparklePrefab);
+						sparkle.transform.position = gameObject.transform.position;
+					}
+				}
+				else if(plant.type == "Cocaine Refinery")
+				{
+					if(_buildingOn)
+					{
+						_buildingOn = false;
+						_shopItems.allPlants[6].sellvalue -= plant.sellvalue; 
+						_shopItems.allPlants[6].suspicion -= plant.suspicion;
+
+						growth = 0;
+						_timePlanted = new GameTime(0,0,0);
+					}
 				}
 			}
 		}
@@ -165,7 +187,9 @@ public class Plot : MonoBehaviour
 			{
 				_buildingOn = true;
 				_timePlanted = new GameTime(_gameController.gameTime);
-				//TODO Add Cloud
+				//Create cloud
+				smoke = (GameObject)Instantiate(smokePrefab);
+				smoke.transform.position = gameObject.transform.position;
 			}
 			else if(growth >= 1)
 			{
@@ -179,6 +203,22 @@ public class Plot : MonoBehaviour
 				//REMOVE SPARKLE
 				Destroy(sparkle);
 				sparkle = null;
+			}
+		}
+		if(plant.type == "Cocaine Refinery")
+		{
+			//TURN ON and Improve Cocaine
+			if(!_buildingOn)
+			{
+				_buildingOn = true;
+				_shopItems.allPlants[6].sellvalue += plant.sellvalue; 
+				_shopItems.allPlants[6].suspicion += plant.suspicion;
+				//TODO ADD CLOUD
+				if(smoke == null)
+				{
+					smoke = (GameObject)Instantiate(smokePrefab);
+					smoke.transform.position = gameObject.transform.position;
+				}
 			}
 		}
 	}

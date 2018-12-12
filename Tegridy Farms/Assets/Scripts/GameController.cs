@@ -52,9 +52,9 @@ public class GameController : MonoBehaviour
         //initialize plots
         plots = GameObject.FindGameObjectsWithTag("plot");
         //initialize variables
-        money = 100;
+        money = 200;
         suspicion = 0;
-        gameTime = new GameTime();
+        gameTime = new GameTime(1,6,0);
         currentItemIndex = 0;
         currentPlot = null;
         isShopOpen = false;

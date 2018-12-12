@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Cocaine Refinery
   price: 1000
-  growthrate: 0
+  growthrate: 0.25
   sellvalue: 250
   suspicion: 0.02
   unlockedAt: 5

@@ -14,15 +14,15 @@ MonoBehaviour:
   type: Xanax
   price: 500
   growthrate: 0.5
-  sellvalue: 1000
-  suspicion: 0.7
+  sellvalue: 1200
+  suspicion: 0.07
   unlockedAt: 7
   shopIndex: 11
   levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6f7d6fd0603db304d8b6c741181f0933, type: 3}
+  - {fileID: 21300000, guid: f0a6b32d7cdf0ff40a2aac4640e441f5, type: 3}
+  - {fileID: 21300000, guid: 896025fe5276f5742bf02fe173e52da4, type: 3}
+  - {fileID: 21300000, guid: 7fe5fdef1d85cf44dad0c036c025aac2, type: 3}
+  - {fileID: 21300000, guid: 1954b136ebd9ee34ebcecd12aa6449a9, type: 3}
+  - {fileID: 21300000, guid: f471b04b5edf2634a89e3b7a278b0ae4, type: 3}
   isBuilding: 0
