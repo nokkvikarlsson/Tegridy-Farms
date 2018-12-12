@@ -14,8 +14,8 @@ public class Plot : MonoBehaviour
 	private GameTime _timePlanted;
 	private GameObject sparkle;
 	private GameObject smoke;
-	public bool _buildingOn;
-
+	public bool buildingOn;
+	public double growthBonus;
 	void Awake() 
 	{
 		_gameController = FindObjectOfType<GameController>();
@@ -24,7 +24,8 @@ public class Plot : MonoBehaviour
 		sparkle = null;
 		_timePlanted = new GameTime(0,0,0);
 		growth = 0;
-		_buildingOn = false;
+		buildingOn = false;
+		growthBonus = 0;
 	}
 
 	void Start(){}
@@ -50,7 +51,7 @@ public class Plot : MonoBehaviour
 		GameTime currentTime = new GameTime(_gameController.gameTime);
 		GameTime hoursPassedgt = currentTime - _timePlanted;
 		double hoursPassed = (24*hoursPassedgt.day) + hoursPassedgt.hour + ((double)hoursPassedgt.minute/60);
-		growth = plant.growthrate * hoursPassed;
+		growth = plant.growthrate * hoursPassed * (1+growthBonus);
 		if(growth < 0.2)
 		{
 			_spriteR.sprite = _gameController.allPlants[plant.shopIndex].levels[0];
@@ -85,7 +86,7 @@ public class Plot : MonoBehaviour
 
 	void BuildingUpdate()
 	{
-		if(_buildingOn && (plant.type == "LSD Distillery" || plant.type == "Cocaine Refinery"))
+		if(buildingOn && (plant.type == "LSD Distillery" || plant.type == "Cocaine Refinery"))
 		{
 			GameTime currentTime = new GameTime(_gameController.gameTime);
 			GameTime hoursPassedgt = currentTime - _timePlanted;
@@ -115,9 +116,9 @@ public class Plot : MonoBehaviour
 				}
 				else if(plant.type == "Cocaine Refinery")
 				{
-					if(_buildingOn)
+					if(buildingOn)
 					{
-						_buildingOn = false;
+						buildingOn = false;
 						_gameController.allPlants[6].sellvalue -= plant.sellvalue; 
 						_gameController.allPlants[6].suspicion -= plant.suspicion;
 
@@ -125,6 +126,37 @@ public class Plot : MonoBehaviour
 						_timePlanted = new GameTime(0,0,0);
 					}
 				}
+			}
+		}
+		else if(buildingOn && plant.type == "Fertilizer Dispenser")
+		{
+			GameTime currentTime = new GameTime(_gameController.gameTime);
+			GameTime hoursPassedgt = currentTime - _timePlanted;
+			double hoursPassed = (24*hoursPassedgt.day) + hoursPassedgt.hour + ((double)hoursPassedgt.minute/60);
+			growth = plant.growthrate * hoursPassed;
+			if((growth % 1.2) < 0.2)
+			{
+				_spriteR.sprite = _gameController.allPlants[plant.shopIndex].levels[0];
+			}
+			else if((growth % 1.2) < 0.4)
+			{
+				_spriteR.sprite = plant.levels[1];
+			}
+			else if((growth % 1.2) < 0.6)
+			{
+				_spriteR.sprite = plant.levels[2];
+			}
+			else if((growth % 1.2) < 0.8)
+			{
+				_spriteR.sprite = plant.levels[3];
+			}
+			else if((growth % 1.2) < 1)
+			{
+				_spriteR.sprite = plant.levels[4];
+			}
+			else if((growth % 1.2) < 1.2)
+			{
+				_spriteR.sprite = plant.levels[5];
 			}
 		}
 	}
@@ -181,9 +213,9 @@ public class Plot : MonoBehaviour
 	{
 		if(plant.type == "LSD Distillery")
 		{
-			if(!_buildingOn)
+			if(!buildingOn)
 			{
-				_buildingOn = true;
+				buildingOn = true;
 				_timePlanted = new GameTime(_gameController.gameTime);
 				//Create cloud
 				smoke = (GameObject)Instantiate(smokePrefab);
@@ -197,7 +229,7 @@ public class Plot : MonoBehaviour
 				//RESET PLANT
 				growth = 0;
 				_timePlanted = new GameTime(0,0,0);
-				_buildingOn = false;
+				buildingOn = false;
 				//REMOVE SPARKLE
 				Destroy(sparkle);
 				sparkle = null;
@@ -206,11 +238,9 @@ public class Plot : MonoBehaviour
 		else if(plant.type == "Cocaine Refinery")
 		{
 			//TURN ON and Improve Cocaine
-			Debug.Log("IN ON CLICK");
-			if(!_buildingOn)
+			if(!buildingOn)
 			{
-				Debug.Log("STARTING THE REFINERY");
-				_buildingOn = true;
+				buildingOn = true;
 				_timePlanted = new GameTime(_gameController.gameTime);
 				_gameController.allPlants[6].sellvalue += plant.sellvalue; 
 				_gameController.allPlants[6].suspicion += plant.suspicion;
@@ -221,6 +251,15 @@ public class Plot : MonoBehaviour
 					smoke = (GameObject)Instantiate(smokePrefab);
 					smoke.transform.position = gameObject.transform.position;
 				}
+			}
+		}
+		else if(plant.type == "Fertilizer Dispenser")
+		{
+			if(!buildingOn)
+			{
+				buildingOn = true;
+				//Get plots and increase growthbonus by sellvalue
+				_gameController.CheckFertilizer();
 			}
 		}
 	}
