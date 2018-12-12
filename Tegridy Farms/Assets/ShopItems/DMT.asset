@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: DMT
   m_EditorClassIdentifier: 
   type: DMT
-  price: 0
-  growthrate: 0
-  sellvalue: 0
-  suspicion: 0
+  price: 400
+  growthrate: 0.02
+  sellvalue: 700
+  suspicion: 0.05
   unlockedAt: 6
   shopIndex: 8
   levels:

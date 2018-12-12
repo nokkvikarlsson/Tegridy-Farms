@@ -97,13 +97,31 @@ public class Plot : MonoBehaviour
 			}
 			else if(growth >= 1)
 			{
-				//TODO Remove cloud
+				//TODO if cloud != null: REmove Cloud
 
-				//add flashing white circle sprite
-				if(sparkle == null)
+				if(plant.type == "LSD Distillery")
 				{
-					sparkle = (GameObject)Instantiate(sparklePrefab);
-					sparkle.transform.position = gameObject.transform.position;
+					//add flashing white circle sprite
+					if(sparkle == null)
+					{
+						sparkle = (GameObject)Instantiate(sparklePrefab);
+						sparkle.transform.position = gameObject.transform.position;
+					}
+				}
+				else if(plant.type == "Cocaine Refinery")
+				{
+					if(_buildingOn)
+					{
+						_buildingOn = false;
+						_shopItems.allPlants[6].sellvalue -= plant.sellvalue; 
+						_shopItems.allPlants[6].suspicion -= plant.suspicion;
+
+						growth = 0;
+						_timePlanted = new GameTime(0,0,0);
+
+						Destroy(sparkle);
+						sparkle = null;
+					}
 				}
 			}
 		}
@@ -183,13 +201,19 @@ public class Plot : MonoBehaviour
 		}
 		if(plant.type == "Cocaine Refinery")
 		{
-			//if building off
-			//turn on
-			//_shopItems.allPlants[6].sellvalue += plant.sellvalue; 
-			//_shopItems.allPlants[6].suspicion += plant.suspicion;
-
-			//else harvest
-			//and minus
+			//TURN ON and Improve Cocaine
+			if(!_buildingOn)
+			{
+				_buildingOn = true;
+				_shopItems.allPlants[6].sellvalue += plant.sellvalue; 
+				_shopItems.allPlants[6].suspicion += plant.suspicion;
+				//TODO ADD CLOUD
+				if(sparkle == null)
+					{
+						sparkle = (GameObject)Instantiate(sparklePrefab);
+						sparkle.transform.position = gameObject.transform.position;
+					}
+			}
 		}
 	}
 

@@ -30,16 +30,14 @@ public class Expand : MonoBehaviour {
     {
         _gameController = FindObjectOfType<GameController>();
         _soundController = FindObjectOfType<SoundController>();
+
+		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
+        _mainCamera = GameObject.Find("/Main Camera");
     }
 
     // Use this for initialization
     void Start() 
     {
-        _gameController.OpenShop();
-        _expansionItemCardBuyPrice = GameObject.Find("/Shop/ShopWindow/UpgradesTabPane/Pane/ExpansionItemCard/BuyPrice");
-        _gameController.CloseShop();
-
-        _mainCamera = GameObject.Find("/Main Camera");
     }
 	
 	// Update is called once per frame

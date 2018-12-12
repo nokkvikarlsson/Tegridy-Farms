@@ -19,10 +19,10 @@ MonoBehaviour:
   unlockedAt: 6
   shopIndex: 10
   levels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6d7e5ce8482f6ee488c2c0cf150ad429, type: 3}
+  - {fileID: 21300000, guid: a81175af0602fdc4ca9a9ae259781848, type: 3}
+  - {fileID: 21300000, guid: f6fbf2f1232a1f649a695085279b350e, type: 3}
+  - {fileID: 21300000, guid: f543a46bf5c2b49438df427c4ea8b2a5, type: 3}
+  - {fileID: 21300000, guid: b08476ef81c3eaa49b4793dea1fd738b, type: 3}
+  - {fileID: 21300000, guid: 6786d36b9660f1241b9ded637dd72c71, type: 3}
   isBuilding: 0
