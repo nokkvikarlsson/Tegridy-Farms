@@ -10519,7 +10519,7 @@ Prefab:
     - target: {fileID: 114089432111214644, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_Text
-      value: -200$
+      value: -800$
       objectReference: {fileID: 0}
     - target: {fileID: 1016994024188086, guid: 41ccd5757560aea46a50dbe7985b9ea0, type: 2}
       propertyPath: m_Layer
@@ -121253,7 +121253,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2111978488}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
