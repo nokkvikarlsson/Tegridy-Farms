@@ -235,7 +235,7 @@ public class GameController : MonoBehaviour
         }
 
         //The landlord lets the player know that rent is due soon
-        if (_timeCounterText.text == " 1:00 AM" && _allowedToPlayRentNotification)
+        if (_timeCounterText.text == " 6:00 PM" && _allowedToPlayRentNotification)
         {
             _allowedToPlayRentNotification = false;
             int index = Random.Range(0, _rentDialogues.Length);
