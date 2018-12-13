@@ -53,7 +53,7 @@ public class EventController : MonoBehaviour
 		
 	}
 
-    public void DisplayDialoueFarmer(string text)
+    public void DisplayDialogueFarmer(string text)
     {
         _farmerText.text = text;
         farmerDialogue.SetActive(true);

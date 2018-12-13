@@ -53,6 +53,8 @@ public class PauseMenu : MonoBehaviour {
 		Time.timeScale = 1f;
 		GameIsPaused = false;
 
+        plots = GameObject.FindGameObjectsWithTag("plot");
+
         for (int i = 0; i < plots.Length; i++)
         {
             plots[i].GetComponent<BoxCollider2D>().enabled = true;
@@ -68,6 +70,9 @@ public class PauseMenu : MonoBehaviour {
         //Cant pause the game if the player has lost.
         if(!_gameController.hasLost)
         {
+            plots = GameObject.FindGameObjectsWithTag("plot");
+
+            Debug.Log(plots.Length);
             for (int i = 0; i < plots.Length; i++)
             {
                 plots[i].GetComponent<BoxCollider2D>().enabled = false;

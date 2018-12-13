@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
     private bool _suspicionWarning75;
     private bool _allowedToPlayWarning75;
     private bool _allowedToPlayRentNotification;
+    private bool _beginTegridyIntroduction;
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
 
@@ -123,6 +124,7 @@ public class GameController : MonoBehaviour
         _suspicionWarning75 = false;
         _allowedToPlayWarning75 = false;
         _allowedToPlayRentNotification = true;
+        _beginTegridyIntroduction = false;
 
         _suspicionDialogues = new string[4];
         _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
@@ -212,8 +214,15 @@ public class GameController : MonoBehaviour
 		}
 
         /*=================
-         Dialogue checker
+         Dialogue checkers
        =================*/
+         
+        //Starts the introduction
+        if(!_beginTegridyIntroduction)
+        {
+            _beginTegridyIntroduction = true;
+            _eventController.DisplayDialogueFarmer("Howdy");
+        }
 
         //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
