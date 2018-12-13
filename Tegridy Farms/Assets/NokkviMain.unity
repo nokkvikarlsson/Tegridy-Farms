@@ -1691,6 +1691,11 @@ Prefab:
       propertyPath: _music
       value: 
       objectReference: {fileID: 500123570}
+    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
+        type: 2}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 500123570}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c8f0e23902d084e84b85d82ec69914, type: 2}
   m_IsPrefabAsset: 0
@@ -2512,7 +2517,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 866236807}
   m_HandleRect: {fileID: 866236806}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -120678,7 +120683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -33.2, y: 0.000030517578}
+  m_AnchoredPosition: {x: -33.2, y: 0.000045776367}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2075797922
