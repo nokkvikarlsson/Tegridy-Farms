@@ -45,6 +45,12 @@ public class LaunderItemCard : MonoBehaviour
 
 	public void OnMouseClick()
 	{
+		if(_gameController.money < _launderController.allLaunders[launderItemIndex].price)
+		{
+			Debug.Log("Not enouh cash");
+			return;
+		}
+
 		if(_launderController.allLaunders[launderItemIndex].unlockedAt <= _gameController.plotsize
 		&& _launderController.currentLaunder == null)
 		{

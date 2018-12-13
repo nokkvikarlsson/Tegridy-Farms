@@ -40,9 +40,9 @@ public class LaunderController : MonoBehaviour {
 	public void SetCurrentLaunder(int index)
     {
         currentLaunder = allLaunders[index];
-		_timeBought.day = _gameController.gameTime.day;
-		_timeBought.hour = _gameController.gameTime.hour;
-		_timeBought.minute = _gameController.gameTime.minute;
+		_gameController.removeMoney(currentLaunder.price);
+
+		_timeBought = new GameTime(_gameController.gameTime);
 		currentMoneyLaundered = 0;
     }
 
