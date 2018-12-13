@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1771626885533328}
+  m_IsPrefabAsset: 1
+--- !u!1 &1771626885533328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4369526773821160}
+  - component: {fileID: 114147616340886522}
+  m_Layer: 0
+  m_Name: LaunderController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4369526773821160
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771626885533328}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 180.80402, y: 174.35663, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114147616340886522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771626885533328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af00c400d600fc42a9fe310a663ac6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allLaunders:
+  - {fileID: 11400000, guid: c6e11b2221e789b47b224f906a3774b0, type: 2}
+  - {fileID: 11400000, guid: c3d12b4a0a31bb643932c2482820d039, type: 2}
+  - {fileID: 11400000, guid: 92b924f0682d67547869ec09653726b6, type: 2}
+  - {fileID: 11400000, guid: 6dfc1026cd153f94f839851aa4f90870, type: 2}
+  - {fileID: 11400000, guid: ba1d749b2d67c5b449156d3f829d89fb, type: 2}
+  - {fileID: 11400000, guid: 7fac4c490b884644cb8957ddce4ca65c, type: 2}
+  currentLaunder: {fileID: 0}

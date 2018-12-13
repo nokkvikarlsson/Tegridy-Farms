@@ -8,19 +8,19 @@ public class GameController : MonoBehaviour
 {
 	//PUBLIC:
 	public int plotsize; //starts at 2x2
-	public GameObject plotPrefab;
-	public int money; //starts at 100
-	public double suspicion; //0-100
+	public GameObject plotPrefab; //the prefab for plot which is copied to expand
+	public int money; //starts at 200
+	public double suspicion; //0-100. Game ends at >= 100
 	public GameTime gameTime; //time in the game: DAY 1 00:00
 	public int currentItemIndex; //int of index in shopitem array
 	public GameObject currentPlot; //selected plot on which to plant
 	public bool isShopOpen; //is the shop menu active?
-	public Sprite[] itemSprites; //
+	public Sprite[] itemSprites; //All Sprites for Items for current item display
 	public GameObject shopMenu;
 	public int totalMoneyEarned;
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
-    public Plant[] allPlants;
+    public Plant[] allPlants; //List of all Plants and Buildings that player can plant
     [HideInInspector]
     public bool hasLost;
 
@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
     private DisplayScore _displayScore;
     private EventController _eventController;
     private SoundController _soundController;
+    private LaunderController _launderController;
 
     //VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
@@ -99,7 +100,8 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
-
+        //initalize Launder Controller
+        _launderController = FindObjectOfType<LaunderController>();
         //Tells if the player has lost.
         hasLost = false;
 
@@ -330,18 +332,38 @@ public class GameController : MonoBehaviour
 
 	public void addSuspicion(int sellvalue, double plantSuspicion)
 	{
-		//add launder stuff in future
-		suspicion += ((double)sellvalue * plantSuspicion);
-		if(suspicion < 0)
-		{
-			suspicion = 0;
-		}
+		if(_launderController.currentLaunder == null)
+        {
+            suspicion += ((double)sellvalue * plantSuspicion);
+            if(suspicion < 0)
+            {
+                suspicion = 0;
+            }
+        }
+        else
+        {
+            int totalPossibleLaunder = _launderController.currentLaunder.moneyLaunderCapacity - _launderController.currentMoneyLaundered;
+            //Plant Sold can be fully laundered
+            if(totalPossibleLaunder >= sellvalue)
+            {
+                //No suspicion added
+                //add money to capacity
+                _launderController.AddCurrentMoneyLaundered(sellvalue);
+            }
+            //Only part of plant can be laundered
+            else
+            {
+                int partMoneyLaundered = sellvalue - totalPossibleLaunder;
+                //part suspicion added
+                suspicion += ((double)partMoneyLaundered * plantSuspicion);
+                //add money to capacity
+                _launderController.AddCurrentMoneyLaundered(sellvalue);
+            }
+        }
 	}
 
     private void gameOverSequence(bool isSuspicion)
     {
-
-
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
