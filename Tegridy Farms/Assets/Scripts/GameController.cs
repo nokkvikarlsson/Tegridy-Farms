@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
     //Tells if the message is aldready being displayed
     private bool _suspicionWarning75;
     private bool _allowedToPlayWarning75;
+    private string[] _SuspicionDialogues;
 
     void Awake()
     {
@@ -117,6 +118,12 @@ public class GameController : MonoBehaviour
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
         _allowedToPlayWarning75 = false;
+        _SuspicionDialogues = new string[4];
+
+        _SuspicionDialogues[0] = "This farm looks very suspicious to me chief.";
+        _SuspicionDialogues[1] = "Hey chief, is corn supposed to be green?";
+        _SuspicionDialogues[2] = "I have never seen a corn farm this profitable, hmmm.";
+        _SuspicionDialogues[3] = "*sniff* *sniff* hey chief do you smell weed? I think it’s coming from this farm.";
     }
 
     // Use this for initialization
@@ -195,10 +202,11 @@ public class GameController : MonoBehaviour
          Dialogue checker
        =================*/
 
-       //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
+        //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
-            _eventController.DisplayDialoguePolice("This Farm is very suspicious to me chief.");
+            int index = Random.Range(0, _SuspicionDialogues.Length); 
+            _eventController.DisplayDialoguePolice(_SuspicionDialogues[index]); //Displayes a rando dialogue for the Police
             _suspicionWarning75 = true; //Tells if suspicion is already been played because the player went over 75 suspicion
             StartCoroutine(AllowSuspicionWarning75());
 
