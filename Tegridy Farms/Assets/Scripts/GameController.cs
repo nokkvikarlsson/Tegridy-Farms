@@ -24,7 +24,6 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public bool hasLost;
 
-
     //PRIVATE:
     private Image _currentItemImageSprite;
 	private RectTransform _cropsTab;

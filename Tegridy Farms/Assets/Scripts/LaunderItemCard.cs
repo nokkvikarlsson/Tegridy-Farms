@@ -49,7 +49,7 @@ public class LaunderItemCard : MonoBehaviour
 
 		if(_unlocked)
 		{
-			if(_gameController.money < _launderController.allLaunders[launderItemIndex].price)
+			if(_launderController.currentLaunder != null || _gameController.money < _launderController.allLaunders[launderItemIndex].price)
 			{
 				_itemCardImage.color = Color.gray;
 			}
