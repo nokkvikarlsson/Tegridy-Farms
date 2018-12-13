@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114961962130150148}
   - component: {fileID: 114433291396591418}
   - component: {fileID: 114702309466909684}
+  - component: {fileID: 114369407377823256}
   m_Layer: 8
   m_Name: ItemCardExpansion
   m_TagString: Untagged
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_FillOrigin: 0
 --- !u!114 &114369407377823256
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1016994024188086}
