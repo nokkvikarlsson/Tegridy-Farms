@@ -50,7 +50,7 @@ public class Expand : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		if(_gameController.money < _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * EXPANSIONPRICE)
+		if(_gameController.plotsize == 8 || _gameController.money < _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * EXPANSIONPRICE)
 		{
 			_expansionItemCardImage.color = Color.gray;
 		}
@@ -150,7 +150,7 @@ public class Expand : MonoBehaviour {
 
 	void AdjustCamera()
 	{
-		_mainCamera.transform.position += new Vector3(0.25f, -0.25f);
+		_mainCamera.transform.position += new Vector3(0.25f, -0.5f);
 		Camera mainCameraComp = _mainCamera.GetComponent<Camera>();
 		mainCameraComp.orthographicSize += 0.19f;
 	}
