@@ -88,9 +88,7 @@ public class EventController : MonoBehaviour
 
     IEnumerator stopForTenSeconds(GameObject dialogue)
     {
-        print(Time.time);
         yield return new WaitForSeconds(10);
         dialogue.SetActive(false);
-        print(Time.time);
     }
 }

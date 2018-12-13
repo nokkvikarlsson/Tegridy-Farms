@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Tobacco
   price: 20
-  growthrate: 1
+  growthrate: 0.75
   sellvalue: 25
-  suspicion: -0.5
+  suspicion: -0.06
   unlockedAt: 2
   shopIndex: 2
   levels:
