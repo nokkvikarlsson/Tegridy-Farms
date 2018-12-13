@@ -7,8 +7,10 @@ public class LaunderItemCard : MonoBehaviour
 {
 	public int launderItemIndex;
 	private Text _itemCardTitleText;
+	private Image _itemCardImage;
 	private GameController _gameController;
 	private LaunderController _launderController;
+	private bool _unlocked;
 
 	void Awake()
 	{
@@ -16,6 +18,8 @@ public class LaunderItemCard : MonoBehaviour
 		_launderController = FindObjectOfType<LaunderController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
+		_itemCardImage = gameObject.GetComponent<Image>();
+		_unlocked = true;
 	}
 
 	// Use this for initialization
@@ -26,20 +30,33 @@ public class LaunderItemCard : MonoBehaviour
 			int unlockedAt = _launderController.allLaunders[launderItemIndex].unlockedAt;
 			_itemCardTitleText.text = "Need " + unlockedAt.ToString() + "x" + unlockedAt.ToString();
 
-			Image itemCardImage = gameObject.GetComponent<Image>();
-			itemCardImage.color = Color.gray;
+			_itemCardImage.color = Color.gray;
+			_unlocked = false;
 		}
 	}
 	
 	// Update is called once per frame
 	void Update() 
 	{
-		if(_launderController.allLaunders[launderItemIndex].unlockedAt <= _gameController.plotsize)
+		if(!_unlocked && _launderController.allLaunders[launderItemIndex].unlockedAt <= _gameController.plotsize)
 		{
 			_itemCardTitleText.text = _launderController.allLaunders[launderItemIndex].type;
 
 			Image itemCardImage = gameObject.GetComponent<Image>();
 			itemCardImage.color = Color.white;
+			_unlocked = true;
+		}
+
+		if(_unlocked)
+		{
+			if(_gameController.money < _launderController.allLaunders[launderItemIndex].price)
+			{
+				_itemCardImage.color = Color.gray;
+			}
+			else
+			{
+				_itemCardImage.color = Color.white;
+			}
 		}
 	}
 
