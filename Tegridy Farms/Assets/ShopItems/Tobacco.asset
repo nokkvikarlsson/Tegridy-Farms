@@ -14,7 +14,7 @@ MonoBehaviour:
   type: Tobacco
   price: 20
   growthrate: 1
-  sellvalue: 20
+  sellvalue: 25
   suspicion: -0.5
   unlockedAt: 2
   shopIndex: 2
