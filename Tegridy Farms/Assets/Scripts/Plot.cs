@@ -202,7 +202,8 @@ public class Plot : MonoBehaviour
 		}
 		else
 		{
-            _soundController.PlayRandom(_soundController.harvestingSounds);
+            //Play harvesting sound
+            _soundController.Play("Harvesting2", _soundController.harvestingSounds);
 			//HARVEST
 			_gameController.addMoney(plant.sellvalue);
 			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);

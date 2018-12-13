@@ -128,7 +128,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 74c316fa7237545ecb891504a3da59e2, type: 3}
     source: {fileID: 0}
   - name: Harvesting2
-    clip: {fileID: 8300000, guid: 8c0b138f3b9c941019b7f857bc2ae910, type: 3}
+    clip: {fileID: 8300000, guid: 1e9629ea2a64847e5b19e0101a1f2696, type: 3}
     source: {fileID: 0}
   - name: Harvesting3
     clip: {fileID: 8300000, guid: cab807d10dcff49d78cb1d58f6056435, type: 3}
@@ -142,5 +142,5 @@ MonoBehaviour:
     source: {fileID: 0}
   plantingSounds:
   - name: Planting1
-    clip: {fileID: 8300000, guid: cd81162d0fdf1458895f25afdb26c944, type: 3}
+    clip: {fileID: 8300000, guid: ef0cec0dccb3847c890bd45c42b10510, type: 3}
     source: {fileID: 0}
