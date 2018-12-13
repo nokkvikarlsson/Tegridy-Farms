@@ -177,8 +177,9 @@ public class Plot : MonoBehaviour
 			else
 			{
 				SetPlot(_gameController.currentItemIndex);
+
                 //Plays a random planting sound
-                _soundController.PlayRandom(_soundController.plantingSounds);
+                _soundController.Play("Planting1", _soundController.plantingSounds);
 			}
 		}
 		//IF PLANT
@@ -201,6 +202,7 @@ public class Plot : MonoBehaviour
 		}
 		else
 		{
+            _soundController.PlayRandom(_soundController.harvestingSounds);
 			//HARVEST
 			_gameController.addMoney(plant.sellvalue);
 			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
