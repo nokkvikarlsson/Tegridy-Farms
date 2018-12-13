@@ -49,14 +49,16 @@ public class GameController : MonoBehaviour
     //Tells if the message is aldready being displayed
     private bool _suspicionWarning75;
     private bool _allowedToPlayWarning75;
-    private string[] _SuspicionDialogues;
+    private bool _allowedToPlayRentNotification;
+    private string[] _suspicionDialogues;
+    private string[] _rentDialogues;
 
     void Awake()
     {
         //Initialize allPlants from Shop Items
         ShopItems shopItems = GameObject.Find("/ShopItems").GetComponent<ShopItems>();
         allPlants = new Plant[shopItems.allPlants.Length];
-        for(int i = 0; i < shopItems.allPlants.Length; i++)
+        for (int i = 0; i < shopItems.allPlants.Length; i++)
         {
             allPlants[i] = Instantiate(shopItems.allPlants[i]);
             //allPlants[i].Clone(shopItems.allPlants[i]);
@@ -110,7 +112,7 @@ public class GameController : MonoBehaviour
         _displayScore = FindObjectOfType<DisplayScore>();
 
         displayChecker = 0; //NokkviKilla needs this
-        
+
         //SoundController
         _lossSoundPlayed = false;
 
@@ -118,12 +120,21 @@ public class GameController : MonoBehaviour
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
         _allowedToPlayWarning75 = false;
-        _SuspicionDialogues = new string[4];
+        _allowedToPlayRentNotification = true;
 
-        _SuspicionDialogues[0] = "This farm looks very suspicious to me chief.";
-        _SuspicionDialogues[1] = "Hey chief, is corn supposed to be green?";
-        _SuspicionDialogues[2] = "I have never seen a corn farm this profitable, hmmm.";
-        _SuspicionDialogues[3] = "*sniff* *sniff* hey chief do you smell weed? I think it’s coming from this farm.";
+        _suspicionDialogues = new string[4];
+        _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
+        _suspicionDialogues[1] = "Hey chief, is corn supposed to be green?";
+        _suspicionDialogues[2] = "I have never seen a corn farm this profitable, hmmm.";
+        _suspicionDialogues[3] = "*sniff* *sniff* hey chief do you smell weed? I think it’s coming from this farm.";
+
+        _rentDialogues = new string[4];
+        _rentDialogues[0] = "Hey the rent is due after 6 hours at 12 AM don't forget it.";
+        _rentDialogues[1] = "Howdy, you owe me rent and I’m coming to collect it after six hours at 12 AM.";
+        _rentDialogues[2] = "Hey buddy, you better pay the rent in six hours at 12 AM.";
+        _rentDialogues[3] = "You know what happens after six hours at 12 AM? rent time.";
+
+
     }
 
     // Use this for initialization
@@ -205,8 +216,8 @@ public class GameController : MonoBehaviour
         //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
-            int index = Random.Range(0, _SuspicionDialogues.Length); 
-            _eventController.DisplayDialoguePolice(_SuspicionDialogues[index]); //Displayes a rando dialogue for the Police
+            int index = Random.Range(0, _suspicionDialogues.Length); 
+            _eventController.DisplayDialoguePolice(_suspicionDialogues[index]); //Displayes a rando dialogue for the Police
             _suspicionWarning75 = true; //Tells if suspicion is already been played because the player went over 75 suspicion
             StartCoroutine(AllowSuspicionWarning75());
 
@@ -221,11 +232,20 @@ public class GameController : MonoBehaviour
         }
 
         //The landlord lets the player know that rent is due soon
-        if (_timeCounterText.text == " 6:00 PM")
+        if (_timeCounterText.text == " 1:00 AM" && _allowedToPlayRentNotification)
         {
-            _eventController.DisplayDialogueLandlord("Hey the rent is due after 6 hours at 12 AM don't forget it.");
+            _allowedToPlayRentNotification = false;
+            int index = Random.Range(0, _rentDialogues.Length);
+            _eventController.DisplayDialogueLandlord(_rentDialogues[index]);
+            StartCoroutine(AllowToDisplayRentNotification());
         }
 
+    }
+
+    IEnumerator AllowToDisplayRentNotification()
+    {
+        yield return new WaitForSeconds(1);
+        _allowedToPlayRentNotification = true;
     }
 
     //Waits for the suspicion warning dialogue to finish before allowing it to play again.
