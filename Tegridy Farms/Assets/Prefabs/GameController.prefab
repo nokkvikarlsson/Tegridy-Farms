@@ -77,12 +77,5 @@ MonoBehaviour:
   plots: []
   displayChecker: 0
   allPlants: []
-  allLaunders:
-  - {fileID: 11400000, guid: c6e11b2221e789b47b224f906a3774b0, type: 2}
-  - {fileID: 11400000, guid: c3d12b4a0a31bb643932c2482820d039, type: 2}
-  - {fileID: 11400000, guid: 92b924f0682d67547869ec09653726b6, type: 2}
-  - {fileID: 11400000, guid: 6dfc1026cd153f94f839851aa4f90870, type: 2}
-  - {fileID: 11400000, guid: ba1d749b2d67c5b449156d3f829d89fb, type: 2}
-  - {fileID: 11400000, guid: 7fac4c490b884644cb8957ddce4ca65c, type: 2}
   hasLost: 0
-  _music: {fileID: 0}
+  music: {fileID: 0}
