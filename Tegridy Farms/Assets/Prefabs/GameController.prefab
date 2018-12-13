@@ -64,10 +64,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b7f69de2625c102469c76e67f1395056, type: 3}
   - {fileID: 21300000, guid: 6ba3b31bcda7711489a158a57bf26823, type: 3}
   - {fileID: 21300000, guid: ee1aea5553bacf5499c9ca81a2c0dcb4, type: 3}
+  - {fileID: 21300000, guid: 88d539b46d285ce469f58afcbd4b6530, type: 3}
+  - {fileID: 21300000, guid: 36f56eb679b375c4f92302233bd3e918, type: 3}
+  - {fileID: 21300000, guid: e142472ec5e747847b88e39aff3b683c, type: 3}
+  - {fileID: 21300000, guid: a59d86a72f0417d4da44c9ed19989363, type: 3}
+  - {fileID: 21300000, guid: f9f64a16193fa7d4984168399626e334, type: 3}
+  - {fileID: 21300000, guid: 97c06ef65298cfa4a9746a4a70536364, type: 3}
+  - {fileID: 21300000, guid: d9ac52de30d57a044a017c75e0752848, type: 3}
+  - {fileID: 21300000, guid: 8cbc813bd50a8f04eabf5d5aa042dca7, type: 3}
   shopMenu: {fileID: 0}
   totalMoneyEarned: 0
   plots: []
   displayChecker: 0
   allPlants: []
+  allLaunders:
+  - {fileID: 11400000, guid: c6e11b2221e789b47b224f906a3774b0, type: 2}
+  - {fileID: 11400000, guid: c3d12b4a0a31bb643932c2482820d039, type: 2}
+  - {fileID: 11400000, guid: 92b924f0682d67547869ec09653726b6, type: 2}
+  - {fileID: 11400000, guid: 6dfc1026cd153f94f839851aa4f90870, type: 2}
+  - {fileID: 11400000, guid: ba1d749b2d67c5b449156d3f829d89fb, type: 2}
+  - {fileID: 11400000, guid: 7fac4c490b884644cb8957ddce4ca65c, type: 2}
   hasLost: 0
   _music: {fileID: 0}

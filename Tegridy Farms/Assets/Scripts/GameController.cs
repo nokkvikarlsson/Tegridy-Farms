@@ -8,19 +8,19 @@ public class GameController : MonoBehaviour
 {
 	//PUBLIC:
 	public int plotsize; //starts at 2x2
-	public GameObject plotPrefab;
-	public int money; //starts at 100
-	public double suspicion; //0-100
+	public GameObject plotPrefab; //the prefab for plot which is copied to expand
+	public int money; //starts at 200
+	public double suspicion; //0-100. Game ends at >= 100
 	public GameTime gameTime; //time in the game: DAY 1 00:00
 	public int currentItemIndex; //int of index in shopitem array
 	public GameObject currentPlot; //selected plot on which to plant
 	public bool isShopOpen; //is the shop menu active?
-	public Sprite[] itemSprites; //
+	public Sprite[] itemSprites; //All Sprites for Items for current item display
 	public GameObject shopMenu;
 	public int totalMoneyEarned;
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
-    public Plant[] allPlants;
+    public Plant[] allPlants; //List of all Plants and Buildings that player can plant
     [HideInInspector]
     public bool hasLost;
 
@@ -39,22 +39,27 @@ public class GameController : MonoBehaviour
     private DisplayScore _displayScore;
     private EventController _eventController;
     private SoundController _soundController;
+    private LaunderController _launderController;
 
     //VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
-    public AudioSource _music;
+    public AudioSource music;
     private bool _lossSoundPlayed;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
     //Tells if the message is aldready being displayed
     private bool _suspicionWarning75;
+    private bool _allowedToPlayWarning75;
+    private bool _allowedToPlayRentNotification;
+    private string[] _suspicionDialogues;
+    private string[] _rentDialogues;
 
     void Awake()
     {
         //Initialize allPlants from Shop Items
         ShopItems shopItems = GameObject.Find("/ShopItems").GetComponent<ShopItems>();
         allPlants = new Plant[shopItems.allPlants.Length];
-        for(int i = 0; i < shopItems.allPlants.Length; i++)
+        for (int i = 0; i < shopItems.allPlants.Length; i++)
         {
             allPlants[i] = Instantiate(shopItems.allPlants[i]);
             //allPlants[i].Clone(shopItems.allPlants[i]);
@@ -95,7 +100,8 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
-
+        //initalize Launder Controller
+        _launderController = FindObjectOfType<LaunderController>();
         //Tells if the player has lost.
         hasLost = false;
 
@@ -115,6 +121,22 @@ public class GameController : MonoBehaviour
         //EventController
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
+        _allowedToPlayWarning75 = false;
+        _allowedToPlayRentNotification = true;
+
+        _suspicionDialogues = new string[4];
+        _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
+        _suspicionDialogues[1] = "Hey chief, is corn supposed to be green?";
+        _suspicionDialogues[2] = "I have never seen a corn farm this profitable, hmmm.";
+        _suspicionDialogues[3] = "*sniff* *sniff* hey chief do you smell weed? I think it’s coming from this farm.";
+
+        _rentDialogues = new string[4];
+        _rentDialogues[0] = "Hey the rent is due after 6 hours at 12 AM don't forget it.";
+        _rentDialogues[1] = "Howdy, you owe me rent and I’m coming to collect it after six hours at 12 AM.";
+        _rentDialogues[2] = "Hey buddy, you better pay the rent in six hours at 12 AM.";
+        _rentDialogues[3] = "You know what happens after six hours at 12 AM? rent time.";
+
+
     }
 
     // Use this for initialization
@@ -189,28 +211,50 @@ public class GameController : MonoBehaviour
             gameOverSequence(false);
 		}
 
-
         /*=================
          Dialogue checker
        =================*/
-        
-       //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
+
+        //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
-            _eventController.DisplayDialoguePolice("This Farm is very suspicious to me chief.");
-            _suspicionWarning75 = true;
+            int index = Random.Range(0, _suspicionDialogues.Length); 
+            _eventController.DisplayDialoguePolice(_suspicionDialogues[index]); //Displayes a rando dialogue for the Police
+            _suspicionWarning75 = true; //Tells if suspicion is already been played because the player went over 75 suspicion
+            StartCoroutine(AllowSuspicionWarning75());
+
         }
-        if (suspicion < 75)
+        //If suspicion goes lower than 75 then the animation may be played again if the player goes over 75 again,
+        //but only if the animation is no already playing.
+        if (suspicion < 75 && _allowedToPlayWarning75)
         {
             _suspicionWarning75 = false;
+            //Tells the controller to wait for the animation to finish before he plays it again.
+            _allowedToPlayWarning75 = false;
         }
 
         //The landlord lets the player know that rent is due soon
-        if (_timeCounterText.text == " 6:00 PM")
+        if (_timeCounterText.text == " 6:00 PM" && _allowedToPlayRentNotification)
         {
-            _eventController.DisplayDialogueLandlord("Hey the rent is due after 6 hours at 12 AM don't forget it.");
+            _allowedToPlayRentNotification = false;
+            int index = Random.Range(0, _rentDialogues.Length);
+            _eventController.DisplayDialogueLandlord(_rentDialogues[index]);
+            StartCoroutine(AllowToDisplayRentNotification());
         }
 
+    }
+
+    IEnumerator AllowToDisplayRentNotification()
+    {
+        yield return new WaitForSeconds(1);
+        _allowedToPlayRentNotification = true;
+    }
+
+    //Waits for the suspicion warning dialogue to finish before allowing it to play again.
+    IEnumerator AllowSuspicionWarning75()
+    {
+        yield return new WaitForSeconds(10);
+        _allowedToPlayWarning75 = true;
     }
 
     void StartGameTime()
@@ -288,32 +332,52 @@ public class GameController : MonoBehaviour
 
 	public void addSuspicion(int sellvalue, double plantSuspicion)
 	{
-		//add launder stuff in future
-		suspicion += ((double)sellvalue * plantSuspicion);
-		if(suspicion < 0)
-		{
-			suspicion = 0;
-		}
+		if(_launderController.currentLaunder == null)
+        {
+            suspicion += ((double)sellvalue * plantSuspicion);
+            if(suspicion < 0)
+            {
+                suspicion = 0;
+            }
+        }
+        else
+        {
+            int totalPossibleLaunder = _launderController.currentLaunder.moneyLaunderCapacity - _launderController.currentMoneyLaundered;
+            //Plant Sold can be fully laundered
+            if(totalPossibleLaunder >= sellvalue)
+            {
+                //No suspicion added
+                //add money to capacity
+                _launderController.AddCurrentMoneyLaundered(sellvalue);
+            }
+            //Only part of plant can be laundered
+            else
+            {
+                int partMoneyLaundered = sellvalue - totalPossibleLaunder;
+                //part suspicion added
+                suspicion += ((double)partMoneyLaundered * plantSuspicion);
+                //add money to capacity
+                _launderController.AddCurrentMoneyLaundered(sellvalue);
+            }
+        }
 	}
 
     private void gameOverSequence(bool isSuspicion)
     {
-
-
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             { 
-                _soundController.Play("LossSound");
+                _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
             }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
             hasLost = true;
-            _music.Stop();
+            music.Stop();
 
             if(displayChecker == 0)
             {
@@ -328,14 +392,14 @@ public class GameController : MonoBehaviour
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             {
-                _soundController.Play("LossSound");
+                _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
             }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
             hasLost = true;
-            _music.Stop();
+            music.Stop();
 
             if (displayChecker == 0)
             {

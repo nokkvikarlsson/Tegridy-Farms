@@ -7,23 +7,57 @@ using System;
 public class SoundController : MonoBehaviour {
 
     public AudioMixerGroup audioMixer;
-    public Sound[] sounds;
+    public Sound[] effectSounds;
+    public Sound[] farmerSounds;
+    public Sound[] laundererSounds;
+    public Sound[] policeSounds;
+    public Sound[] landLordSounds;
 
     void Awake()
     {
-        foreach (Sound s in sounds)
+        foreach (Sound s in effectSounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.outputAudioMixerGroup = audioMixer;
         }
+
+        foreach (Sound s in farmerSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = audioMixer;
+        }
+
+        foreach (Sound s in laundererSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = audioMixer;
+        }
+
+        foreach (Sound s in policeSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = audioMixer;
+        }
+
+        foreach (Sound s in landLordSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = audioMixer;
+        }
+
     }
 
-    public void Play(string name)
+    public void Play(string name, Sound[] sounds)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
-        if(s == null)
+        //Writes an error message if the sound was not found
+        if (s == null)
         {
             Debug.LogWarning("Sound: " + name + " does not exist");
             return;
@@ -32,5 +66,22 @@ public class SoundController : MonoBehaviour {
         s.source.Play();
     }
 
+    //Finds a random sound from the sound array to play.
+    public void PlayRandom(Sound[] sounds)
+    {
+
+        int index = UnityEngine.Random.Range(0, sounds.Length);
+
+        Sound s = sounds[index];
+
+        //Writes an error message if the sound was not found
+        if(s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " does not exist");
+            return;
+        }
+
+        s.source.Play();
+    }
 
 }

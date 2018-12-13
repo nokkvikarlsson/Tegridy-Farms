@@ -6,33 +6,39 @@ using UnityEngine.UI;
 public class EventController : MonoBehaviour 
 {
 
-
-    private GameObject _farmerDialogue;
-    private GameObject _landlordDialogue;
-    private GameObject _laundererDialogue;
-    private GameObject _policeDialogue;
+    [HideInInspector]
+    public GameObject farmerDialogue;
+    [HideInInspector]
+    public GameObject landlordDialogue;
+    [HideInInspector]
+    public GameObject laundererDialogue;
+    [HideInInspector]
+    public GameObject policeDialogue;
 
     private Text _farmerText;
     private Text _landlordText;
     private Text _laundererText;
     private Text _policeText;
+    private SoundController _soundController;
 
     private void Awake()
     {
-        _farmerDialogue = GameObject.Find("/UI/Dialogues/DialogueFarmer");
-        _landlordDialogue = GameObject.Find("/UI/Dialogues/DialogueLandlord");
-        _laundererDialogue = GameObject.Find("/UI/Dialogues/DialogueLaunderer");
-        _policeDialogue = GameObject.Find("/UI/Dialogues/DialoguePoliceOfficer");
+        _soundController = FindObjectOfType<SoundController>();
 
-        _farmerText = _farmerDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
-        _landlordText = _landlordDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
-        _laundererText = _laundererDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
-        _policeText = _policeDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
+        farmerDialogue = GameObject.Find("/UI/Dialogues/DialogueFarmer");
+        landlordDialogue = GameObject.Find("/UI/Dialogues/DialogueLandlord");
+        laundererDialogue = GameObject.Find("/UI/Dialogues/DialogueLaunderer");
+        policeDialogue = GameObject.Find("/UI/Dialogues/DialoguePoliceOfficer");
 
-        _farmerDialogue.SetActive(false);
-        _landlordDialogue.SetActive(false);
-        _laundererDialogue.SetActive(false);
-        _policeDialogue.SetActive(false);
+        _farmerText = farmerDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
+        _landlordText = landlordDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
+        _laundererText = laundererDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
+        _policeText = policeDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
+
+        farmerDialogue.SetActive(false);
+        landlordDialogue.SetActive(false);
+        laundererDialogue.SetActive(false);
+        policeDialogue.SetActive(false);
     }
 
     // Use this for initialization
@@ -50,30 +56,34 @@ public class EventController : MonoBehaviour
     public void DisplayDialoueFarmer(string text)
     {
         _farmerText.text = text;
-        _farmerDialogue.SetActive(true);
-        StartCoroutine(stopForTenSeconds(_farmerDialogue));
+        farmerDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
+        StartCoroutine(stopForTenSeconds(farmerDialogue));
     }
 
     public void DisplayDialogueLandlord(string text)
     {
         _landlordText.text = text;
-        _landlordDialogue.SetActive(true);
-        StartCoroutine(stopForTenSeconds(_landlordDialogue));
+        landlordDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.landLordSounds); //Plays a random farmer gibberish
+        StartCoroutine(stopForTenSeconds(landlordDialogue));
     }
 
     public void DisplayDialogueLaunderer(string text)
     {
         _laundererText.text = text;
-        _laundererDialogue.SetActive(true);
-        StartCoroutine(stopForTenSeconds(_laundererDialogue));
+        laundererDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random farmer gibberish
+        StartCoroutine(stopForTenSeconds(laundererDialogue));
 
     }
 
     public void DisplayDialoguePolice(string text)
     {
         _policeText.text = text;
-        _policeDialogue.SetActive(true);
-        StartCoroutine(stopForTenSeconds(_policeDialogue));
+        policeDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.policeSounds); //Plays a random farmer gibberish
+        StartCoroutine(stopForTenSeconds(policeDialogue));
     }
 
     IEnumerator stopForTenSeconds(GameObject dialogue)
