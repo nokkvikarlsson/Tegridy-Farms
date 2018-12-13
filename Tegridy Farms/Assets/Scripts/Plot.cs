@@ -177,9 +177,6 @@ public class Plot : MonoBehaviour
 			else
 			{
 				SetPlot(_gameController.currentItemIndex);
-
-                //Plays a random planting sound
-                _soundController.Play("Planting1", _soundController.plantingSounds);
 			}
 		}
 		//IF PLANT
@@ -290,7 +287,10 @@ public class Plot : MonoBehaviour
 			plant = _gameController.allPlants[0];
 			return;
 		}
-		_gameController.removeMoney(plant.price);
+        //Plays a random planting sound
+        _soundController.Play("Planting1", _soundController.plantingSounds);
+
+        _gameController.removeMoney(plant.price);
 		_spriteR.sprite = plant.levels[0];
 		_gameController.currentPlot = null;
 		GameTime currentTime = new GameTime(_gameController.gameTime);
