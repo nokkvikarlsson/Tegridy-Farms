@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eaff5007baa1ff4b9904aabadb436a5, type: 3}
-  m_Name: VapeShop
+  m_Name: Factory
   m_EditorClassIdentifier: 
-  type: Vape Shop
-  durationDays: 0.5
-  price: 400
-  moneyLaunderCapacity: 1000
-  unlockedAt: 3
+  type: Factory
+  durationDays: 3
+  price: 7500
+  moneyLaunderCapacity: 15000
+  unlockedAt: 8
