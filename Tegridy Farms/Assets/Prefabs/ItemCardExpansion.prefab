@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224297983781197216}
   - component: {fileID: 222102501168900890}
   - component: {fileID: 114961962130150148}
-  - component: {fileID: 114369407377823256}
   - component: {fileID: 114433291396591418}
   - component: {fileID: 114702309466909684}
   m_Layer: 8
@@ -114,7 +113,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: -150$
+  m_Text: -200$
 --- !u!114 &114144071830718496
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,20 +141,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114369407377823256
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1016994024188086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b413a560a6038449a9d306dc756583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCard: {fileID: 0}
-  shopItemIndex: 0
-  _gameController: {fileID: 0}
 --- !u!114 &114424156410026070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,7 +173,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Expansion
+  m_Text: Plot Expansion
 --- !u!114 &114433291396591418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,6 +237,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2af0e2d68b704a5e844db3eebac4f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plotPrefab: {fileID: 1739479922275408, guid: 4a654e9127dd85a458782d282d19e881, type: 2}
+  surroundingPlot: {fileID: 0}
+  upperPlotPrefab: {fileID: 1143563359293904, guid: ad513379deb1f274f908f2b77c9994a2,
+    type: 2}
+  upperLeftPlotPrefab: {fileID: 1706649182965940, guid: ae35574ab1cd5ce46b62308604f7b8c1,
+    type: 2}
+  upperRightPlotPrefab: {fileID: 1698769091858634, guid: 68be861024be37d438a3833f1763ead2,
+    type: 2}
+  lowerPlotPrefab: {fileID: 1857002509972140, guid: 8c2188177650d7c45b4b6b6d8e458af5,
+    type: 2}
+  lowerRightPlotPrefab: {fileID: 1127868946897698, guid: dd542089f3fd2514bb0f803d129375d0,
+    type: 2}
+  lowerLeftPlotPrefab: {fileID: 1889581056577770, guid: 1623bb1d86edf4a4f8661416e9a782be,
+    type: 2}
+  leftPlotPrefab: {fileID: 1290376766683026, guid: f72d379b926aeff4fb5cb374175c7b7e,
+    type: 2}
+  rightPlotPrefab: {fileID: 1232340127839150, guid: 39248226488ff054abd9acf5dd9c375b,
+    type: 2}
 --- !u!114 &114961962130150148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +382,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.7985, y: 15.97}
+  m_AnchoredPosition: {x: -0.000029087, y: 15.97}
   m_SizeDelta: {x: 111.17, y: 101.2}
   m_Pivot: {x: 0.5, y: 0.5}
