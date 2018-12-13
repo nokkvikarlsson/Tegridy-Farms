@@ -21,6 +21,7 @@ public class Expand : MonoBehaviour {
     //For the sound
     private SoundController _soundController;
 
+    private EventController _eventController;
     private GameController _gameController;
     private GameObject _expansionItemCardBuyPrice;
 
@@ -33,6 +34,7 @@ public class Expand : MonoBehaviour {
     {
         _gameController = FindObjectOfType<GameController>();
         _soundController = FindObjectOfType<SoundController>();
+        _eventController = FindObjectOfType<EventController>();
 
 		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
 		_expansionItemCardTitle = gameObject.transform.GetChild(0).gameObject;
@@ -92,7 +94,11 @@ public class Expand : MonoBehaviour {
 			itemCardImage.color = Color.gray;
 			_expansionItemCardBuyPrice.GetComponent<Text>().text = "";
 		}
-	}
+        if(_gameController.plotsize == 3)
+        {
+            _eventController.DisplayDialogueLaunderer("Hey brudda man!");
+        }
+    }
 
     public void ExpandFarmPlots()
 	{

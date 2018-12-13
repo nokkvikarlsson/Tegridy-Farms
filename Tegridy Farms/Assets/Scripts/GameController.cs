@@ -51,6 +51,7 @@ public class GameController : MonoBehaviour
     private bool _allowedToPlayWarning75;
     private bool _allowedToPlayRentNotification;
     private bool _beginTegridyIntroduction;
+    public bool beginTegridyIntroduction2;
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
 
@@ -124,7 +125,8 @@ public class GameController : MonoBehaviour
         _suspicionWarning75 = false;
         _allowedToPlayWarning75 = false;
         _allowedToPlayRentNotification = true;
-        _beginTegridyIntroduction = false;
+        _beginTegridyIntroduction = true;
+        beginTegridyIntroduction2 = false;
 
         _suspicionDialogues = new string[4];
         _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
@@ -218,10 +220,16 @@ public class GameController : MonoBehaviour
        =================*/
          
         //Starts the introduction
-        if(!_beginTegridyIntroduction)
+        if(_beginTegridyIntroduction)
         {
-            _beginTegridyIntroduction = true;
-            _eventController.DisplayDialogueFarmer("Howdy");
+            _beginTegridyIntroduction = false;
+            _eventController.DisplayDialogueFarmer("Howdy, farmer! Let's get to work. Select the crop you wish to plant from the SHOP menu!");
+        }
+
+        if (beginTegridyIntroduction2)
+        {
+            beginTegridyIntroduction2 = false;
+            _eventController.DisplayDialogueFarmer2("Now that you have selected a crop, click on a plot to plant it! Remember to harvest it when it's ready.");
         }
 
         //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
@@ -250,7 +258,6 @@ public class GameController : MonoBehaviour
             _eventController.DisplayDialogueLandlord(_rentDialogues[index]);
             StartCoroutine(AllowToDisplayRentNotification());
         }
-
     }
 
     IEnumerator AllowToDisplayRentNotification()

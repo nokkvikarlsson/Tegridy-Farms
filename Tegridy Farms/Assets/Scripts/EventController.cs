@@ -14,11 +14,16 @@ public class EventController : MonoBehaviour
     public GameObject laundererDialogue;
     [HideInInspector]
     public GameObject policeDialogue;
+    [HideInInspector]
+    public GameObject farmerDialogue2;
 
     private Text _farmerText;
     private Text _landlordText;
     private Text _laundererText;
     private Text _policeText;
+
+    private Text _farmerText2;
+
     private SoundController _soundController;
 
     private void Awake()
@@ -30,15 +35,23 @@ public class EventController : MonoBehaviour
         laundererDialogue = GameObject.Find("/UI/Dialogues/DialogueLaunderer");
         policeDialogue = GameObject.Find("/UI/Dialogues/DialoguePoliceOfficer");
 
+        //if the farmer needs to tall the player something after an event
+        farmerDialogue2 = GameObject.Find("/UI/Dialogues/DialogueFarmer2");
+
         _farmerText = farmerDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
         _landlordText = landlordDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
         _laundererText = laundererDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
         _policeText = policeDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
 
+        _farmerText2 = farmerDialogue2.transform.GetChild(2).gameObject.GetComponent<Text>();
+
         farmerDialogue.SetActive(false);
         landlordDialogue.SetActive(false);
         laundererDialogue.SetActive(false);
         policeDialogue.SetActive(false);
+
+
+        farmerDialogue2.SetActive(false);
     }
 
     // Use this for initialization
@@ -85,6 +98,15 @@ public class EventController : MonoBehaviour
         _soundController.PlayRandom(_soundController.policeSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(policeDialogue));
     }
+
+    public void DisplayDialogueFarmer2(string text)
+    {
+        _farmerText2.text = text;
+        farmerDialogue2.SetActive(true);
+        _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
+        StartCoroutine(stopForTenSeconds(farmerDialogue));
+    }
+
 
     IEnumerator stopForTenSeconds(GameObject dialogue)
     {

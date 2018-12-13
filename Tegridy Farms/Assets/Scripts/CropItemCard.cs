@@ -9,12 +9,16 @@ public class CropItemCard : MonoBehaviour
 	private Text _itemCardTitleText;
 	private GameController _gameController;
 
+    public bool tutorialDone;
+
 	// Use this for initialization
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
+
+        tutorialDone = false;
 	}
 	
 	void Start()
@@ -48,7 +52,9 @@ public class CropItemCard : MonoBehaviour
 		{
 			_gameController.SetCurrentItem(shopItemIndex);
 			_gameController.CloseShop();
-		}
+
+            _gameController.beginTegridyIntroduction2 = true;
+        }
 		else
 		{
 			Debug.Log("Not Unlocked yet");
