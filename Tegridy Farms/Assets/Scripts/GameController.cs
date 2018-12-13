@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
         //EventController
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
-}
+    }
 
     // Use this for initialization
     void Start()
@@ -154,7 +154,7 @@ public class GameController : MonoBehaviour
         }
         else if(gameTime.hour < 12) 
         {
-            if(gameTime.hour < 10) {timetext += " ";}
+            if (gameTime.hour < 10) {timetext += " ";}
             timetext += gameTime.hour.ToString();
             timetext += ":";
 		    if(gameTime.minute < 10) {timetext += "0";}
@@ -193,7 +193,9 @@ public class GameController : MonoBehaviour
         /*=================
          Dialogue checker
        =================*/
-        if (suspicion >= 75 && !_suspicionWarning75)
+        
+       //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
+        if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
             _eventController.DisplayDialoguePolice("This Farm is very suspicious to me chief.");
             _suspicionWarning75 = true;
@@ -201,6 +203,12 @@ public class GameController : MonoBehaviour
         if (suspicion < 75)
         {
             _suspicionWarning75 = false;
+        }
+
+        //The landlord lets the player know that rent is due soon
+        if (_timeCounterText.text == " 6:00 PM")
+        {
+            _eventController.DisplayDialogueLandlord("Hey the rent is due after 6 hours at 12 AM don't forget it.");
         }
 
     }
