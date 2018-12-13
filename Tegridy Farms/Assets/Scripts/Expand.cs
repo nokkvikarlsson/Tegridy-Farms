@@ -62,7 +62,7 @@ public class Expand : MonoBehaviour {
             Debug.Log("Not enough cash!");
             return;
         }
-        _soundController.Play("Expand");
+        _soundController.Play("Expand", _soundController.effectSounds);
         _gameController.removeMoney(priceOfExpansion);
         _gameController.CloseShop();
         ExpandFarmPlots();

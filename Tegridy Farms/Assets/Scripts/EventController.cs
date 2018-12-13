@@ -16,9 +16,12 @@ public class EventController : MonoBehaviour
     private Text _landlordText;
     private Text _laundererText;
     private Text _policeText;
+    private SoundController _soundController;
 
     private void Awake()
     {
+        _soundController = FindObjectOfType<SoundController>();
+
         _farmerDialogue = GameObject.Find("/UI/Dialogues/DialogueFarmer");
         _landlordDialogue = GameObject.Find("/UI/Dialogues/DialogueLandlord");
         _laundererDialogue = GameObject.Find("/UI/Dialogues/DialogueLaunderer");
@@ -51,6 +54,7 @@ public class EventController : MonoBehaviour
     {
         _farmerText.text = text;
         _farmerDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(_farmerDialogue));
     }
 
@@ -58,6 +62,7 @@ public class EventController : MonoBehaviour
     {
         _landlordText.text = text;
         _landlordDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.landLordSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(_landlordDialogue));
     }
 
@@ -65,6 +70,7 @@ public class EventController : MonoBehaviour
     {
         _laundererText.text = text;
         _laundererDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(_laundererDialogue));
 
     }
@@ -73,6 +79,7 @@ public class EventController : MonoBehaviour
     {
         _policeText.text = text;
         _policeDialogue.SetActive(true);
+        _soundController.PlayRandom(_soundController.policeSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(_policeDialogue));
     }
 

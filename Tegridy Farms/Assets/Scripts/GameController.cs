@@ -43,12 +43,14 @@ public class GameController : MonoBehaviour
 
     //VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
-    public AudioSource _music;
+    public AudioSource music;
     private bool _lossSoundPlayed;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
     //Tells if the message is aldready being displayed
     private bool _suspicionWarning75;
+    private bool _allowedToPlayWarning75;
+    private string[] _SuspicionDialogues;
 
     void Awake()
     {
@@ -110,13 +112,20 @@ public class GameController : MonoBehaviour
         _displayScore = FindObjectOfType<DisplayScore>();
 
         displayChecker = 0; //NokkviKilla needs this
-
+        
         //SoundController
         _lossSoundPlayed = false;
 
         //EventController
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
+        _allowedToPlayWarning75 = false;
+        _SuspicionDialogues = new string[4];
+
+        _SuspicionDialogues[0] = "This farm looks very suspicious to me chief.";
+        _SuspicionDialogues[1] = "Hey chief, is corn supposed to be green?";
+        _SuspicionDialogues[2] = "I have never seen a corn farm this profitable, hmmm.";
+        _SuspicionDialogues[3] = "*sniff* *sniff* hey chief do you smell weed? I think it’s coming from this farm.";
     }
 
     // Use this for initialization
@@ -191,20 +200,26 @@ public class GameController : MonoBehaviour
             gameOverSequence(false);
 		}
 
-
         /*=================
          Dialogue checker
        =================*/
-        
-       //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
+
+        //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
-            _eventController.DisplayDialoguePolice("This Farm is very suspicious to me chief.");
-            _suspicionWarning75 = true;
+            int index = Random.Range(0, _SuspicionDialogues.Length); 
+            _eventController.DisplayDialoguePolice(_SuspicionDialogues[index]); //Displayes a rando dialogue for the Police
+            _suspicionWarning75 = true; //Tells if suspicion is already been played because the player went over 75 suspicion
+            StartCoroutine(AllowSuspicionWarning75());
+
         }
-        if (suspicion < 75)
+        //If suspicion goes lower than 75 then the animation may be played again if the player goes over 75 again,
+        //but only if the animation is no already playing.
+        if (suspicion < 75 && _allowedToPlayWarning75)
         {
             _suspicionWarning75 = false;
+            //Tells the controller to wait for the animation to finish before he plays it again.
+            _allowedToPlayWarning75 = false;
         }
 
         //The landlord lets the player know that rent is due soon
@@ -213,6 +228,13 @@ public class GameController : MonoBehaviour
             _eventController.DisplayDialogueLandlord("Hey the rent is due after 6 hours at 12 AM don't forget it.");
         }
 
+    }
+
+    //Waits for the suspicion warning dialogue to finish before allowing it to play again.
+    IEnumerator AllowSuspicionWarning75()
+    {
+        yield return new WaitForSeconds(10);
+        _allowedToPlayWarning75 = true;
     }
 
     void StartGameTime()
@@ -328,14 +350,14 @@ public class GameController : MonoBehaviour
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             { 
-                _soundController.Play("LossSound");
+                _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
             }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
             hasLost = true;
-            _music.Stop();
+            music.Stop();
 
             if(displayChecker == 0)
             {
@@ -350,14 +372,14 @@ public class GameController : MonoBehaviour
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             {
-                _soundController.Play("LossSound");
+                _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
             }
             CloseShop();
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
             hasLost = true;
-            _music.Stop();
+            music.Stop();
 
             if (displayChecker == 0)
             {
