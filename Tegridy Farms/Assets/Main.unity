@@ -570,7 +570,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4927850602801332, guid: d1c8f0e23902d084e84b85d82ec69914, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
         type: 2}
@@ -1366,7 +1366,7 @@ Transform:
   - {fileID: 547475868}
   - {fileID: 857940474}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &319304431
 GameObject:
@@ -114523,8 +114523,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4369526773821160, guid: 18056ceb88cf82743addba1ad3797574, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114147616340886522, guid: 18056ceb88cf82743addba1ad3797574,
+        type: 2}
+      propertyPath: allLaunders.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1091ba58c4b66584f88e510a5aac62dd,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18056ceb88cf82743addba1ad3797574, type: 2}
   m_IsPrefabAsset: 0
@@ -115943,7 +115949,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1434286679}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.73750985
+  m_Size: 0.73765993
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -118961,7 +118967,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4228950422906748, guid: 05ae55d6343b7944fa5b6de269b9e5f6, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ae55d6343b7944fa5b6de269b9e5f6, type: 2}
@@ -119369,7 +119375,7 @@ Transform:
   - {fileID: 206633383}
   - {fileID: 1274403761}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617059577
 GameObject:
@@ -119602,8 +119608,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 28139773}
   m_HandleRect: {fileID: 28139772}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -120021,7 +120027,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4612351412533952, guid: 4a654e9127dd85a458782d282d19e881, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1739479922275408, guid: 4a654e9127dd85a458782d282d19e881, type: 2}
       propertyPath: m_IsActive
@@ -121041,8 +121047,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1393354001}
   m_HandleRect: {fileID: 1393354000}
   m_Direction: 2
-  m_Value: 0.99999994
-  m_Size: 0.50753367
+  m_Value: 0.9999998
+  m_Size: 0.50763696
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -121797,7 +121803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2066600631
 GameObject:
