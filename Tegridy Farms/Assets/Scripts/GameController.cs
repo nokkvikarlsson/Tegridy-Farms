@@ -42,12 +42,13 @@ public class GameController : MonoBehaviour
 
     //VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
-    public AudioSource _music;
+    public AudioSource music;
     private bool _lossSoundPlayed;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
     //Tells if the message is aldready being displayed
     private bool _suspicionWarning75;
+    private bool _allowedToPlayWarning75;
 
     void Awake()
     {
@@ -108,13 +109,14 @@ public class GameController : MonoBehaviour
         _displayScore = FindObjectOfType<DisplayScore>();
 
         displayChecker = 0; //NokkviKilla needs this
-
+        
         //SoundController
         _lossSoundPlayed = false;
 
         //EventController
         _eventController = FindObjectOfType<EventController>();
         _suspicionWarning75 = false;
+        _allowedToPlayWarning75 = false;
     }
 
     // Use this for initialization
@@ -189,20 +191,25 @@ public class GameController : MonoBehaviour
             gameOverSequence(false);
 		}
 
-
         /*=================
          Dialogue checker
        =================*/
-        
+
        //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
             _eventController.DisplayDialoguePolice("This Farm is very suspicious to me chief.");
-            _suspicionWarning75 = true;
+            _suspicionWarning75 = true; //Tells if suspicion is already been played because the player went over 75 suspicion
+            StartCoroutine(AllowSuspicionWarning75());
+
         }
-        if (suspicion < 75)
+        //If suspicion goes lower than 75 then the animation may be played again if the player goes over 75 again,
+        //but only if the animation is no already playing.
+        if (suspicion < 75 && _allowedToPlayWarning75)
         {
             _suspicionWarning75 = false;
+            //Tells the controller to wait for the animation to finish before he plays it again.
+            _allowedToPlayWarning75 = false;
         }
 
         //The landlord lets the player know that rent is due soon
@@ -211,6 +218,13 @@ public class GameController : MonoBehaviour
             _eventController.DisplayDialogueLandlord("Hey the rent is due after 6 hours at 12 AM don't forget it.");
         }
 
+    }
+
+    //Waits for the suspicion warning dialogue to finish before allowing it to play again.
+    IEnumerator AllowSuspicionWarning75()
+    {
+        yield return new WaitForSeconds(10);
+        _allowedToPlayWarning75 = true;
     }
 
     void StartGameTime()
@@ -313,7 +327,7 @@ public class GameController : MonoBehaviour
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossSuspicionText.SetActive(true);
             hasLost = true;
-            _music.Stop();
+            music.Stop();
 
             if(displayChecker == 0)
             {
@@ -335,7 +349,7 @@ public class GameController : MonoBehaviour
             _lossCanvas.GetComponent<Animator>().enabled = true;
             _lossRentText.SetActive(true);
             hasLost = true;
-            _music.Stop();
+            music.Stop();
 
             if (displayChecker == 0)
             {
