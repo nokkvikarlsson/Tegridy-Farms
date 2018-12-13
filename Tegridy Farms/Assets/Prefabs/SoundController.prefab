@@ -52,10 +52,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24300002, guid: 7adea88331dec48c8a7be431707084ea, type: 2}
-  sounds:
+  effectSounds:
   - name: Expand
     clip: {fileID: 8300000, guid: 23ca337c7cc974539ad5cff40e8250fe, type: 3}
     source: {fileID: 0}
   - name: LossSound
     clip: {fileID: 8300000, guid: ea4114f458b954df1be671493a75d74a, type: 3}
+    source: {fileID: 0}
+  farmerSounds:
+  - name: FarmerSound1
+    clip: {fileID: 8300000, guid: 87fbbe35688754e9fb34beb16006ca28, type: 3}
+    source: {fileID: 0}
+  - name: FarmerSound2
+    clip: {fileID: 8300000, guid: c608f172969704a6a9432d0505e2eed7, type: 3}
+    source: {fileID: 0}
+  - name: FarmerSound3
+    clip: {fileID: 8300000, guid: fe927f60408634487abcb4a2af3f1f2c, type: 3}
+    source: {fileID: 0}
+  - name: FarmerSound4
+    clip: {fileID: 8300000, guid: aadc1cb2119c24df8a084988d3588e8d, type: 3}
+    source: {fileID: 0}
+  - name: FarmerSound5
+    clip: {fileID: 8300000, guid: 100042ae06e1b43d9b009405c571adbc, type: 3}
+    source: {fileID: 0}
+  laundererSounds:
+  - name: LaundererSound1
+    clip: {fileID: 8300000, guid: 49f1231974afa49b5b040862576a7245, type: 3}
+    source: {fileID: 0}
+  - name: LaundererSound2
+    clip: {fileID: 8300000, guid: 33ae35fadb44e4126a4d7a907ec4132f, type: 3}
+    source: {fileID: 0}
+  - name: LaundererSound3
+    clip: {fileID: 8300000, guid: b7fa1316ebf1741c68cef377ebbb00aa, type: 3}
+    source: {fileID: 0}
+  - name: LaundererSound4
+    clip: {fileID: 8300000, guid: 5da9973394ea8487390b3555af866b02, type: 3}
+    source: {fileID: 0}
+  - name: LaundererSound5
+    clip: {fileID: 8300000, guid: 6ba0bffd7cf624e0e9adad30fa18ea50, type: 3}
+    source: {fileID: 0}
+  policeSounds:
+  - name: PoliceSound1
+    clip: {fileID: 8300000, guid: 7ea7281df9e064d71828270fb5b3d300, type: 3}
+    source: {fileID: 0}
+  - name: PoliceSound2
+    clip: {fileID: 8300000, guid: b90a14d9cc4474727ae2287e139ea58c, type: 3}
+    source: {fileID: 0}
+  - name: PoliceSound3
+    clip: {fileID: 8300000, guid: da9f863ea75ff446db79d0e209de5ec7, type: 3}
+    source: {fileID: 0}
+  - name: PoliceSound4
+    clip: {fileID: 8300000, guid: 254b853f105704fafbdb6cf29b95790b, type: 3}
+    source: {fileID: 0}
+  - name: PoliceSound5
+    clip: {fileID: 8300000, guid: 51fce5b68530f4c28b262a3e82ce0418, type: 3}
+    source: {fileID: 0}
+  landLordSounds:
+  - name: LandLordSound1
+    clip: {fileID: 8300000, guid: 9ece907da92dc4f01ba9af0e1dab5095, type: 3}
+    source: {fileID: 0}
+  - name: LandLordSound2
+    clip: {fileID: 8300000, guid: f933e3155d2184756af66ff4311b353d, type: 3}
+    source: {fileID: 0}
+  - name: LandLordSound3
+    clip: {fileID: 8300000, guid: 6d2bbfbf2c1c54b7e8bd6733a1e6bf17, type: 3}
+    source: {fileID: 0}
+  - name: LandLordSound4
+    clip: {fileID: 8300000, guid: 60b4cf73329a4469bbaf2fe43eeefcd6, type: 3}
+    source: {fileID: 0}
+  - name: LandLordSound5
+    clip: {fileID: 8300000, guid: e988adfe7ab954b97b6bf251e0519b24, type: 3}
     source: {fileID: 0}

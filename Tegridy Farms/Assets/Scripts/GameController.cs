@@ -306,7 +306,7 @@ public class GameController : MonoBehaviour
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             { 
-                _soundController.Play("LossSound");
+                _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
             }
             CloseShop();
@@ -328,7 +328,7 @@ public class GameController : MonoBehaviour
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             {
-                _soundController.Play("LossSound");
+                _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
             }
             CloseShop();
