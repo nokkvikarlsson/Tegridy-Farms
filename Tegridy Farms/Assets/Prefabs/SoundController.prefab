@@ -138,7 +138,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dd7ab47c06285460fafee4b536dda604, type: 3}
     source: {fileID: 0}
   - name: CrystalHarvesting2
-    clip: {fileID: 8300000, guid: f753095c8e37543ada7224c967941ce6, type: 3}
+    clip: {fileID: 8300000, guid: 68e6c0bfaa70f4163a4f9fe5273e4d07, type: 3}
     source: {fileID: 0}
   plantingSounds:
   - name: Planting1

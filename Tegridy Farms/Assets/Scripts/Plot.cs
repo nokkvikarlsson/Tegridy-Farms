@@ -202,10 +202,18 @@ public class Plot : MonoBehaviour
 		}
 		else
 		{
+            //If the plant is of type meth play the meth harvesting sound.
+            if(plant.type == "Meth")
+            {
+                _soundController.Play("CrystalHarvesting2", _soundController.harvestingMethSounds);
+            }
             //Play harvesting sound
-            _soundController.Play("Harvesting2", _soundController.harvestingSounds);
-			//HARVEST
-			_gameController.addMoney(plant.sellvalue);
+            else
+            {
+                _soundController.Play("Harvesting2", _soundController.harvestingSounds);
+            }
+            //HARVEST
+            _gameController.addMoney(plant.sellvalue);
 			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
 			//RESET PLANT
 			plant = _gameController.allPlants[0];
