@@ -10,15 +10,19 @@ public class Plot : MonoBehaviour
 	public GameObject sparklePrefab;
 	public GameObject smokePrefab;
 	private GameController _gameController;
-	private SpriteRenderer _spriteR;
+    private SoundController _soundController;
+    private SpriteRenderer _spriteR;
 	private GameTime _timePlanted;
 	private GameObject sparkle;
 	private GameObject smoke;
+
 	public bool buildingOn;
 	public double growthBonus;
+
 	void Awake() 
 	{
 		_gameController = FindObjectOfType<GameController>();
+        _soundController = FindObjectOfType<SoundController>();
 		_spriteR = gameObject.GetComponent<SpriteRenderer>();
 		plant = _gameController.allPlants[0];
 		sparkle = null;
@@ -173,6 +177,8 @@ public class Plot : MonoBehaviour
 			else
 			{
 				SetPlot(_gameController.currentItemIndex);
+                //Plays a random planting sound
+                _soundController.PlayRandom(_soundController.plantingSounds);
 			}
 		}
 		//IF PLANT
