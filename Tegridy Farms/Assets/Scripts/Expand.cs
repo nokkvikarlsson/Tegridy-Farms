@@ -27,6 +27,7 @@ public class Expand : MonoBehaviour {
 	private GameObject _expansionItemCardTitle;
     private int EXPANSIONPRICE = 50;
     private GameObject _mainCamera;
+	private Image _expansionItemCardImage;
 
     void Awake()
     {
@@ -35,6 +36,8 @@ public class Expand : MonoBehaviour {
 
 		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
 		_expansionItemCardTitle = gameObject.transform.GetChild(0).gameObject;
+		_expansionItemCardImage = gameObject.GetComponent<Image>();
+
         _mainCamera = GameObject.Find("/Main Camera");
     }
 
@@ -46,7 +49,14 @@ public class Expand : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		
+		if(_gameController.money < _gameController.plotsize * _gameController.plotsize * EXPANSIONPRICE)
+		{
+			_expansionItemCardImage.color = Color.gray;
+		}
+		else
+		{
+			_expansionItemCardImage.color = Color.white;
+		}
 	}
 
 
