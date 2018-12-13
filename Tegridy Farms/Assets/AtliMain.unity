@@ -114206,6 +114206,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 836234240}
   m_CullTransparentMesh: 0
+--- !u!1001 &881207926
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293303474733178, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ee72b70f5ab750b42827f1f2808719df, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &886035269
 GameObject:
   m_ObjectHideFlags: 0
@@ -115797,11 +115839,6 @@ Prefab:
     - target: {fileID: 4927850602801332, guid: d1c8f0e23902d084e84b85d82ec69914, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
-        type: 2}
-      propertyPath: _music
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114979944395016872, guid: d1c8f0e23902d084e84b85d82ec69914,
         type: 2}
@@ -121251,7 +121288,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: a1bb79101ce7847ba86cf20fb27f0699, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
