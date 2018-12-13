@@ -14,7 +14,7 @@ MonoBehaviour:
   type: Xanax
   price: 500
   growthrate: 0.25
-  sellvalue: 1250
+  sellvalue: 1100
   suspicion: 0.025
   unlockedAt: 7
   shopIndex: 11
