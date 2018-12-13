@@ -23,6 +23,8 @@ public class Expand : MonoBehaviour {
 
     private GameController _gameController;
     private GameObject _expansionItemCardBuyPrice;
+
+	private GameObject _expansionItemCardTitle;
     private int EXPANSIONPRICE = 50;
     private GameObject _mainCamera;
 
@@ -32,6 +34,7 @@ public class Expand : MonoBehaviour {
         _soundController = FindObjectOfType<SoundController>();
 
 		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
+		_expansionItemCardTitle = gameObject.transform.GetChild(0).gameObject;
         _mainCamera = GameObject.Find("/Main Camera");
     }
 
@@ -50,6 +53,8 @@ public class Expand : MonoBehaviour {
     //Expands the farm by activating plots
     public void ExpandFarm()
     {
+		if(_gameController.plotsize == 8) {return;}
+		
         int priceOfExpansion = EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize;
 
         if(_gameController.money < priceOfExpansion)
@@ -67,7 +72,16 @@ public class Expand : MonoBehaviour {
 		_gameController.CheckFertilizer();
         //update price of card in shop
         _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
-    }
+
+		if(_gameController.plotsize == 8) 
+		{
+			_expansionItemCardTitle.GetComponent<Text>().text = "MAXED OUT";
+
+			Image itemCardImage = gameObject.GetComponent<Image>();
+			itemCardImage.color = Color.gray;
+			_expansionItemCardBuyPrice.GetComponent<Text>().text = "";
+		}
+	}
 
     public void ExpandFarmPlots()
 	{
