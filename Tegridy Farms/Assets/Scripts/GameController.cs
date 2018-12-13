@@ -112,6 +112,7 @@ public class GameController : MonoBehaviour
         _lossRentText = GameObject.Find("LossRentText");
         _lossCanvas = GameObject.Find("LossCanvas");
         _displayScore = FindObjectOfType<DisplayScore>();
+        _lossCanvas.SetActive(false);
 
         displayChecker = 0; //NokkviKilla needs this
 
@@ -367,6 +368,7 @@ public class GameController : MonoBehaviour
         //If the player lost due to suspicion play the lossCanvas animation and display the loss text
         if(isSuspicion)
         {
+            _lossCanvas.SetActive(true);
             //Checks if the loss sound has already been played
             if(!_lossSoundPlayed)
             { 
@@ -389,8 +391,9 @@ public class GameController : MonoBehaviour
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
         {
+            _lossCanvas.SetActive(true);
             //Checks if the loss sound has already been played
-            if(!_lossSoundPlayed)
+            if (!_lossSoundPlayed)
             {
                 _soundController.Play("LossSound", _soundController.effectSounds);
                 _lossSoundPlayed = true;
