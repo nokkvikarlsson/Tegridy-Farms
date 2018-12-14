@@ -49,7 +49,7 @@ public class LaunderController : MonoBehaviour {
 			if(timeLeft.minute < 10){_launderUITime.text += "0";}
 			_launderUITime.text += timeLeft.minute.ToString();
 			//CHECK IF Laundering is OVER
-			if(daysPassed > currentLaunder.durationDays || currentMoneyLaundered > currentLaunder.moneyLaunderCapacity)
+			if(daysPassed > currentLaunder.durationDays || currentMoneyLaundered >= currentLaunder.moneyLaunderCapacity)
 			{
 				//Reset all values and launder to null
 				currentLaunder = null;
