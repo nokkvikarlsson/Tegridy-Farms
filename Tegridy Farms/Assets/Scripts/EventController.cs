@@ -152,7 +152,7 @@ void Start()
 
         if (_playLastIntroduction)
         {
-            DisplayDialogueFarmer2("Rent is collected every day at midnight so make sure you have enough by then.");
+            DisplayDialogueFarmer2("Rent is collected every day at midnight so make sure you have enough by then. It also increases when you expand your farm.");
             _playLastIntroduction = false;
         }
 
