@@ -53,6 +53,8 @@ public class GameController : MonoBehaviour
     private bool _beginTegridyIntroduction;
     public bool beginTegridyIntroduction2;
     public bool introdution2Done;
+    private bool firstTimeOver10Suspicion;
+
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
 
@@ -126,9 +128,12 @@ public class GameController : MonoBehaviour
         _suspicionWarning75 = false;
         _allowedToPlayWarning75 = false;
         _allowedToPlayRentNotification = true;
+
+        //Introduction
         _beginTegridyIntroduction = true;
         beginTegridyIntroduction2 = false;
         introdution2Done = false;
+        firstTimeOver10Suspicion = true;
 
         _suspicionDialogues = new string[4];
         _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
@@ -221,6 +226,7 @@ public class GameController : MonoBehaviour
          Dialogue checkers
        =================*/
          
+        //***************************Introduction*******************************
         //Starts the introduction
         if(_beginTegridyIntroduction)
         {
@@ -228,13 +234,22 @@ public class GameController : MonoBehaviour
             _eventController.DisplayDialogueFarmer("Howdy, farmer! Let's get to work. Select the crop you wish to plant from the SHOP menu!");
         }
 
-        if (beginTegridyIntroduction2 && !introdution2Done)
+        if(beginTegridyIntroduction2 && !introdution2Done)
         {
             introdution2Done = true;
             beginTegridyIntroduction2 = false;
             _eventController.DisplayDialogueFarmer2("Now that you have selected a crop, click on a plot to plant it! Remember to harvest it when it's ready.");
         }
 
+        if(suspicion >= 10 && firstTimeOver10Suspicion)
+        {
+            firstTimeOver10Suspicion = false;
+            _eventController.DisplayDialogueFarmer("You have to manage your suspicion, you can use tobacco to lower it.");
+        }
+
+
+
+        //***********************Suspicion Warning****************************
         //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
         if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
         {
@@ -253,6 +268,8 @@ public class GameController : MonoBehaviour
             _allowedToPlayWarning75 = false;
         }
 
+
+        //************************Rent Warning********************************
         //The landlord lets the player know that rent is due soon
         if (_timeCounterText.text == " 6:00 PM" && _allowedToPlayRentNotification)
         {
@@ -405,6 +422,13 @@ public class GameController : MonoBehaviour
             }
 
             displayChecker = 1;
+
+            //disable plots
+            for (int i = 0; i < plots.Length; i++)
+            {
+                plots[i].GetComponent<BoxCollider2D>().enabled = false;
+            }
+
         }
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
@@ -428,6 +452,12 @@ public class GameController : MonoBehaviour
             }
 
             displayChecker = 1;
+
+            //disable plots
+            for (int i = 0; i < plots.Length; i++)
+            {
+                plots[i].GetComponent<BoxCollider2D>().enabled = false;
+            }
         }
 
     }
