@@ -35,6 +35,7 @@ public class EventController : MonoBehaviour
     public bool introdution2Done;
     private bool firstTimeOver10Suspicion;
     public bool playLaunderer;
+    public bool playLaunderer2;
     private bool _playLastIntroduction;
     private bool _playLaundryIntroduction;
 
@@ -87,6 +88,7 @@ public class EventController : MonoBehaviour
 
         //Laundry
         playLaunderer = false;
+        playLaunderer2 = false;
         _playLaundryIntroduction = true;
 
         _suspicionDialogues = new string[4];
@@ -176,13 +178,12 @@ void Start()
             StartCoroutine(AllowToDisplayRentNotification());
         }
 
-        if (_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection)
+        if(_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection)
         {
             _allowedToPlayRentCollection = false;
-            DisplayDialogueLandlord("Rent Time! >:D");
+            DisplayDialogueLandlord("Rent Time! Rent will now be higher >:)");
         }
-
-        if (!(_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection))
+        else
         {
             _allowedToPlayRentNotification = true;
         }
@@ -200,8 +201,21 @@ void Start()
         if (playLaunderer)
         {
             playLaunderer = false;
-            DisplayDialogueLaunderer("Check the 'Launder' tab in the SHOP menu for more information ;)");
+            DisplayDialogueLaunderer("You can pay businesses to launder a part of your income so it doesn't raise suspicion");
+            StartCoroutine(waitToStartLaundererIntroduction3());
         }
+
+        if(playLaunderer2)
+        {
+            playLaunderer2 = false;
+            DisplayDialogueLaunderer("Check the 'Launder' tab in the SHOP menu to view available businesses;)");
+        }
+    }
+
+    IEnumerator waitToStartLaundererIntroduction3()
+    {
+        yield return new WaitForSeconds(10);
+        playLaunderer2 = true;
     }
 
     IEnumerator waitToStartLaundererIntroduction2()
