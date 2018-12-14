@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
+    private Text _currentRentText;
 	private Slider _barSlider;
 	public bool gameOver;
     private GameObject _lossSuspicionText;
@@ -95,6 +96,9 @@ public class GameController : MonoBehaviour
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(3).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
+        GameObject _rentObject = GameObject.Find("/UI/CurrentRent/Value");
+        _currentRentText = _rentObject.GetComponent<Text>();
+        _currentRentText.text = rent.ToString() + "$";
         //initalize Launder Controller
         _launderController = FindObjectOfType<LaunderController>();
         //Tells if the player has lost.
@@ -381,6 +385,7 @@ public class GameController : MonoBehaviour
         //Round to nearest 50
         newRent = System.Math.Floor(newRent / 50) * 50;
         rent = (int)newRent;
+        _currentRentText.text = rent.ToString() + "$";
     }
 
     public int getDayCounter()
