@@ -26,7 +26,7 @@ public class Expand : MonoBehaviour {
     private GameObject _expansionItemCardBuyPrice;
 
 	private GameObject _expansionItemCardTitle;
-    private int EXPANSIONPRICE = 20;
+    private int EXPANSIONPRICE = 15;
     private GameObject _mainCamera;
 	private Image _expansionItemCardImage;
 

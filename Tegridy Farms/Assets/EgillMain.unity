@@ -121429,7 +121429,7 @@ Prefab:
     - target: {fileID: 114089432111214644, guid: 41ccd5757560aea46a50dbe7985b9ea0,
         type: 2}
       propertyPath: m_Text
-      value: -600$
+      value: -240$
       objectReference: {fileID: 0}
     - target: {fileID: 1016994024188086, guid: 41ccd5757560aea46a50dbe7985b9ea0, type: 2}
       propertyPath: m_Layer
