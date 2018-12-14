@@ -9,8 +9,6 @@ public class CropItemCard : MonoBehaviour
 	private Text _itemCardTitleText;
 	private GameController _gameController;
 
-    public bool tutorialDone;
-
 	// Use this for initialization
 	void Awake()
 	{
@@ -18,7 +16,6 @@ public class CropItemCard : MonoBehaviour
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
 
-        tutorialDone = false;
 	}
 	
 	void Start()
@@ -53,11 +50,7 @@ public class CropItemCard : MonoBehaviour
 			_gameController.SetCurrentItem(shopItemIndex);
 			_gameController.CloseShop();
 
-            if(!tutorialDone)
-            { 
-                _gameController.beginTegridyIntroduction2 = true;
-                tutorialDone = true;
-            }
+            _gameController.beginTegridyIntroduction2 = true;
         }
 		else
 		{

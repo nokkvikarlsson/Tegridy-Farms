@@ -98,7 +98,7 @@ public class Expand : MonoBehaviour {
         //Play laundererdialogue when the player has expanded his farm for the first time
         if (_gameController.plotsize == 3)
         {
-            _eventController.DisplayDialogueLaunderer("Hey brudda man!");
+            _eventController.DisplayDialogueLaunderer("Nice business you got there, farmer! Have you considered laundering your income?");
         }
     }
 

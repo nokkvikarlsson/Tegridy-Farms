@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
     private bool _allowedToPlayRentNotification;
     private bool _beginTegridyIntroduction;
     public bool beginTegridyIntroduction2;
+    public bool introdution2Done;
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
 
@@ -127,6 +128,7 @@ public class GameController : MonoBehaviour
         _allowedToPlayRentNotification = true;
         _beginTegridyIntroduction = true;
         beginTegridyIntroduction2 = false;
+        introdution2Done = false;
 
         _suspicionDialogues = new string[4];
         _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
@@ -226,8 +228,9 @@ public class GameController : MonoBehaviour
             _eventController.DisplayDialogueFarmer("Howdy, farmer! Let's get to work. Select the crop you wish to plant from the SHOP menu!");
         }
 
-        if (beginTegridyIntroduction2)
+        if (beginTegridyIntroduction2 && !introdution2Done)
         {
+            introdution2Done = true;
             beginTegridyIntroduction2 = false;
             _eventController.DisplayDialogueFarmer2("Now that you have selected a crop, click on a plot to plant it! Remember to harvest it when it's ready.");
         }
