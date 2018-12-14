@@ -78,7 +78,7 @@ public class EventController : MonoBehaviour
     {
         _landlordText.text = text;
         landlordDialogue.SetActive(true);
-        _soundController.PlayRandom(_soundController.landLordSounds); //Plays a random farmer gibberish
+        _soundController.PlayRandom(_soundController.landLordSounds); //Plays a random landlord gibberish
         StartCoroutine(stopForTenSeconds(landlordDialogue));
     }
 
@@ -86,7 +86,7 @@ public class EventController : MonoBehaviour
     {
         _laundererText.text = text;
         laundererDialogue.SetActive(true);
-        _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random farmer gibberish
+        _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random launderer gibberish
         StartCoroutine(stopForTenSeconds(laundererDialogue));
 
     }
@@ -95,7 +95,7 @@ public class EventController : MonoBehaviour
     {
         _policeText.text = text;
         policeDialogue.SetActive(true);
-        _soundController.PlayRandom(_soundController.policeSounds); //Plays a random farmer gibberish
+        _soundController.PlayRandom(_soundController.policeSounds); //Plays a random police gibberish
         StartCoroutine(stopForTenSeconds(policeDialogue));
     }
 
@@ -104,7 +104,7 @@ public class EventController : MonoBehaviour
         _farmerText2.text = text;
         farmerDialogue2.SetActive(true);
         _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
-        StartCoroutine(stopForTenSeconds(farmerDialogue));
+        StartCoroutine(stopForTenSeconds(farmerDialogue2));
     }
 
 
