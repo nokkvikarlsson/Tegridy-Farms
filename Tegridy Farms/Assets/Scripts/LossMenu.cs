@@ -24,6 +24,6 @@ public class LossMenu : MonoBehaviour {
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("NokkviMain");
+        SceneManager.LoadScene("Main");
     }
 }

@@ -189,7 +189,7 @@ void Start()
 
         if(_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection)
         {
-            _allowedToPlayRentCollection = false;
+            _allowedToPlayRentCollection = true;
             DisplayDialogueLandlord("Rent Time! Rent will now be higher >:)");
         }
         else

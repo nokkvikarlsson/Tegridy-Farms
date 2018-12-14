@@ -76,7 +76,7 @@ public class LaunderItemCard : MonoBehaviour
 			_launderController.SetCurrentLaunder(launderItemIndex);
 			_gameController.CloseShop();
             
-            _eventController.DisplayDialogueLaunderer2("DAMN, Let's get laundering");
+            _eventController.DisplayDialogueLaunderer2("Alright, let's get laundering");
             _eventController.playAllLaundryDialogue = false;
 		}
 		else
