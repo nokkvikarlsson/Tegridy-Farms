@@ -386,7 +386,7 @@ public class GameController : MonoBehaviour
     public void IncreaseRent()
     {
         //Increase rent by 50%
-        double newRent = (double)rent * 1.5;
+        double newRent = (double)rent * 1.4;
         //Round to nearest 50
         newRent = System.Math.Floor(newRent / 50) * 50;
         rent = (int)newRent;
