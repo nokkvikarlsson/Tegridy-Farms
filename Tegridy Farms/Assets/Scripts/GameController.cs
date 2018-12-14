@@ -286,7 +286,7 @@ public class GameController : MonoBehaviour
 
         //************************Rent Warning********************************
         //The landlord lets the player know that rent is due soon
-        if (gameTime.hour == 1 && gameTime.minute == 0 && _allowedToPlayRentNotification)
+        if (gameTime.hour == 6 && gameTime.minute == 0 && _allowedToPlayRentNotification)
         {
             _allowedToPlayRentNotification = false;
             int index = Random.Range(0, _rentDialogues.Length);
