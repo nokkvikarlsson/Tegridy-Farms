@@ -38,12 +38,11 @@ public class LaunderController : MonoBehaviour {
 		if(currentLaunder != null)
 		{
 			GameTime timePassedgt = _gameController.gameTime - _timeBought;
-			double daysPassed = timePassedgt.day + ((double)timePassedgt.hour / 60) + ((double)timePassedgt.minute / 3600);
+			double daysPassed = timePassedgt.day + ((double)timePassedgt.hour / 24) + ((double)timePassedgt.minute / 1440);
 			//Change UI
 			_launderUIMoney.text = (currentLaunder.moneyLaunderCapacity - currentMoneyLaundered).ToString() + "$";
 			//ADD DAYS/TIME LEFT
 			GameTime timeLeft = _durationGT - timePassedgt;
-			_launderUITime.text = timeLeft.day.ToString() + " Days\n";
 			if(timeLeft.hour < 10){_launderUITime.text += "0";}
 			_launderUITime.text += timeLeft.hour.ToString() + ":";
 			if(timeLeft.minute < 10){_launderUITime.text += "0";}
