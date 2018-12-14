@@ -517,7 +517,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2009720056}
   m_HandleRect: {fileID: 2009720055}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2352,17 +2352,17 @@ Prefab:
     - target: {fileID: 114771830204336926, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: -1000$
+      value: -600$
       objectReference: {fileID: 0}
     - target: {fileID: 114443097835041962, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 1 day
+      value: 6 Hours
       objectReference: {fileID: 0}
     - target: {fileID: 114585851828336164, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 2000$
+      value: 1200$
       objectReference: {fileID: 0}
     - target: {fileID: 114737545471173270, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
@@ -3726,17 +3726,17 @@ Prefab:
     - target: {fileID: 114771830204336926, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: -2000$
+      value: -1000$
       objectReference: {fileID: 0}
     - target: {fileID: 114443097835041962, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 1.5 days
+      value: 8 Hours
       objectReference: {fileID: 0}
     - target: {fileID: 114585851828336164, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 4000$
+      value: 2000$
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2b495a569ea364aa0852eaa6056ef6, type: 2}
@@ -4334,7 +4334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -33.2, y: -0.000015258789}
+  m_AnchoredPosition: {x: -33.2, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &637058048
@@ -4537,6 +4537,16 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 114443097835041962, guid: 9e2b495a569ea364aa0852eaa6056ef6,
+        type: 2}
+      propertyPath: m_Text
+      value: 4 Hours
+      objectReference: {fileID: 0}
+    - target: {fileID: 114585851828336164, guid: 9e2b495a569ea364aa0852eaa6056ef6,
+        type: 2}
+      propertyPath: m_Text
+      value: 800$
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2b495a569ea364aa0852eaa6056ef6, type: 2}
@@ -10341,17 +10351,17 @@ Prefab:
     - target: {fileID: 114771830204336926, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: -5000$
+      value: -4000$
       objectReference: {fileID: 0}
     - target: {fileID: 114443097835041962, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 2.5 days
+      value: 16 Hours
       objectReference: {fileID: 0}
     - target: {fileID: 114585851828336164, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 10,000$
+      value: 8000$
       objectReference: {fileID: 0}
     - target: {fileID: 114737545471173270, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
@@ -10517,17 +10527,17 @@ Prefab:
     - target: {fileID: 114771830204336926, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: -7,500$
+      value: -10,000$
       objectReference: {fileID: 0}
     - target: {fileID: 114443097835041962, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 3 days
+      value: 20 Hours
       objectReference: {fileID: 0}
     - target: {fileID: 114585851828336164, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 15,000$
+      value: 20,000$
       objectReference: {fileID: 0}
     - target: {fileID: 114737545471173270, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
@@ -119024,17 +119034,17 @@ Prefab:
     - target: {fileID: 114771830204336926, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: -3000$
+      value: -2000$
       objectReference: {fileID: 0}
     - target: {fileID: 114443097835041962, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 2 days
+      value: 12 Hours
       objectReference: {fileID: 0}
     - target: {fileID: 114585851828336164, guid: 9e2b495a569ea364aa0852eaa6056ef6,
         type: 2}
       propertyPath: m_Text
-      value: 6000$
+      value: 4000$
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2b495a569ea364aa0852eaa6056ef6, type: 2}
@@ -119294,7 +119304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -33.2, y: 0.000061035156}
+  m_AnchoredPosition: {x: -33.2, y: 0.000045776367}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1575264782
