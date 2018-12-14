@@ -10,12 +10,14 @@ public class LaunderItemCard : MonoBehaviour
 	private Image _itemCardImage;
 	private GameController _gameController;
 	private LaunderController _launderController;
+    private EventController _eventController;
 	private bool _unlocked;
 
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
 		_launderController = FindObjectOfType<LaunderController>();
+        _eventController = FindObjectOfType<EventController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
 		_itemCardImage = gameObject.GetComponent<Image>();
@@ -73,6 +75,9 @@ public class LaunderItemCard : MonoBehaviour
 		{
 			_launderController.SetCurrentLaunder(launderItemIndex);
 			_gameController.CloseShop();
+            
+            _eventController.DisplayDialogueLaunderer2("DAMN, Let's get laundering");
+            _eventController.playAllLaundryDialogue = false;
 		}
 		else
 		{

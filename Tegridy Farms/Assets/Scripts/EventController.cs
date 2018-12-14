@@ -13,6 +13,8 @@ public class EventController : MonoBehaviour
     [HideInInspector]
     public GameObject laundererDialogue;
     [HideInInspector]
+    public GameObject laundererDialogue2;
+    [HideInInspector]
     public GameObject policeDialogue;
     [HideInInspector]
     public GameObject farmerDialogue2;
@@ -23,6 +25,7 @@ public class EventController : MonoBehaviour
     private Text _policeText;
 
     private Text _farmerText2;
+    private Text _laundererText2;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
     //Tells if the message is aldready being displayed
@@ -38,6 +41,7 @@ public class EventController : MonoBehaviour
     public bool playLaunderer2;
     private bool _playLastIntroduction;
     private bool _playLaundryIntroduction;
+    public bool playAllLaundryDialogue;
 
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
@@ -58,12 +62,15 @@ public class EventController : MonoBehaviour
         //if the farmer needs to tall the player something after an event
         farmerDialogue2 = GameObject.Find("/UI/Dialogues/DialogueFarmer2");
 
+        laundererDialogue2 = GameObject.Find("/UI/Dialogues/DialogueLaunderer2");
+
         _farmerText = farmerDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
         _landlordText = landlordDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
         _laundererText = laundererDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
         _policeText = policeDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
 
         _farmerText2 = farmerDialogue2.transform.GetChild(2).gameObject.GetComponent<Text>();
+        _laundererText2 = laundererDialogue2.transform.GetChild(2).gameObject.GetComponent<Text>();
 
         farmerDialogue.SetActive(false);
         landlordDialogue.SetActive(false);
@@ -72,6 +79,7 @@ public class EventController : MonoBehaviour
 
 
         farmerDialogue2.SetActive(false);
+        laundererDialogue2.SetActive(false);
 
 
         _suspicionWarning75 = false;
@@ -90,6 +98,7 @@ public class EventController : MonoBehaviour
         playLaunderer = false;
         playLaunderer2 = false;
         _playLaundryIntroduction = true;
+        playAllLaundryDialogue = true;
 
         _suspicionDialogues = new string[4];
         _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
@@ -198,14 +207,14 @@ void Start()
             StartCoroutine(waitToStartLaundererIntroduction2());
         }
 
-        if (playLaunderer)
+        if (playLaunderer && playAllLaundryDialogue)
         {
             playLaunderer = false;
             DisplayDialogueLaunderer("You can pay businesses to launder a part of your income so it doesn't raise suspicion");
             StartCoroutine(waitToStartLaundererIntroduction3());
         }
 
-        if(playLaunderer2)
+        if(playLaunderer2 && playAllLaundryDialogue)
         {
             playLaunderer2 = false;
             DisplayDialogueLaunderer("Check the 'Launder' tab in the SHOP menu to view available businesses;)");
@@ -287,6 +296,15 @@ void Start()
         farmerDialogue2.SetActive(true);
         _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(farmerDialogue2));
+    }
+
+    public void DisplayDialogueLaunderer2(string text)
+    {
+        _laundererText2.text = text;
+        laundererDialogue2.GetComponent<RectTransform>().SetAsLastSibling();
+        laundererDialogue2.SetActive(true);
+        _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random launderer gibberish
+        StartCoroutine(stopForTenSeconds(laundererDialogue2));
     }
 
 
