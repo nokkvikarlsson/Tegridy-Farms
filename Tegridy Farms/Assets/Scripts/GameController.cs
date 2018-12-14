@@ -241,10 +241,10 @@ public class GameController : MonoBehaviour
             _eventController.DisplayDialogueFarmer2("Now that you have selected a crop, click on a plot to plant it! Remember to harvest it when it's ready.");
         }
 
-        if(suspicion >= 10 && firstTimeOver10Suspicion)
+        if(suspicion >= 4 && firstTimeOver10Suspicion)
         {
             firstTimeOver10Suspicion = false;
-            _eventController.DisplayDialogueFarmer("You have to manage your suspicion, you can use tobacco to lower it.");
+            _eventController.DisplayDialogueFarmer("You have to manage your suspicion. Harvesting illegal crop raises it you can use tobacco to lower it.");
         }
 
 
