@@ -99,7 +99,14 @@ public class Expand : MonoBehaviour {
         if (_gameController.plotsize == 3)
         {
             _eventController.DisplayDialogueLaunderer("Nice business you got there, farmer! Have you considered laundering your income?");
+            StartCoroutine(waitToStartLaundererIntroduction2());
         }
+    }
+
+    IEnumerator waitToStartLaundererIntroduction2()
+    {
+        yield return new WaitForSeconds(10);
+        _gameController.playLaunderer = true;
     }
 
     public void ExpandFarmPlots()
