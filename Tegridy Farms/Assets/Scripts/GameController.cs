@@ -102,7 +102,7 @@ public class GameController : MonoBehaviour
         shopMenu = Resources.FindObjectsOfTypeAll<Shop>()[0].gameObject;
         GameObject _currentItemImage = GameObject.Find("/UI/CurrentItemButton/CurrentItemImage");
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
-        GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(0).gameObject;
+        GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(3).gameObject;
         _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
         //initalize Launder Controller
         _launderController = FindObjectOfType<LaunderController>();

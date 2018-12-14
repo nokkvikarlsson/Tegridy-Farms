@@ -69,6 +69,7 @@ public class EventController : MonoBehaviour
     public void DisplayDialogueFarmer(string text)
     {
         _farmerText.text = text;
+        farmerDialogue.GetComponent<RectTransform>().SetAsLastSibling();
         farmerDialogue.SetActive(true);
         _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(farmerDialogue));
@@ -77,6 +78,7 @@ public class EventController : MonoBehaviour
     public void DisplayDialogueLandlord(string text)
     {
         _landlordText.text = text;
+        landlordDialogue.GetComponent<RectTransform>().SetAsLastSibling();
         landlordDialogue.SetActive(true);
         _soundController.PlayRandom(_soundController.landLordSounds); //Plays a random landlord gibberish
         StartCoroutine(stopForTenSeconds(landlordDialogue));
@@ -85,6 +87,7 @@ public class EventController : MonoBehaviour
     public void DisplayDialogueLaunderer(string text)
     {
         _laundererText.text = text;
+        laundererDialogue.GetComponent<RectTransform>().SetAsLastSibling();
         laundererDialogue.SetActive(true);
         _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random launderer gibberish
         StartCoroutine(stopForTenSeconds(laundererDialogue));
@@ -93,6 +96,7 @@ public class EventController : MonoBehaviour
     public void DisplayDialoguePolice(string text)
     {
         _policeText.text = text;
+        policeDialogue.GetComponent<RectTransform>().SetAsLastSibling();
         policeDialogue.SetActive(true);
         _soundController.PlayRandom(_soundController.policeSounds); //Plays a random police gibberish
         StartCoroutine(stopForTenSeconds(policeDialogue));
@@ -101,6 +105,7 @@ public class EventController : MonoBehaviour
     public void DisplayDialogueFarmer2(string text)
     {
         _farmerText2.text = text;
+        farmerDialogue2.GetComponent<RectTransform>().SetAsLastSibling();
         farmerDialogue2.SetActive(true);
         _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(farmerDialogue2));
