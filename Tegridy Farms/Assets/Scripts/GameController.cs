@@ -151,7 +151,7 @@ public class GameController : MonoBehaviour
 		    if(gameTime.minute < 10) {timetext += "0";}
             timetext += gameTime.minute.ToString() + " PM";
         }
-        else if(gameTime.hour < 12) 
+        else if(gameTime.hour < 12)
         {
             if (gameTime.hour < 10) {timetext += " ";}
             timetext += gameTime.hour.ToString();
