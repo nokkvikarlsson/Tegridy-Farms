@@ -95,18 +95,6 @@ public class Expand : MonoBehaviour {
 			_expansionItemCardBuyPrice.GetComponent<Text>().text = "";
 		}
 
-        //Play laundererdialogue when the player has expanded his farm for the first time
-        if (_gameController.plotsize == 3)
-        {
-            _eventController.DisplayDialogueLaunderer("Nice business you got there, farmer! Have you considered laundering your income?");
-            StartCoroutine(waitToStartLaundererIntroduction2());
-        }
-    }
-
-    IEnumerator waitToStartLaundererIntroduction2()
-    {
-        yield return new WaitForSeconds(10);
-        _gameController.playLaunderer = true;
     }
 
     public void ExpandFarmPlots()
