@@ -42,6 +42,9 @@ public class GameController : MonoBehaviour
     private SoundController _soundController;
     private LaunderController _launderController;
 
+    private GameObject _mainCamera;
+	private Camera _mainCameraComp;
+
     //VARIABLES FOR SOUNDCONTROLLER:
     //Tells if a sound has been played
     public AudioSource music;
@@ -99,6 +102,8 @@ public class GameController : MonoBehaviour
         GameObject _rentObject = GameObject.Find("/UI/CurrentRent/Value");
         _currentRentText = _rentObject.GetComponent<Text>();
         _currentRentText.text = rent.ToString() + "$";
+        _mainCamera = GameObject.Find("/Main Camera");
+		_mainCameraComp = _mainCamera.GetComponent<Camera>();
         //initalize Launder Controller
         _launderController = FindObjectOfType<LaunderController>();
         //Tells if the player has lost.
@@ -392,6 +397,25 @@ public class GameController : MonoBehaviour
     {
         return gameTime.day;
     }
+
+    public void AdjustCamera()
+	{
+		//_mainCamera.transform.position += new Vector3(0.25f, -0.5f);
+		//_mainCameraComp.orthographicSize += 0.2f;
+		StartCoroutine(SlowZoom());
+	}
+
+    IEnumerator SlowZoom()
+	{
+		int i = 0;
+		while(i < 100)
+		{
+			_mainCamera.transform.position += new Vector3(0.0025f, -0.005f);
+			_mainCameraComp.orthographicSize += 0.002f;
+			i++;
+			yield return new WaitForSeconds(0.01f);
+		}
+	}
 
     public void CheckFertilizer()
     {
