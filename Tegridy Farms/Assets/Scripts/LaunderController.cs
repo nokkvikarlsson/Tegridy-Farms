@@ -43,6 +43,7 @@ public class LaunderController : MonoBehaviour {
 			_launderUIMoney.text = (currentLaunder.moneyLaunderCapacity - currentMoneyLaundered).ToString() + "$";
 			//ADD DAYS/TIME LEFT
 			GameTime timeLeft = _durationGT - timePassedgt;
+			_launderUITime.text = "";
 			if(timeLeft.hour < 10){_launderUITime.text += "0";}
 			_launderUITime.text += timeLeft.hour.ToString() + ":";
 			if(timeLeft.minute < 10){_launderUITime.text += "0";}
