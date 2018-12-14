@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
     public Plant[] allPlants; //List of all Plants and Buildings that player can plant
+    public int rent;
     [HideInInspector]
     public bool hasLost;
 
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviour
         currentPlot = null;
         isShopOpen = false;
         gameOver = false;
+        rent = 200;
         //initialize gameobjects
         GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
         _moneyCounterText = _moneyCounter.GetComponent<Text>();
@@ -367,7 +369,7 @@ public class GameController : MonoBehaviour
 
     public void RentCollection()
 	{
-		money -= 200;
+		money -= rent;
 	}
 
     public int getDayCounter()

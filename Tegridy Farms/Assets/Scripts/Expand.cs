@@ -52,7 +52,7 @@ public class Expand : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		if(_gameController.plotsize == 8 || _gameController.money < _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * EXPANSIONPRICE)
+		if(_gameController.plotsize == 8 || _gameController.money < _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * EXPANSIONPRICE)
 		{
 			_expansionItemCardImage.color = Color.gray;
 		}
