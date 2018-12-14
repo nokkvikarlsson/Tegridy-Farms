@@ -26,7 +26,7 @@ public class Expand : MonoBehaviour {
     private GameObject _expansionItemCardBuyPrice;
 
 	private GameObject _expansionItemCardTitle;
-    private int EXPANSIONPRICE = 75;
+    private int EXPANSIONPRICE = 20;
     private GameObject _mainCamera;
 	private Image _expansionItemCardImage;
 
@@ -68,7 +68,7 @@ public class Expand : MonoBehaviour {
     {
 		if(_gameController.plotsize == 8) {return;}
 		
-        int priceOfExpansion = EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize;
+        int priceOfExpansion = EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize;
 
         if(_gameController.money < priceOfExpansion)
         {
@@ -84,7 +84,7 @@ public class Expand : MonoBehaviour {
 		//Add fertilizer on new plots
 		_gameController.CheckFertilizer();
         //update price of card in shop
-        _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
+        _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
 
 		if(_gameController.plotsize == 8) 
 		{
