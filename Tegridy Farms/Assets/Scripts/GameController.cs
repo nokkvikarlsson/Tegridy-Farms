@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
 	private Text _timeCounterText;
 	private Text _dayCounterText;
 	private Slider _barSlider;
-	private bool _gameOver;
+	public bool gameOver;
     private GameObject _lossSuspicionText;
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
@@ -45,21 +45,7 @@ public class GameController : MonoBehaviour
     public AudioSource music;
     private bool _lossSoundPlayed;
 
-    //PRIVATE VARIABLES FOR EVENTCONTROLLER:
-    //Tells if the message is aldready being displayed
-    private bool _suspicionWarning75;
-    private bool _allowedToPlayWarning75;
-    private bool _allowedToPlayRentNotification;
-    private bool _allowedToPlayRentCollection;
-    private bool _beginTegridyIntroduction;
-    public bool beginTegridyIntroduction2;
-    public bool introdution2Done;
-    private bool firstTimeOver10Suspicion;
-    public bool playLaunderer;
-    private bool playLastIntroduction;
 
-    private string[] _suspicionDialogues;
-    private string[] _rentDialogues;
 
     void Awake()
     {
@@ -92,7 +78,7 @@ public class GameController : MonoBehaviour
         currentItemIndex = 0;
         currentPlot = null;
         isShopOpen = false;
-        _gameOver = false;
+        gameOver = false;
         //initialize gameobjects
         GameObject _moneyCounter = GameObject.Find("/UI/TopPanel/MoneyCounter");
         _moneyCounterText = _moneyCounter.GetComponent<Text>();
@@ -126,34 +112,6 @@ public class GameController : MonoBehaviour
         //SoundController
         _lossSoundPlayed = false;
 
-        //EventController
-        _eventController = FindObjectOfType<EventController>();
-        _suspicionWarning75 = false;
-        _allowedToPlayWarning75 = false;
-        _allowedToPlayRentNotification = true;
-        _allowedToPlayRentCollection = true;
-
-        //Introduction
-        _beginTegridyIntroduction = true;
-        beginTegridyIntroduction2 = false;
-        introdution2Done = false;
-        firstTimeOver10Suspicion = true;
-        playLastIntroduction = false;
-
-        //Laundry
-        playLaunderer = false;
-
-        _suspicionDialogues = new string[4];
-        _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
-        _suspicionDialogues[1] = "Hey chief, is corn supposed to be green?";
-        _suspicionDialogues[2] = "I have never seen a corn farm this profitable, hmmm.";
-        _suspicionDialogues[3] = "*sniff* *sniff* hey chief do you smell weed? I think it’s coming from this farm.";
-
-        _rentDialogues = new string[4];
-        _rentDialogues[0] = "Hey the rent is due after 6 hours at 12 AM don't forget it.";
-        _rentDialogues[1] = "Howdy, you owe me rent and I’m coming to collect it after six hours at 12 AM.";
-        _rentDialogues[2] = "Hey buddy, you better pay the rent in six hours at 12 AM.";
-        _rentDialogues[3] = "You know what happens after six hours at 12 AM? rent time.";
 
 
     }
@@ -221,126 +179,26 @@ public class GameController : MonoBehaviour
 		=================*/
         if (suspicion >= 100)
         {
-            _gameOver = true;
+            gameOver = true;
             gameOverSequence(true);
         }
         if (money < 0)
 		{
-			_gameOver = true;
+			gameOver = true;
             gameOverSequence(false);
 		}
 
-        /*=================
-         Dialogue checkers
-       =================*/
-         
-        //***************************Introduction*******************************
-        //Starts the introduction
-        if(_beginTegridyIntroduction)
-        {
-            _beginTegridyIntroduction = false;
-            _eventController.DisplayDialogueFarmer("Howdy, farmer! Let's get to work. Select the crop you wish to plant from the SHOP menu!");
-        }
 
-        if(beginTegridyIntroduction2 && !introdution2Done)
-        {
-            introdution2Done = true;
-            beginTegridyIntroduction2 = false;
-            _eventController.DisplayDialogueFarmer2("Now that you have selected a crop, click on a plot to plant it! Remember to harvest it when it's ready.");
-        }
-
-        if(suspicion >= 4 && firstTimeOver10Suspicion)
-        {
-            firstTimeOver10Suspicion = false;
-            _eventController.DisplayDialogueFarmer("You have to manage your suspicion. Harvesting illegal crops raises it but you can use tobacco to lower it.");
-            StartCoroutine(AllowToPlayLastIntroduction());
-
-        }
-
-        if(playLastIntroduction)
-        {
-            _eventController.DisplayDialogueFarmer2("Rent is collected every day at midnight so make sure you have enough by then.");
-            playLastIntroduction = false;
-        }
-
-
-        //***********************Suspicion Warning****************************
-        //If suspicion is 75 or over and the game is still playing then display suspicion warning message.
-        if (suspicion >= 75 && !_suspicionWarning75 && !_gameOver)
-        {
-            int index = Random.Range(0, _suspicionDialogues.Length); 
-            _eventController.DisplayDialoguePolice(_suspicionDialogues[index]); //Displayes a rando dialogue for the Police
-            _suspicionWarning75 = true; //Tells if suspicion is already been played because the player went over 75 suspicion
-            StartCoroutine(AllowSuspicionWarning75());
-
-        }
-        //If suspicion goes lower than 75 then the animation may be played again if the player goes over 75 again,
-        //but only if the animation is no already playing.
-        if (suspicion < 75 && _allowedToPlayWarning75)
-        {
-            _suspicionWarning75 = false;
-            //Tells the controller to wait for the animation to finish before he plays it again.
-            _allowedToPlayWarning75 = false;
-        }
-
-
-        //************************Rent Warning********************************
-        //The landlord lets the player know that rent is due soon
-        if (gameTime.hour == 6 && gameTime.minute == 0 && _allowedToPlayRentNotification)
-        {
-            _allowedToPlayRentNotification = false;
-            int index = Random.Range(0, _rentDialogues.Length);
-            _eventController.DisplayDialogueLandlord(_rentDialogues[index]);
-            StartCoroutine(AllowToDisplayRentNotification());
-        }
-
-        if(gameTime.hour == 23 && gameTime.minute == 59 && _allowedToPlayRentCollection)
-        {
-            _allowedToPlayRentCollection = false;
-            _eventController.DisplayDialogueLandlord("Rent Time! >:D");
-        }
-
-        if(!(gameTime.hour == 23 && gameTime.minute == 59 && _allowedToPlayRentCollection))
-        {
-            _allowedToPlayRentNotification = true;
-        }
-
-
-        //**********************Laundry Introduction*************************
-        if (playLaunderer)
-        {
-            playLaunderer = false;
-            _eventController.DisplayDialogueLaunderer("Check the 'Launder' tab in the SHOP menu for more information ;)");
-        }
-    }
-
-    IEnumerator AllowToPlayLastIntroduction()
-    {
-        yield return new WaitForSeconds(7);
-        playLastIntroduction = true;
-    }
-
-    IEnumerator AllowToDisplayRentNotification()
-    {
-        yield return new WaitForSeconds(1);
-        _allowedToPlayRentNotification = true;
-    }
-
-    //Waits for the suspicion warning dialogue to finish before allowing it to play again.
-    IEnumerator AllowSuspicionWarning75()
-    {
-        yield return new WaitForSeconds(10);
-        _allowedToPlayWarning75 = true;
     }
 
     void StartGameTime()
-	{
-		StartCoroutine(TimeOneTwelfthSecond());
-	}
+    {
+        StartCoroutine(TimeOneTwelfthSecond());
+    }
 
-	IEnumerator TimeOneTwelfthSecond()
+    IEnumerator TimeOneTwelfthSecond()
 	{
-		while(!_gameOver)
+		while(!gameOver)
 		{
 			gameTime.AddOneMinute();
             if(suspicion >= 0.007)
