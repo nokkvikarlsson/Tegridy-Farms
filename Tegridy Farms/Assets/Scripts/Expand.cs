@@ -81,6 +81,8 @@ public class Expand : MonoBehaviour {
         ExpandFarmPlots();
         AddSurroundingPlot();
 		AdjustCamera();
+		//Increase Rent
+		_gameController.IncreaseRent();
 		//Add fertilizer on new plots
 		_gameController.CheckFertilizer();
         //update price of card in shop

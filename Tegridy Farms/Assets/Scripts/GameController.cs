@@ -370,7 +370,18 @@ public class GameController : MonoBehaviour
     public void RentCollection()
 	{
 		money -= rent;
+        //increase rent every day
+        IncreaseRent();
 	}
+
+    public void IncreaseRent()
+    {
+        //Increase rent by 50%
+        double newRent = (double)rent * 1.5;
+        //Round to nearest 50
+        newRent = System.Math.Floor(newRent / 50) * 50;
+        rent = (int)newRent;
+    }
 
     public int getDayCounter()
     {
