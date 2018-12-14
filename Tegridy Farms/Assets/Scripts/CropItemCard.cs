@@ -8,11 +8,13 @@ public class CropItemCard : MonoBehaviour
 	public int shopItemIndex;
 	private Text _itemCardTitleText;
 	private GameController _gameController;
+    private EventController _eventController;
 
 	// Use this for initialization
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
+        _eventController = FindObjectOfType<EventController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
 
@@ -50,7 +52,7 @@ public class CropItemCard : MonoBehaviour
 			_gameController.SetCurrentItem(shopItemIndex);
 			_gameController.CloseShop();
 
-            _gameController.beginTegridyIntroduction2 = true;
+            _eventController.beginTegridyIntroduction2 = true;
         }
 		else
 		{
