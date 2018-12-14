@@ -94,7 +94,9 @@ public class Expand : MonoBehaviour {
 			itemCardImage.color = Color.gray;
 			_expansionItemCardBuyPrice.GetComponent<Text>().text = "";
 		}
-        if(_gameController.plotsize == 3)
+
+        //Play laundererdialogue when the player has expanded his farm for the first time
+        if (_gameController.plotsize == 3)
         {
             _eventController.DisplayDialogueLaunderer("Hey brudda man!");
         }

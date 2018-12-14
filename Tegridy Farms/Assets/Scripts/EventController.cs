@@ -88,7 +88,6 @@ public class EventController : MonoBehaviour
         laundererDialogue.SetActive(true);
         _soundController.PlayRandom(_soundController.laundererSounds); //Plays a random launderer gibberish
         StartCoroutine(stopForTenSeconds(laundererDialogue));
-
     }
 
     public void DisplayDialoguePolice(string text)

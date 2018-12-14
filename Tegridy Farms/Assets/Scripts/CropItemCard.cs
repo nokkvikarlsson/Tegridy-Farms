@@ -53,7 +53,11 @@ public class CropItemCard : MonoBehaviour
 			_gameController.SetCurrentItem(shopItemIndex);
 			_gameController.CloseShop();
 
-            _gameController.beginTegridyIntroduction2 = true;
+            if(!tutorialDone)
+            { 
+                _gameController.beginTegridyIntroduction2 = true;
+                tutorialDone = true;
+            }
         }
 		else
 		{
