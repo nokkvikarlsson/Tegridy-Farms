@@ -295,6 +295,7 @@ public class Plot : MonoBehaviour
 		if(_gameController.money < plant.price)
 		{
 			Debug.Log("Not enough money");
+            _soundController.Play("CantAfford", _soundController.effectSounds);
 			plant = _gameController.allPlants[0];
 			return;
 		}
