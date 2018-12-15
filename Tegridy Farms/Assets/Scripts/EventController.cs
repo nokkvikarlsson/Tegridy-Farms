@@ -18,6 +18,8 @@ public class EventController : MonoBehaviour
     public GameObject policeDialogue;
     [HideInInspector]
     public GameObject farmerDialogue2;
+    [HideInInspector]
+    public GameObject farmerDialogue3;
 
     private Text _farmerText;
     private Text _landlordText;
@@ -25,6 +27,7 @@ public class EventController : MonoBehaviour
     private Text _policeText;
 
     private Text _farmerText2;
+    private Text _farmerText3;
     private Text _laundererText2;
 
     //PRIVATE VARIABLES FOR EVENTCONTROLLER:
@@ -42,6 +45,7 @@ public class EventController : MonoBehaviour
     private bool _playLastIntroduction;
     private bool _playLaundryIntroduction;
     public bool playAllLaundryDialogue;
+    private bool _playImpendingDoom;
 
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
@@ -61,6 +65,7 @@ public class EventController : MonoBehaviour
 
         //if the farmer needs to tall the player something after an event
         farmerDialogue2 = GameObject.Find("/UI/Dialogues/DialogueFarmer2");
+        farmerDialogue3 = GameObject.Find("/UI/Dialogues/DialogueFarmer3");
 
         laundererDialogue2 = GameObject.Find("/UI/Dialogues/DialogueLaunderer2");
 
@@ -70,6 +75,7 @@ public class EventController : MonoBehaviour
         _policeText = policeDialogue.transform.GetChild(2).gameObject.GetComponent<Text>();
 
         _farmerText2 = farmerDialogue2.transform.GetChild(2).gameObject.GetComponent<Text>();
+        _farmerText3 = farmerDialogue3.transform.GetChild(2).gameObject.GetComponent<Text>();
         _laundererText2 = laundererDialogue2.transform.GetChild(2).gameObject.GetComponent<Text>();
 
         farmerDialogue.SetActive(false);
@@ -79,6 +85,7 @@ public class EventController : MonoBehaviour
 
 
         farmerDialogue2.SetActive(false);
+        farmerDialogue3.SetActive(false);
         laundererDialogue2.SetActive(false);
 
 
@@ -99,6 +106,9 @@ public class EventController : MonoBehaviour
         playLaunderer2 = false;
         _playLaundryIntroduction = true;
         playAllLaundryDialogue = true;
+
+        //DOOM
+        _playImpendingDoom = false;
 
         _suspicionDialogues = new string[4];
         _suspicionDialogues[0] = "This farm looks very suspicious to me chief.";
@@ -219,6 +229,27 @@ void Start()
             playLaunderer2 = false;
             DisplayDialogueLaunderer("Check the 'Launder' tab in the SHOP menu to view available businesses;)");
         }
+
+
+        //**************************Impending Doom****************************
+        if(_gameController.money < 20 && !_playImpendingDoom)
+        {
+            bool somethingPlanted = false;
+
+            for(int i = 0; i < _gameController.plots.Length; i++)
+            {
+                if(_gameController.plots[i].GetComponent<Plot>().plant.type != "Empty")
+                {
+                    somethingPlanted = true;
+                }
+            }
+
+            if(!somethingPlanted)
+            {
+                _playImpendingDoom = true;
+                DisplayDialogueFarmer3("Looks like we're low on money and we don't have anything planted. How are we going to pay rent...");
+            }
+        }
     }
 
     IEnumerator waitToStartLaundererIntroduction3()
@@ -296,6 +327,15 @@ void Start()
         farmerDialogue2.SetActive(true);
         _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
         StartCoroutine(stopForTenSeconds(farmerDialogue2));
+    }
+
+    public void DisplayDialogueFarmer3(string text)
+    {
+        _farmerText3.text = text;
+        farmerDialogue3.GetComponent<RectTransform>().SetAsLastSibling();
+        farmerDialogue3.SetActive(true);
+        _soundController.PlayRandom(_soundController.farmerSounds); //Plays a random farmer gibberish
+        StartCoroutine(stopForTenSeconds(farmerDialogue3));
     }
 
     public void DisplayDialogueLaunderer2(string text)
