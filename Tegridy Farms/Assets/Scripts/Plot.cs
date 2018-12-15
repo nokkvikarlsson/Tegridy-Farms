@@ -212,7 +212,7 @@ public class Plot : MonoBehaviour
             //HARVEST
             _gameController.addMoney(plant.sellvalue);
 			if(plant.type == "Tobacco") {_gameController.addSuspicionUnlaundered(plant.sellvalue, plant.suspicion);}
-			_gameController.addSuspicion(plant.sellvalue, plant.suspicion);
+			else{_gameController.addSuspicion(plant.sellvalue, plant.suspicion);}
 			//RESET PLANT
 			plant = _gameController.allPlants[0];
 			growth = 0;
