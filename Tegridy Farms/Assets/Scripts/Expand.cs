@@ -38,6 +38,8 @@ public class Expand : MonoBehaviour {
 		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
 		_expansionItemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_expansionItemCardImage = gameObject.GetComponent<Image>();
+
+		_expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (CalculatePrice()).ToString() + "$";
     }
 
     // Use this for initialization
@@ -49,7 +51,7 @@ public class Expand : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-		if(_gameController.plotsize == 8 || _gameController.money < _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * EXPANSIONPRICE)
+		if(_gameController.plotsize == 8 || _gameController.money < CalculatePrice())
 		{
 			_expansionItemCardImage.color = Color.gray;
 		}
@@ -152,6 +154,6 @@ public class Expand : MonoBehaviour {
 
 	int CalculatePrice()
 	{
-		return System.Math.Floor(EXPANSIONPRICE * System.Math.Pow(_gameController.plotsize, 4) / 100) * 100;
+		return (int)System.Math.Floor((double)(EXPANSIONPRICE * System.Math.Pow((double)_gameController.plotsize, (double)4) / 100)) * 100;
 	}
 }
