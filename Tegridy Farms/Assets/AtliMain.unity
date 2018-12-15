@@ -319,7 +319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -33.2, y: 0}
+  m_AnchoredPosition: {x: -33.2, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &41569339
@@ -115746,7 +115746,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1821025362506494, guid: edd09af69191b5248b3921a1b2028963, type: 2}
       propertyPath: m_Name
-      value: LSDDistilleryItemCard
+      value: AcidDistilleryItemCard
       objectReference: {fileID: 0}
     - target: {fileID: 114116776954304154, guid: edd09af69191b5248b3921a1b2028963,
         type: 2}
@@ -115778,6 +115778,11 @@ Prefab:
         type: 2}
       propertyPath: m_Text
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114411292662424650, guid: edd09af69191b5248b3921a1b2028963,
+        type: 2}
+      propertyPath: m_Text
+      value: Acid Distillery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edd09af69191b5248b3921a1b2028963, type: 2}
