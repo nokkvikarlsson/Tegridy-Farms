@@ -282,6 +282,15 @@ public class GameController : MonoBehaviour
 		totalMoneyEarned += sellvalue;
 	}
 
+    public void addSuspicionUnlaundered(int sellvalue, double plantSuspicion)
+    {
+        suspicion += ((double)sellvalue * plantSuspicion);
+        if(suspicion < 0)
+        {
+            suspicion = 0;
+        }
+    }
+
 	public void addSuspicion(int sellvalue, double plantSuspicion)
 	{
 		if(_launderController.currentLaunder == null)
