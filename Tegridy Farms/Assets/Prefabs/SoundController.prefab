@@ -59,6 +59,12 @@ MonoBehaviour:
   - name: LossSound
     clip: {fileID: 8300000, guid: ea4114f458b954df1be671493a75d74a, type: 3}
     source: {fileID: 0}
+  - name: OpenShop
+    clip: {fileID: 8300000, guid: 6418a1f0b5bb24853a27c769337819fa, type: 3}
+    source: {fileID: 0}
+  - name: CantAfford
+    clip: {fileID: 8300000, guid: 693d1a40bf816442190155226cd6a2c8, type: 3}
+    source: {fileID: 0}
   farmerSounds:
   - name: FarmerSound1
     clip: {fileID: 8300000, guid: 87fbbe35688754e9fb34beb16006ca28, type: 3}

@@ -10,6 +10,7 @@ public class LaunderItemCard : MonoBehaviour
 	private Image _itemCardImage;
 	private GameController _gameController;
 	private LaunderController _launderController;
+    private SoundController _soundController;
     private EventController _eventController;
 	private bool _unlocked;
 
@@ -17,6 +18,7 @@ public class LaunderItemCard : MonoBehaviour
 	{
 		_gameController = FindObjectOfType<GameController>();
 		_launderController = FindObjectOfType<LaunderController>();
+        _soundController = FindObjectOfType<SoundController>();
         _eventController = FindObjectOfType<EventController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
@@ -67,6 +69,9 @@ public class LaunderItemCard : MonoBehaviour
 		if(_gameController.money < _launderController.allLaunders[launderItemIndex].price)
 		{
 			Debug.Log("Not enouh cash");
+
+            //Play OOF sound
+            _soundController.Play("CantAfford", _soundController.effectSounds);
 			return;
 		}
 

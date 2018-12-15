@@ -243,6 +243,9 @@ public class GameController : MonoBehaviour
 	public void OpenShop()
 	{
 		isShopOpen = true;
+
+        //Play sound
+        _soundController.Play("OpenShop", _soundController.effectSounds);
 		
 		_cropsTab.SetAsLastSibling();
 		shopMenu.SetActive(true);

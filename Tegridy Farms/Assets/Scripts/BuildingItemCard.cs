@@ -8,11 +8,13 @@ public class BuildingItemCard : MonoBehaviour
 	public int shopItemIndex;
 	private Text _itemCardTitleText;
 	private GameController _gameController;
+    private SoundController _soundController;
 
 	// Use this for initialization
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
+        _soundController = FindObjectOfType<SoundController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
 	}
@@ -51,7 +53,8 @@ public class BuildingItemCard : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Not Unlocked yet");
+            _soundController.Play("CantAfford", _soundController.effectSounds);
+            Debug.Log("Not Unlocked yet");
 		}
 	}
 }

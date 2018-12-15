@@ -70,6 +70,7 @@ public class Expand : MonoBehaviour {
         if(_gameController.money < priceOfExpansion)
         {
             Debug.Log("Not enough cash!");
+            _soundController.Play("CantAfford", _soundController.effectSounds);
             return;
         }
         _soundController.Play("Expand", _soundController.effectSounds);

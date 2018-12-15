@@ -9,12 +9,14 @@ public class CropItemCard : MonoBehaviour
 	private Text _itemCardTitleText;
 	private GameController _gameController;
     private EventController _eventController;
+    private SoundController _soundController;
 
 	// Use this for initialization
 	void Awake()
 	{
 		_gameController = FindObjectOfType<GameController>();
         _eventController = FindObjectOfType<EventController>();
+        _soundController = FindObjectOfType<SoundController>();
 		GameObject itemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_itemCardTitleText = itemCardTitle.GetComponent<Text>();
 
@@ -57,6 +59,7 @@ public class CropItemCard : MonoBehaviour
 		else
 		{
 			Debug.Log("Not Unlocked yet");
-		}
+            _soundController.Play("CantAfford", _soundController.effectSounds);
+        }
 	}
 }
