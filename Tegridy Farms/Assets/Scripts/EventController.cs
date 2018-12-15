@@ -240,7 +240,8 @@ void Start()
 
             for(int i = 0; i < _gameController.plots.Length; i++)
             {
-                if(_gameController.plots[i].GetComponent<Plot>().plant.type != "Empty")
+                if(_gameController.plots[i].GetComponent<Plot>().plant.type != "Empty" && _gameController.plots[i].GetComponent<Plot>().plant.type != "Fertilizer Dispenser" 
+                    && _gameController.plots[i].GetComponent<Plot>().plant.type != "Cocaine Refinery")
                 {
                     somethingPlanted = true;
                 }
