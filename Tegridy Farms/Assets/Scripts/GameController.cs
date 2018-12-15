@@ -212,9 +212,9 @@ public class GameController : MonoBehaviour
 		while(!gameOver)
 		{
 			gameTime.AddOneMinute();
-            if(suspicion >= 0.007)
+            if(suspicion >= 0.014)
             {
-                suspicion -= 0.007;
+                suspicion -= 0.014;
             }
             else
             {
