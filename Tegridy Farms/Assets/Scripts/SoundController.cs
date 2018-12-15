@@ -15,6 +15,7 @@ public class SoundController : MonoBehaviour {
     public Sound[] harvestingSounds;
     public Sound[] harvestingMethSounds;
     public Sound[] plantingSounds;
+    public Sound[] buildingSounds;
 
     void Awake()
     {
@@ -68,6 +69,13 @@ public class SoundController : MonoBehaviour {
         }
 
         foreach (Sound s in plantingSounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = audioMixer;
+        }
+
+        foreach (Sound s in buildingSounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;

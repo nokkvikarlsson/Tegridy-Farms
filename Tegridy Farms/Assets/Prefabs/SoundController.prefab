@@ -144,3 +144,13 @@ MonoBehaviour:
   - name: Planting1
     clip: {fileID: 8300000, guid: ef0cec0dccb3847c890bd45c42b10510, type: 3}
     source: {fileID: 0}
+  buildingSounds:
+  - name: PlacingBuilding
+    clip: {fileID: 8300000, guid: 1dd81f548ba2e4de391b909ed70d6c0b, type: 3}
+    source: {fileID: 0}
+  - name: BuildingActivation
+    clip: {fileID: 8300000, guid: 922f309ea6c30498c88a12275c582287, type: 3}
+    source: {fileID: 0}
+  - name: AcidHarvesting
+    clip: {fileID: 8300000, guid: 83ba381ed448649a9982f211314640bf, type: 3}
+    source: {fileID: 0}

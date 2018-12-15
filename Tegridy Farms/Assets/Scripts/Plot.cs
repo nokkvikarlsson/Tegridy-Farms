@@ -234,6 +234,9 @@ public class Plot : MonoBehaviour
 				//Create cloud
 				smoke = (GameObject)Instantiate(smokePrefab);
 				smoke.transform.position = gameObject.transform.position;
+
+                //Play sound
+                _soundController.Play("BuildingActivation", _soundController.buildingSounds);
 			}
 			else if(growth >= 1)
 			{
@@ -247,6 +250,9 @@ public class Plot : MonoBehaviour
 				//REMOVE SPARKLE
 				Destroy(sparkle);
 				sparkle = null;
+
+                //Play sound
+                _soundController.Play("AcidHarvesting", _soundController.buildingSounds);
 			}
 		}
 		else if(plant.type == "Cocaine Refinery")
@@ -258,8 +264,10 @@ public class Plot : MonoBehaviour
 				_timePlanted = new GameTime(_gameController.gameTime);
 				_gameController.allPlants[6].sellvalue += plant.sellvalue; 
 				_gameController.allPlants[6].suspicion += plant.suspicion;
-				//Adds cloud
-				if(smoke == null)
+                //Play sound
+                _soundController.Play("BuildingActivation", _soundController.buildingSounds);
+                //Adds cloud
+                if (smoke == null)
 				{
 					Debug.Log("Make Smoke");
 					smoke = (GameObject)Instantiate(smokePrefab);
@@ -271,7 +279,9 @@ public class Plot : MonoBehaviour
 		{
 			if(!buildingOn)
 			{
-				buildingOn = true;
+                //Play sound
+                _soundController.Play("BuildingActivation", _soundController.buildingSounds);
+                buildingOn = true;
 				//Get plots and increase growthbonus by sellvalue
 				_gameController.CheckFertilizer();
 			}
@@ -287,8 +297,17 @@ public class Plot : MonoBehaviour
 			plant = _gameController.allPlants[0];
 			return;
 		}
-        //Plays a random planting sound
-        _soundController.Play("Planting1", _soundController.plantingSounds);
+
+        if(plant.isBuilding)
+        {
+            //Plays a planting sound
+            _soundController.Play("PlacingBuilding", _soundController.buildingSounds);
+        }
+        else
+        {
+            //Plays a planting sound
+            _soundController.Play("Planting1", _soundController.plantingSounds);
+        }
 
         _gameController.removeMoney(plant.price);
 		_spriteR.sprite = plant.levels[0];
