@@ -90,7 +90,7 @@ public class Plot : MonoBehaviour
 
 	void BuildingUpdate()
 	{
-		if(buildingOn && (plant.type == "LSD Distillery" || plant.type == "Cocaine Refinery"))
+		if(buildingOn && (plant.type == "Acid Distillery" || plant.type == "Cocaine Refinery"))
 		{
 			GameTime currentTime = new GameTime(_gameController.gameTime);
 			GameTime hoursPassedgt = currentTime - _timePlanted;
@@ -109,7 +109,7 @@ public class Plot : MonoBehaviour
 					smoke = null;
 				}
 
-				if(plant.type == "LSD Distillery")
+				if(plant.type == "Acid Distillery")
 				{
 					//add flashing white circle sprite
 					if(sparkle == null)
@@ -225,7 +225,7 @@ public class Plot : MonoBehaviour
 
 	void BuildingOnMouseDown()
 	{
-		if(plant.type == "LSD Distillery")
+		if(plant.type == "Acid Distillery")
 		{
 			if(!buildingOn)
 			{

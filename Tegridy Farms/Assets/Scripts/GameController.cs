@@ -212,9 +212,9 @@ public class GameController : MonoBehaviour
 		while(!gameOver)
 		{
 			gameTime.AddOneMinute();
-            if(suspicion >= 0.007)
+            if(suspicion >= 0.014)
             {
-                suspicion -= 0.007;
+                suspicion -= 0.014;
             }
             else
             {
@@ -387,6 +387,7 @@ public class GameController : MonoBehaviour
     {
         //Increase rent by 50%
         double newRent = (double)rent * 1.4;
+        
         //Round to nearest 50
         newRent = System.Math.Floor(newRent / 50) * 50;
         rent = (int)newRent;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: CheapRestaurant
   m_EditorClassIdentifier: 
   type: Cheap Restaurant
-  durationDays: 1
+  durationDays: 6
   price: 1000
-  moneyLaunderCapacity: 2000
+  moneyLaunderCapacity: 3000
   unlockedAt: 4

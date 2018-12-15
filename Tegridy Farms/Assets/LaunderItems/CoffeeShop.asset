@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: CoffeeShop
   m_EditorClassIdentifier: 
   type: Coffee Shop
-  durationDays: 1.5
+  durationDays: 8
   price: 2000
-  moneyLaunderCapacity: 4000
+  moneyLaunderCapacity: 7000
   unlockedAt: 5

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Factory
   m_EditorClassIdentifier: 
   type: Factory
-  durationDays: 3
-  price: 7500
-  moneyLaunderCapacity: 15000
+  durationDays: 20
+  price: 10000
+  moneyLaunderCapacity: 50000
   unlockedAt: 8

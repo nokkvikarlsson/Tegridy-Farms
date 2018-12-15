@@ -38,7 +38,7 @@ public class LaunderController : MonoBehaviour {
 		if(currentLaunder != null)
 		{
 			GameTime timePassedgt = _gameController.gameTime - _timeBought;
-			double daysPassed = timePassedgt.day + ((double)timePassedgt.hour / 24) + ((double)timePassedgt.minute / 1440);
+			double hoursPassed = 24*(double)timePassedgt.day + ((double)timePassedgt.hour) + ((double)timePassedgt.minute / 60);
 			//Change UI
 			_launderUIMoney.text = (currentLaunder.moneyLaunderCapacity - currentMoneyLaundered).ToString() + "$";
 			//ADD DAYS/TIME LEFT
@@ -49,7 +49,9 @@ public class LaunderController : MonoBehaviour {
 			if(timeLeft.minute < 10){_launderUITime.text += "0";}
 			_launderUITime.text += timeLeft.minute.ToString();
 			//CHECK IF Laundering is OVER
-			if(daysPassed > currentLaunder.durationDays || currentMoneyLaundered >= currentLaunder.moneyLaunderCapacity)
+			Debug.Log(hoursPassed);
+			Debug.Log(currentLaunder.durationDays);
+			if(hoursPassed > currentLaunder.durationDays || currentMoneyLaundered >= currentLaunder.moneyLaunderCapacity)
 			{
 				//Reset all values and launder to null
 				currentLaunder = null;
@@ -68,12 +70,7 @@ public class LaunderController : MonoBehaviour {
 
 		_timeBought = new GameTime(_gameController.gameTime);
 		_durationGT = new GameTime(0,0,0);
-		double durationDays = currentLaunder.durationDays;
-		_durationGT.day = (int)durationDays;
-		if (durationDays*2 % 2 == 1)
-		{
-			_durationGT.hour = 12;
-		}
+		_durationGT.hour = (int)currentLaunder.durationDays;
 		currentMoneyLaundered = 0;
     }
 
