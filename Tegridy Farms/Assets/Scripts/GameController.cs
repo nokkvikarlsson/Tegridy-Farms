@@ -401,10 +401,10 @@ public class GameController : MonoBehaviour
 
     public void IncreaseRent()
     {
-        //Increase rent by 50%
-        double newRent = (double)rent * 1.4;
+        //Increase rent by 35%
+        double newRent = (double)rent * 1.35;
         
-        //Round to nearest 50
+        //Floor to nearest 50
         newRent = System.Math.Floor(newRent / 50) * 50;
         rent = (int)newRent;
         _currentRentText.text = rent.ToString() + "$";
