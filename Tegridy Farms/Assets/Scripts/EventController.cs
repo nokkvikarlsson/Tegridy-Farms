@@ -49,6 +49,7 @@ public class EventController : MonoBehaviour
 
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
+    public string[] laundererDialogues;
 
     private SoundController _soundController;
     private GameController _gameController;
@@ -122,6 +123,10 @@ public class EventController : MonoBehaviour
         _rentDialogues[2] = "Hey buddy, you better pay the rent in six hours at 12 AM.";
         _rentDialogues[3] = "You know what happens after six hours at 12 AM? rent time.";
 
+        laundererDialogues = new string[3];
+        laundererDialogues[0] = "Alright, let's get laundering";
+        laundererDialogues[1] = "Nice, I'll contact the business owner";
+        laundererDialogues[2] = "Don't worry, I wont tell anyone";
     }
 
 // Use this for initialization
