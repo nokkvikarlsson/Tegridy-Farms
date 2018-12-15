@@ -199,12 +199,9 @@ void Start()
 
         if(_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection)
         {
-            _allowedToPlayRentCollection = true;
+            _allowedToPlayRentCollection = false;
             DisplayDialogueLandlord("Rent is being collected! Rent will now be higher");
-        }
-        else
-        {
-            _allowedToPlayRentNotification = true;
+            StartCoroutine(WaitToStartRentCollection());
         }
 
 
@@ -214,14 +211,14 @@ void Start()
         {
             _playLaundryIntroduction = false;
             DisplayDialogueLaunderer("Nice business you got there, farmer! Have you considered laundering your income?");
-            StartCoroutine(waitToStartLaundererIntroduction2());
+            StartCoroutine(WaitToStartLaundererIntroduction2());
         }
 
         if (playLaunderer && playAllLaundryDialogue)
         {
             playLaunderer = false;
             DisplayDialogueLaunderer("You can pay businesses to launder a part of your income so it doesn't raise suspicion");
-            StartCoroutine(waitToStartLaundererIntroduction3());
+            StartCoroutine(WaitToStartLaundererIntroduction3());
         }
 
         if(playLaunderer2 && playAllLaundryDialogue)
@@ -252,13 +249,20 @@ void Start()
         }
     }
 
-    IEnumerator waitToStartLaundererIntroduction3()
+    IEnumerator WaitToStartRentCollection()
+    {
+        yield return new WaitForSeconds(1);
+        _allowedToPlayRentCollection = true;
+
+    }
+
+    IEnumerator WaitToStartLaundererIntroduction3()
     {
         yield return new WaitForSeconds(10);
         playLaunderer2 = true;
     }
 
-    IEnumerator waitToStartLaundererIntroduction2()
+    IEnumerator WaitToStartLaundererIntroduction2()
     {
         yield return new WaitForSeconds(10);
         playLaunderer = true;
