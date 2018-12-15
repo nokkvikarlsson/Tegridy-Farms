@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
+    private GameObject _housePlot;
     private EventController _eventController;
     private SoundController _soundController;
     private LaunderController _launderController;
@@ -104,6 +105,7 @@ public class GameController : MonoBehaviour
         _currentRentText.text = rent.ToString() + "$";
         _mainCamera = GameObject.Find("/Main Camera");
 		_mainCameraComp = _mainCamera.GetComponent<Camera>();
+        _housePlot = GameObject.Find("/HousePlot");
         //initalize Launder Controller
         _launderController = FindObjectOfType<LaunderController>();
         //Tells if the player has lost.
@@ -251,6 +253,7 @@ public class GameController : MonoBehaviour
         {
             plots[i].GetComponent<BoxCollider2D>().enabled = false;
         }
+        _housePlot.GetComponent<BoxCollider2D>().enabled = false;
     }
 
 	public void CloseShop()
@@ -262,6 +265,7 @@ public class GameController : MonoBehaviour
         {
             plots[i].GetComponent<BoxCollider2D>().enabled = true;
         }
+        _housePlot.GetComponent<BoxCollider2D>().enabled = true;
     }
 
 	public void removeMoney(int price)
