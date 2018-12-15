@@ -146,7 +146,7 @@ MonoBehaviour:
     source: {fileID: 0}
   buildingSounds:
   - name: PlacingBuilding
-    clip: {fileID: 8300000, guid: 1dd81f548ba2e4de391b909ed70d6c0b, type: 3}
+    clip: {fileID: 8300000, guid: 545e233b2aa864b3bbcf009aca82e17a, type: 3}
     source: {fileID: 0}
   - name: BuildingActivation
     clip: {fileID: 8300000, guid: 922f309ea6c30498c88a12275c582287, type: 3}
