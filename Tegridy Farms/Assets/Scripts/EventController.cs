@@ -49,6 +49,7 @@ public class EventController : MonoBehaviour
 
     private string[] _suspicionDialogues;
     private string[] _rentDialogues;
+    public string[] laundererDialogues;
 
     private SoundController _soundController;
     private GameController _gameController;
@@ -122,6 +123,10 @@ public class EventController : MonoBehaviour
         _rentDialogues[2] = "Hey buddy, you better pay the rent in six hours at 12 AM.";
         _rentDialogues[3] = "You know what happens after six hours at 12 AM? rent time.";
 
+        laundererDialogues = new string[3];
+        laundererDialogues[0] = "Alright, let's get laundering";
+        laundererDialogues[1] = "Nice, I'll contact the business owner";
+        laundererDialogues[2] = "Don't worry, I wont tell anyone";
     }
 
 // Use this for initialization
@@ -199,12 +204,9 @@ void Start()
 
         if(_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection)
         {
-            _allowedToPlayRentCollection = true;
+            _allowedToPlayRentCollection = false;
             DisplayDialogueLandlord("Rent is being collected! Rent will now be higher");
-        }
-        else
-        {
-            _allowedToPlayRentNotification = true;
+            StartCoroutine(WaitToStartRentCollection());
         }
 
 
@@ -214,14 +216,14 @@ void Start()
         {
             _playLaundryIntroduction = false;
             DisplayDialogueLaunderer("Nice business you got there, farmer! Have you considered laundering your income?");
-            StartCoroutine(waitToStartLaundererIntroduction2());
+            StartCoroutine(WaitToStartLaundererIntroduction2());
         }
 
         if (playLaunderer && playAllLaundryDialogue)
         {
             playLaunderer = false;
             DisplayDialogueLaunderer("You can pay businesses to launder a part of your income so it doesn't raise suspicion");
-            StartCoroutine(waitToStartLaundererIntroduction3());
+            StartCoroutine(WaitToStartLaundererIntroduction3());
         }
 
         if(playLaunderer2 && playAllLaundryDialogue)
@@ -252,13 +254,20 @@ void Start()
         }
     }
 
-    IEnumerator waitToStartLaundererIntroduction3()
+    IEnumerator WaitToStartRentCollection()
+    {
+        yield return new WaitForSeconds(1);
+        _allowedToPlayRentCollection = true;
+
+    }
+
+    IEnumerator WaitToStartLaundererIntroduction3()
     {
         yield return new WaitForSeconds(10);
         playLaunderer2 = true;
     }
 
-    IEnumerator waitToStartLaundererIntroduction2()
+    IEnumerator WaitToStartLaundererIntroduction2()
     {
         yield return new WaitForSeconds(10);
         playLaunderer = true;

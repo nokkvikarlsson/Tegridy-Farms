@@ -80,8 +80,10 @@ public class LaunderItemCard : MonoBehaviour
 		{
 			_launderController.SetCurrentLaunder(launderItemIndex);
 			_gameController.CloseShop();
-            
-            _eventController.DisplayDialogueLaunderer2("Alright, let's get laundering");
+
+            int index = Random.Range(0, _eventController.laundererDialogues.Length);
+            _eventController.DisplayDialogueLaunderer2(_eventController.laundererDialogues[index]);
+
             _eventController.playAllLaundryDialogue = false;
 		}
 		else
