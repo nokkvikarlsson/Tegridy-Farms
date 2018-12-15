@@ -65,7 +65,7 @@ public class Expand : MonoBehaviour {
     {
 		if(_gameController.plotsize == 8) {return;}
 		
-        int priceOfExpansion = EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize;
+        int priceOfExpansion = CalculatePrice();
 
         if(_gameController.money < priceOfExpansion)
         {
@@ -83,7 +83,7 @@ public class Expand : MonoBehaviour {
 		//Add fertilizer on new plots
 		_gameController.CheckFertilizer();
         //update price of card in shop
-        _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (EXPANSIONPRICE * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize * _gameController.plotsize).ToString() + "$";
+        _expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (CalculatePrice()).ToString() + "$";
 
 		if(_gameController.plotsize == 8) 
 		{
@@ -148,5 +148,10 @@ public class Expand : MonoBehaviour {
 		}
 		GameObject newRight = (GameObject)Instantiate(rightPlotPrefab);
 		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
+	}
+
+	int CalculatePrice()
+	{
+		return System.Math.Floor(EXPANSIONPRICE * System.Math.Pow(_gameController.plotsize, 4) / 1000) * 1000;
 	}
 }
