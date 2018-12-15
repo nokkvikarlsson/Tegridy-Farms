@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: LocalShop
   m_EditorClassIdentifier: 
   type: Local Shop
-  durationDays: 0.5
+  durationDays: 4
   price: 400
   moneyLaunderCapacity: 1000
   unlockedAt: 3

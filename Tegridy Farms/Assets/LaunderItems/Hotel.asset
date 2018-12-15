@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Hotel
   m_EditorClassIdentifier: 
   type: Hotel
-  durationDays: 2.5
+  durationDays: 16
   price: 5000
-  moneyLaunderCapacity: 10000
+  moneyLaunderCapacity: 22500
   unlockedAt: 7

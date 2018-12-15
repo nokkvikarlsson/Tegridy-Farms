@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: FancyRestaurant
   m_EditorClassIdentifier: 
   type: Fancy Restaurant
-  durationDays: 2
+  durationDays: 12
   price: 3000
-  moneyLaunderCapacity: 6000
+  moneyLaunderCapacity: 12000
   unlockedAt: 6
