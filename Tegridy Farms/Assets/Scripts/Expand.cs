@@ -38,8 +38,6 @@ public class Expand : MonoBehaviour {
 		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
 		_expansionItemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_expansionItemCardImage = gameObject.GetComponent<Image>();
-
-		_expansionItemCardBuyPrice.GetComponent<Text>().text = "-" + (CalculatePrice()).ToString() + "$";
     }
 
     // Use this for initialization
