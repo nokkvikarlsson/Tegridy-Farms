@@ -152,6 +152,6 @@ public class Expand : MonoBehaviour {
 
 	int CalculatePrice()
 	{
-		return System.Math.Floor(EXPANSIONPRICE * System.Math.Pow(_gameController.plotsize, 4) / 1000) * 1000;
+		return System.Math.Floor(EXPANSIONPRICE * System.Math.Pow(_gameController.plotsize, 4) / 100) * 100;
 	}
 }
