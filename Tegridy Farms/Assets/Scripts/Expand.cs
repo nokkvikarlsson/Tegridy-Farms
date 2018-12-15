@@ -27,7 +27,6 @@ public class Expand : MonoBehaviour {
 
 	private GameObject _expansionItemCardTitle;
     private int EXPANSIONPRICE = 15;
-    private GameObject _mainCamera;
 	private Image _expansionItemCardImage;
 
     void Awake()
@@ -39,8 +38,6 @@ public class Expand : MonoBehaviour {
 		_expansionItemCardBuyPrice = gameObject.transform.GetChild(2).gameObject;
 		_expansionItemCardTitle = gameObject.transform.GetChild(0).gameObject;
 		_expansionItemCardImage = gameObject.GetComponent<Image>();
-
-        _mainCamera = GameObject.Find("/Main Camera");
     }
 
     // Use this for initialization
@@ -77,10 +74,9 @@ public class Expand : MonoBehaviour {
         }
         _soundController.Play("Expand", _soundController.effectSounds);
         _gameController.removeMoney(priceOfExpansion);
-        _gameController.CloseShop();
         ExpandFarmPlots();
         AddSurroundingPlot();
-		AdjustCamera();
+		_gameController.AdjustCamera();
 		//Increase Rent
 		_gameController.IncreaseRent();
 		//Add fertilizer on new plots
@@ -96,7 +92,7 @@ public class Expand : MonoBehaviour {
 			itemCardImage.color = Color.gray;
 			_expansionItemCardBuyPrice.GetComponent<Text>().text = "";
 		}
-
+		_gameController.CloseShop();
     }
 
     public void ExpandFarmPlots()
@@ -152,12 +148,4 @@ public class Expand : MonoBehaviour {
 		GameObject newRight = (GameObject)Instantiate(rightPlotPrefab);
 		newRight.transform.position = new Vector3(plotsize, -(plotsize-1));
 	}
-
-	void AdjustCamera()
-	{
-		_mainCamera.transform.position += new Vector3(0.25f, -0.5f);
-		Camera mainCameraComp = _mainCamera.GetComponent<Camera>();
-		mainCameraComp.orthographicSize += 0.19f;
-	}
-
 }
