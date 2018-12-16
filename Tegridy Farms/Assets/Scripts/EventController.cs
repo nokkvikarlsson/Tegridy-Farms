@@ -121,7 +121,7 @@ public class EventController : MonoBehaviour
         _rentDialogues[0] = "Hey the rent is due after 6 hours at 12 AM don't forget it.";
         _rentDialogues[1] = "Howdy, you owe me rent and I’m coming to collect it after six hours at 12 AM.";
         _rentDialogues[2] = "Hey buddy, you better pay the rent in six hours at 12 AM.";
-        _rentDialogues[3] = "You know what happens after six hours at 12 AM? rent time.";
+        _rentDialogues[3] = "You know what happens after six hours at 12 AM? Rent time.";
 
         laundererDialogues = new string[3];
         laundererDialogues[0] = "Alright, let's get laundering";
@@ -205,7 +205,7 @@ void Start()
         if(_gameController.gameTime.hour == 23 && _gameController.gameTime.minute == 59 && _allowedToPlayRentCollection)
         {
             _allowedToPlayRentCollection = false;
-            DisplayDialogueLandlord("Rent is being collected! Rent will now be higher");
+            DisplayDialogueLandlord("Rent has been collected! Rent will now be higher");
             StartCoroutine(WaitToStartRentCollection());
         }
 
@@ -276,7 +276,7 @@ void Start()
 
     IEnumerator AllowToPlayLastIntroduction()
     {
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(13);
         _playLastIntroduction = true;
     }
 

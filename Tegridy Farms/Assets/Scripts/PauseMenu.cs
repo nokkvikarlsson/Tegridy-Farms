@@ -63,6 +63,8 @@ public class PauseMenu : MonoBehaviour {
         //Shows the UI when resumed
         _UI.SetActive(true);
         pauseOptionsUI.SetActive(false);
+
+        _gameController.housePlot.GetComponent<BoxCollider2D>().enabled = true;
     }
 
 	private void Pause()
@@ -89,6 +91,8 @@ public class PauseMenu : MonoBehaviour {
             {
                 _shop.SetActive(false);
             }
+
+            _gameController.housePlot.GetComponent<BoxCollider2D>().enabled = false;
         }
 
     }
@@ -108,7 +112,7 @@ public class PauseMenu : MonoBehaviour {
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("NokkviMain");
+        SceneManager.LoadScene("Main");
     }
 
 }
