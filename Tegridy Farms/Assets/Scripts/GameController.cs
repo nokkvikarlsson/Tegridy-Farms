@@ -22,6 +22,9 @@ public class GameController : MonoBehaviour
     public int displayChecker; //NokkviKilla needs this variable
     public Plant[] allPlants; //List of all Plants and Buildings that player can plant
     public RectTransform cropsTab; //The crops tab in the shop
+    public GameObject housePlot; //The House Plot
+    public GameObject shopButton;
+    public GameObject currentItemButton;
     public int rent;
     [HideInInspector]
     public bool hasLost;
@@ -38,7 +41,6 @@ public class GameController : MonoBehaviour
     private GameObject _lossRentText;
     private GameObject _lossCanvas;
     private DisplayScore _displayScore;
-    public GameObject housePlot;
     private EventController _eventController;
     private SoundController _soundController;
     private LaunderController _launderController;
@@ -106,6 +108,8 @@ public class GameController : MonoBehaviour
         _mainCamera = GameObject.Find("/Main Camera");
 		_mainCameraComp = _mainCamera.GetComponent<Camera>();
         housePlot = GameObject.Find("/HousePlot");
+        shopButton = GameObject.Find("/UI/TopPanel/ShopButton");
+        currentItemButton = GameObject.Find("/UI/CurrentItemButton");
         //initalize Launder Controller
         _launderController = FindObjectOfType<LaunderController>();
         //Tells if the player has lost.
@@ -192,12 +196,10 @@ public class GameController : MonoBehaviour
             gameOverSequence(true);
         }
         if (money < 0)
-		{
-			gameOver = true;
+        {
+            gameOver = true;
             gameOverSequence(false);
-		}
-
-
+        }
     }
 
     void StartGameTime()
@@ -344,12 +346,14 @@ public class GameController : MonoBehaviour
 
             displayChecker = 1;
 
-            //disable plots
+            //disable everything
             for (int i = 0; i < plots.Length; i++)
             {
                 plots[i].GetComponent<BoxCollider2D>().enabled = false;
             }
-
+            shopButton.GetComponent<Button>().enabled = false;
+            currentItemButton.GetComponent<Button>().enabled = false;
+            housePlot.GetComponent<BoxCollider2D>().enabled = false;
         }
         //If the player lost due to rent play the lossCanvas animation and display the loss text
         else
@@ -374,11 +378,14 @@ public class GameController : MonoBehaviour
 
             displayChecker = 1;
 
-            //disable plots
+            //disable everything
             for (int i = 0; i < plots.Length; i++)
             {
                 plots[i].GetComponent<BoxCollider2D>().enabled = false;
             }
+            shopButton.GetComponent<Button>().enabled = false;
+            currentItemButton.GetComponent<Button>().enabled = false;
+            housePlot.GetComponent<BoxCollider2D>().enabled = false;
         }
 
     }
