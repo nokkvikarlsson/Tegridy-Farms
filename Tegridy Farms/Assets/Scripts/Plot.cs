@@ -360,6 +360,11 @@ public class Plot : MonoBehaviour
 					Destroy(sparkle);
 					sparkle = null;
 				}
+				if(smoke != null)
+				{
+					Destroy(smoke);
+					smoke = null;
+				}
 				_gameController.CheckFertilizer();
 				_soundController.Play("PlacingBuilding", _soundController.buildingSounds);
 			}
