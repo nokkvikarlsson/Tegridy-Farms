@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Plot : MonoBehaviour 
 {
@@ -125,7 +126,17 @@ public class Plot : MonoBehaviour
 						buildingOn = false;
 						_gameController.allPlants[6].sellvalue -= plant.sellvalue; 
 						_gameController.allPlants[6].suspicion -= plant.suspicion;
-
+						//UPDATE ITEM CARD
+						GameObject cocaineItemCard = _gameController.cropsTab.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(4).gameObject;
+						//change sellvalue
+						Text cocaineSellValue = cocaineItemCard.transform.GetChild(3).gameObject.GetComponent<Text>();
+						int newItemCardSellValue = _gameController.allPlants[6].sellvalue;
+						cocaineSellValue.text = "+" + (newItemCardSellValue).ToString() + "$";
+						//change suspicion
+						Text cocaineSuspicion = cocaineItemCard.transform.GetChild(5).gameObject.GetComponent<Text>();
+						int newSuspicion = (int)System.Math.Round(newItemCardSellValue * _gameController.allPlants[6].suspicion);
+						cocaineSuspicion.text = newSuspicion.ToString();
+						//Reset the refinery
 						growth = 0;
 						_timePlanted = new GameTime(0,0,0);
 					}
@@ -265,6 +276,16 @@ public class Plot : MonoBehaviour
 				_timePlanted = new GameTime(_gameController.gameTime);
 				_gameController.allPlants[6].sellvalue += plant.sellvalue; 
 				_gameController.allPlants[6].suspicion += plant.suspicion;
+				//UPDATE ITEM CARD
+				GameObject cocaineItemCard = _gameController.cropsTab.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).GetChild(4).gameObject;
+				//change sellvalue
+				Text cocaineSellValue = cocaineItemCard.transform.GetChild(3).gameObject.GetComponent<Text>();
+				int newItemCardSellValue = _gameController.allPlants[6].sellvalue;
+				cocaineSellValue.text = "+" + (newItemCardSellValue).ToString() + "$";
+				//change suspicion
+				Text cocaineSuspicion = cocaineItemCard.transform.GetChild(5).gameObject.GetComponent<Text>();
+				int newSuspicion = (int)System.Math.Round(newItemCardSellValue * _gameController.allPlants[6].suspicion);
+				cocaineSuspicion.text = newSuspicion.ToString();
                 //Play sound
                 _soundController.Play("BuildingActivation", _soundController.buildingSounds);
                 //Adds cloud

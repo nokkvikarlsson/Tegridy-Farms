@@ -21,13 +21,13 @@ public class GameController : MonoBehaviour
 	public GameObject[] plots;
     public int displayChecker; //NokkviKilla needs this variable
     public Plant[] allPlants; //List of all Plants and Buildings that player can plant
+    public RectTransform cropsTab; //The crops tab in the shop
     public int rent;
     [HideInInspector]
     public bool hasLost;
 
     //PRIVATE:
     private Image _currentItemImageSprite;
-	private RectTransform _cropsTab;
 	private Text _moneyCounterText;
 	private Text _timeCounterText;
 	private Text _dayCounterText;
@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
         GameObject _currentItemImage = GameObject.Find("/UI/CurrentItemButton/CurrentItemImage");
         _currentItemImageSprite = _currentItemImage.GetComponent<Image>();
         GameObject _plantsTabPane = shopMenu.transform.GetChild(0).GetChild(3).gameObject;
-        _cropsTab = _plantsTabPane.GetComponent<RectTransform>();
+        cropsTab = _plantsTabPane.GetComponent<RectTransform>();
         GameObject _rentObject = GameObject.Find("/UI/CurrentRent/Value");
         _currentRentText = _rentObject.GetComponent<Text>();
         _currentRentText.text = rent.ToString() + "$";
@@ -132,7 +132,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        _cropsTab.SetAsLastSibling();
+        cropsTab.SetAsLastSibling();
         _lossRentText.SetActive(false);
         _lossSuspicionText.SetActive(false);
         _lossCanvas.GetComponent<Animator>().enabled = false;
@@ -249,7 +249,7 @@ public class GameController : MonoBehaviour
         //Play sound
         _soundController.Play("OpenShop", _soundController.effectSounds);
 		
-		_cropsTab.SetAsLastSibling();
+		cropsTab.SetAsLastSibling();
 		shopMenu.SetActive(true);
 
         for (int i = 0; i < plots.Length; i++)
@@ -401,15 +401,16 @@ public class GameController : MonoBehaviour
 
     public void IncreaseRent()
     {
+        double newRent = 0.0;
         //Increase rent by 35%
-        if(_plotsize != 8)
+        if(plotsize != 8)
         {
-            double newRent = (double)rent * 1.35;
+            newRent = (double)rent * 1.35;
         }
         //At 8x8 Increase rent by 50%
         else
         {
-            double newRent = (double)rent * 1.5;
+            newRent = (double)rent * 1.5;
         }
         //Floor to nearest 50
         newRent = System.Math.Floor(newRent / 50) * 50;

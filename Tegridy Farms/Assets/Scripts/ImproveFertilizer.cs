@@ -11,7 +11,6 @@ public class ImproveFertilizer : MonoBehaviour {
 	bool _bought;
 
 	void Awake() {
-		Debug.Log("EXISTS");
 		_gameController = FindObjectOfType<GameController>();
 		_bought = false;
 
