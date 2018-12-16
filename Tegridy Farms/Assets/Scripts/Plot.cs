@@ -340,4 +340,29 @@ public class Plot : MonoBehaviour
 		_timePlanted.hour = currentTime.hour;
 		_timePlanted.minute = currentTime.minute;
 	}
+
+	void OnMouseOver()
+	{
+		if(plant.isBuilding)
+		{
+			if(Input.GetMouseButtonDown(1))
+			{
+				//Sell Building
+				_gameController.addMoney(plant.price/2);
+				//RESET PLANT
+				plant = _gameController.allPlants[0];
+				growth = 0;
+				_spriteR.sprite = plant.levels[0];
+				_timePlanted = new GameTime(0,0,0);
+				//REMOVE SPARKLE
+				if(sparkle != null)
+				{
+					Destroy(sparkle);
+					sparkle = null;
+				}
+				_gameController.CheckFertilizer();
+				_soundController.Play("PlacingBuilding", _soundController.buildingSounds);
+			}
+		}
+	}
 }
