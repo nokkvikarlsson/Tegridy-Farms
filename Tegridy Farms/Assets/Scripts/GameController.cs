@@ -124,9 +124,8 @@ public class GameController : MonoBehaviour
 
         //SoundController
         _lossSoundPlayed = false;
-
-
-
+        //Finding sound controller
+        _soundController = FindObjectOfType<SoundController>();
     }
 
     // Use this for initialization
@@ -181,9 +180,6 @@ public class GameController : MonoBehaviour
             timetext += gameTime.minute.ToString() + " PM";
         }
 		_timeCounterText.text = timetext;
-
-        //Finding sound controller
-        _soundController = FindObjectOfType<SoundController>();
 
         //Update UI BarSlider to match
         _barSlider.value = (float)suspicion;
