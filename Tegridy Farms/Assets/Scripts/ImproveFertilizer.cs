@@ -31,6 +31,7 @@ public class ImproveFertilizer : MonoBehaviour {
 		{
 			if(_gameController.plotsize >= 5)
 			{
+				_improveItemCardTitle.GetComponent<Text>().text = "Improve Fertilizer";
 				if(_gameController.money < 750)
 				{
 					_improveItemCardImage.color = Color.gray;
